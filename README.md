@@ -110,17 +110,15 @@ Perintah ini akan menghasilkan bundel produksi teroptimasi di dalam direktori **
 
 ---
 
-### Langkah 2: Menyiapkan File `.htaccess` (Untuk Apache / cPanel)
-Untuk memastikan routing Single Page Application berjalan lancar tanpa error `404 Not Found` saat halaman direfresh, sertakan file **`.htaccess`** di dalam folder `public_html` hosting Anda:
+### Langkah 2: Menyiapkan File `.htaccess` (Untuk Apache / cPanel / Subdirektori)
+Untuk memastikan routing Single Page Application berjalan lancar tanpa error `404 Not Found` atau MIME type error saat halaman di-refresh (baik di root domain maupun sub-folder seperti `/kurikulum26/`), sertakan file **`.htaccess`** di folder hosting Anda:
 
 ```apache
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /
-  RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
+  RewriteRule ^ index.html [L]
 </IfModule>
 
 # Gzip Compression for Fast Loading
@@ -133,11 +131,11 @@ Untuk memastikan routing Single Page Application berjalan lancar tanpa error `40
 
 ### Langkah 3: Upload ke Shared Hosting via File Manager / cPanel
 1. Buka dashboard **cPanel** / **Hostinger hPanel** / **Niagahoster** / **Rumahweb**.
-2. Masuk ke **File Manager** dan buka direktori **`public_html/`** (atau folder subdomain Anda).
-3. Compress/Zip seluruh isi folder **`dist/`** di lokal komputer Anda, lalu upload file ZIP tersebut ke `public_html/`.
-4. Extrak file ZIP di dalam `public_html/`. Pastikan file `index.html`, folder `assets/`, dan file `.htaccess` berada di dalam root `public_html/`.
+2. Masuk ke **File Manager** dan buka direktori tujuan (misal **`public_html/`** untuk domain utama, atau **`public_html/kurikulum26/`** untuk subdirektori).
+3. Compress/Zip seluruh isi folder **`dist/`** di lokal komputer Anda, lalu upload file ZIP tersebut ke folder tujuan di hosting.
+4. Extrak file ZIP di folder tujuan. Pastikan file `index.html`, folder `assets/`, dan file `.htaccess` berada langsung di dalam folder tersebut:
    ```
-   public_html/
+   public_html/kurikulum26/  (atau public_html/)
    ├── assets/
    │   ├── index-XXXX.js
    │   ├── index-XXXX.css
@@ -145,7 +143,7 @@ Untuk memastikan routing Single Page Application berjalan lancar tanpa error `40
    ├── index.html
    └── .htaccess
    ```
-5. Buka nama domain / subdomain Anda di browser. Aplikasi Konversi Kurikulum PTI UMS 2026 kini dapat diakses secara langsung!
+5. Buka `https://domainanda.com/kurikulum26/` di browser. Aplikasi Konversi Kurikulum PTI UMS 2026 kini dapat diakses secara instan tanpa error 404/MIME type!
 
 ---
 

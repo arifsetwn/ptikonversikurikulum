@@ -28,6 +28,29 @@ const GRADE_MAP: Record<string, GradeType> = {
 };
 
 /**
+ * Sanitizes course names by removing PDF header junk text and SEMESTER prefixes
+ */
+export function sanitizeCourseName(rawName: string): string {
+  if (!rawName) return '';
+
+  let cleaned = rawName;
+
+  // 1. Strip PDF header junk text prefixes concatenated by pdfjs-dist
+  cleaned = cleaned.replace(/.*Terakreditasi[^\n\r]*?\d{4}/gi, '');
+  cleaned = cleaned.replace(/.*Lembaga\s+Akreditasi[^\n\r]*/gi, '');
+  cleaned = cleaned.replace(/.*Status\s+Akreditasi[^\n\r]*/gi, '');
+  cleaned = cleaned.replace(/.*LAPORAN\s+PERKEMBANGAN[^\n\r]*/gi, '');
+  cleaned = cleaned.replace(/.*MATA\s+KULIAH\s+SKS\s+NILAI\s*/gi, '');
+  cleaned = cleaned.replace(/.*Nomor\s+\d+\/[^\n\r]*/gi, '');
+
+  // 2. Strip SEMESTER X prefix
+  cleaned = cleaned.replace(/^SEMESTER\s+\d+\s*/gi, '');
+  cleaned = cleaned.replace(/^SEMESTER\s+[A-Za-z0-9]+\s*/gi, '');
+
+  return cleaned.trim();
+}
+
+/**
  * Parses a transcript PDF file (Laporan Perkembangan UMS)
  */
 export async function parseTranscriptPdf(file: File): Promise<ParsedPdfResult> {
@@ -63,7 +86,6 @@ export async function parseTranscriptPdf(file: File): Promise<ParsedPdfResult> {
   }
 
   // 3. Extract Courses, SKS, and Grades
-  // Line pattern: [Course Name] [SKS (1-6)] [Grade (A, AB, B, BC, C, CD, D, E, A/B, B/C, C/D)]
   const courses: StudentInputCourse[] = [];
   const lines = fullText.split(/[\r\n]+/);
 
@@ -79,16 +101,14 @@ export async function parseTranscriptPdf(file: File): Promise<ParsedPdfResult> {
 
     const match = cleanLine.match(lineRegex);
     if (match) {
-      let courseName = match[1].trim();
-
-      // Clean leading "SEMESTER X" section header prefix if attached to course name
-      courseName = courseName.replace(/^SEMESTER\s+\d+\s*/i, '').trim();
+      const courseName = sanitizeCourseName(match[1]);
 
       // Ignore header/footer lines that might accidentally match
       if (
+        !courseName ||
         courseName.toLowerCase().includes('laporan perkembangan') ||
         courseName.toLowerCase().includes('nama mahasiswa') ||
-        !courseName
+        courseName.toLowerCase().includes('mata kuliah')
       ) {
         return;
       }
@@ -111,13 +131,13 @@ export async function parseTranscriptPdf(file: File): Promise<ParsedPdfResult> {
     let match: RegExpExecArray | null;
     let idx = 0;
     while ((match = courseRegex.exec(fullText)) !== null) {
-      let courseName = match[1].trim();
-      courseName = courseName.replace(/^SEMESTER\s+\d+\s*/i, '').trim();
+      const courseName = sanitizeCourseName(match[1]);
 
       if (
+        !courseName ||
         courseName.toLowerCase().includes('laporan') ||
         courseName.toLowerCase().includes('nama mahasiswa') ||
-        !courseName
+        courseName.toLowerCase().includes('mata kuliah')
       ) {
         continue;
       }

@@ -56,7 +56,8 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+            aria-label="Tutup pratinjau PDF"
+            className="min-w-[44px] min-h-[44px] p-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 active:scale-95 transition-all cursor-pointer flex items-center justify-center focus-visible:ring-2 focus-visible:ring-blue-500"
           >
             <X className="w-5 h-5" />
           </button>
@@ -64,20 +65,22 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
 
         {/* Action Bar */}
         <div className="bg-slate-100 px-6 py-3 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3 no-print">
-          <div className="text-xs text-slate-600">
-            Pastikan Nama & NIM sudah benar sebelum mengunduh dokumen.
+          <div className="text-xs font-semibold text-slate-700">
+            Pastikan Nama & NIM sudah benar sebelum mengunduh dokumen PDF.
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={handlePrintWindow}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white text-slate-700 hover:bg-slate-50 border border-slate-300 shadow-sm transition-colors cursor-pointer"
+              aria-label="Buka dialog cetak printer"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-extrabold bg-white text-slate-800 hover:bg-slate-50 border border-slate-300 shadow-xs active:scale-95 transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-600"
             >
               <Printer className="w-4 h-4 text-slate-600" /> Cetak (Print)
             </button>
             <button
               onClick={handleDownloadPdf}
               disabled={isGenerating}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white shadow-md transition-all cursor-pointer"
+              aria-label="Unduh langsung dokumen PDF"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 active:scale-95 disabled:opacity-50 text-white shadow-md shadow-blue-500/20 transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-600"
             >
               {isGenerating ? (
                 <>

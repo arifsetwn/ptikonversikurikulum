@@ -222,7 +222,14 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
                       </td>
                       <td style={{ borderColor: '#cbd5e1' }} className="border p-1">
                         {item.namaBaru ? (
-                          <span style={{ color: '#0f172a' }} className="font-bold">{item.namaBaru}</span>
+                          <span style={{ color: '#0f172a' }} className="font-bold">
+                            {item.namaBaru}
+                            {item.semBaru?.toLowerCase().includes('pilihan') && (
+                              <span style={{ color: '#6b21a8', backgroundColor: '#f3e8ff', border: '1px solid #d8b4fe' }} className="ml-1 px-1 py-0.2 rounded text-[8px] font-black">
+                                (MK Pilihan)
+                              </span>
+                            )}
+                          </span>
                         ) : (
                           <span style={{ color: '#94a3b8' }} className="italic">Tidak ada padanan</span>
                         )}

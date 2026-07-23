@@ -102,7 +102,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
               Unggah Transkrip & Identitas Mahasiswa
             </h2>
             <p className="text-xs text-slate-500 mt-0.5">
-              Unggah dokumen PDF transkrip nilai (*Laporan Perkembangan UMS*) untuk pengisian otomatis Nama, NIM, dan Mata Kuliah.
+              Unggah dokumen PDF transkrip nilai untuk pengisian otomatis Nama, NIM, dan Mata Kuliah.
             </p>
           </div>
         </div>
@@ -136,7 +136,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
               <span className="px-2.5 py-0.5 bg-blue-600 text-white rounded-lg text-[10px] font-black uppercase tracking-wider shadow-sm">
                 UTAMA
               </span>
-              <span>1. Upload File Transkrip Nilai (PDF UMS)</span>
+              <span>1. Upload File Transkrip Nilai (PDF dari myakademik UMS)</span>
             </label>
             <span className="text-[11px] text-slate-500 italic">
               * Mengisi otomatis Nama, NIM, dan seluruh daftar Mata Kuliah 2022
@@ -156,13 +156,12 @@ export const StudentForm: React.FC<StudentFormProps> = ({
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
-            className={`w-full flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl border-2 border-dashed text-xs font-semibold cursor-pointer transition-all ${
-              isDragOver
-                ? 'bg-blue-100/80 border-blue-600 text-blue-900 ring-4 ring-blue-500/20 scale-[1.005]'
-                : isUploading
+            className={`w-full flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl border-2 border-dashed text-xs font-semibold cursor-pointer transition-all ${isDragOver
+              ? 'bg-blue-100/80 border-blue-600 text-blue-900 ring-4 ring-blue-500/20 scale-[1.005]'
+              : isUploading
                 ? 'bg-blue-50 border-blue-400 text-blue-800 animate-pulse'
                 : 'bg-gradient-to-r from-blue-50/90 via-indigo-50/40 to-slate-50/80 border-blue-400/80 text-blue-950 hover:bg-blue-100/60 hover:border-blue-600 shadow-sm'
-            }`}
+              }`}
           >
             <div className="flex items-center gap-4">
               <div className="p-3.5 bg-white rounded-2xl shadow-sm border border-blue-200/80 shrink-0">

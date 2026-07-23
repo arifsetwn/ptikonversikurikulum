@@ -12,7 +12,8 @@ import {
   Check,
   TrendingUp,
   TrendingDown,
-  Minus
+  Minus,
+  Sparkles
 } from 'lucide-react';
 import { ConversionResultItem, ConversionSummaryStats, StudentInfo, Course2026, GRADE_WEIGHTS } from '../types';
 import { getRemaining2026Courses } from '../utils/conversionEngine';
@@ -45,6 +46,9 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
     }
     if (filterStatus === 'multimatch') {
       return item.status === 'converted_1toMany';
+    }
+    if (filterStatus === 'pilihan') {
+      return item.semBaru?.toLowerCase().includes('pilihan') || item.semLama?.toLowerCase().includes('pilihan');
     }
     return true;
   });
@@ -80,7 +84,7 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
               </h2>
             </div>
             <p className="text-xs text-slate-500 mt-1">
-              Rincian IPK sebelum/setelah konversi, pemetaan mata kuliah diakui dan sisa MK 2026.
+              Rincian IPK sebelum/setelah konversi, pemetaan mata kuliah diakui, SKS hilang, dan sisa MK 2026.
             </p>
           </div>
         </div>
@@ -196,7 +200,7 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
             <span className="text-xs text-amber-700 font-bold">SKS</span>
           </div>
           <span className="text-[10px] text-amber-700 font-semibold block">
-            Target Lulus 145 SKS
+            Target Lulus 146 SKS
           </span>
         </div>
       </div>
@@ -205,10 +209,11 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
       <div className="flex items-center gap-2 border-b border-slate-200 mb-6">
         <button
           onClick={() => setActiveTab('conversion')}
-          className={`pb-3 px-4 text-xs font-extrabold flex items-center gap-2 border-b-2 transition-all cursor-pointer ${activeTab === 'conversion'
+          className={`pb-3 px-4 text-xs font-extrabold flex items-center gap-2 border-b-2 transition-all cursor-pointer ${
+            activeTab === 'conversion'
               ? 'border-blue-600 text-blue-600'
               : 'border-transparent text-slate-500 hover:text-slate-900'
-            }`}
+          }`}
         >
           <FileSpreadsheet className="w-4 h-4" /> Tabel Hasil Pemetaan & Nilai Konversi
           <span className="px-2.5 py-0.5 rounded-full text-[10px] bg-blue-100 text-blue-900 font-black">
@@ -218,10 +223,11 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
 
         <button
           onClick={() => setActiveTab('remaining')}
-          className={`pb-3 px-4 text-xs font-extrabold flex items-center gap-2 border-b-2 transition-all cursor-pointer ${activeTab === 'remaining'
+          className={`pb-3 px-4 text-xs font-extrabold flex items-center gap-2 border-b-2 transition-all cursor-pointer ${
+            activeTab === 'remaining'
               ? 'border-amber-600 text-amber-600'
               : 'border-transparent text-slate-500 hover:text-slate-900'
-            }`}
+          }`}
         >
           <BookMarked className="w-4 h-4" /> Rekapitulasi MK 2026 Belum Diambil
           <span className="px-2.5 py-0.5 rounded-full text-[10px] bg-amber-100 text-amber-900 font-black">
@@ -238,29 +244,44 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
             <div className="flex flex-wrap items-center gap-1.5 bg-slate-100 p-1.5 rounded-2xl">
               <button
                 onClick={() => setFilterStatus('all')}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${filterStatus === 'all' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                  }`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  filterStatus === 'all' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+                }`}
               >
                 Semua Hasil ({results.length})
               </button>
               <button
                 onClick={() => setFilterStatus('converted')}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${filterStatus === 'converted' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                  }`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  filterStatus === 'converted' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
+                }`}
               >
                 Terkonversi ({results.filter(r => r.status === 'converted_1to1' || r.status === 'converted_1toMany').length})
               </button>
+
+              {/* Special Filter for MK Pilihan */}
+              <button
+                onClick={() => setFilterStatus('pilihan')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                  filterStatus === 'pilihan' ? 'bg-purple-600 text-white shadow-sm' : 'text-purple-700 bg-purple-50 hover:bg-purple-100'
+                }`}
+              >
+                <Sparkles className="w-3.5 h-3.5" /> MK Pilihan ({results.filter(r => r.semBaru?.toLowerCase().includes('pilihan') || r.semLama?.toLowerCase().includes('pilihan')).length})
+              </button>
+
               <button
                 onClick={() => setFilterStatus('unconverted')}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${filterStatus === 'unconverted' ? 'bg-rose-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                  }`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  filterStatus === 'unconverted' ? 'bg-rose-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
+                }`}
               >
                 SKS Hilang ({results.filter(r => r.status === 'unconverted').length})
               </button>
               <button
                 onClick={() => setFilterStatus('multimatch')}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${filterStatus === 'multimatch' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                  }`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  filterStatus === 'multimatch' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
+                }`}
               >
                 Multi-Match ({results.filter(r => r.status === 'converted_1toMany').length})
               </button>
@@ -310,8 +331,11 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
                     const isUnconverted = item.status === 'unconverted';
                     const isMulti = item.status === 'converted_1toMany';
                     const isNotInCat = item.status === 'not_in_catalog';
+                    const isElective2026 = item.semBaru?.toLowerCase().includes('pilihan');
+                    const isElective2022 = item.semLama?.toLowerCase().includes('pilihan') || item.semLama === 'P';
 
                     let rowBgClass = 'hover:bg-slate-50/80';
+                    if (isElective2026) rowBgClass = 'bg-purple-50/30 hover:bg-purple-50/70';
                     if (isUnconverted) rowBgClass = 'bg-rose-50/40 hover:bg-rose-50/80';
                     if (isMulti) rowBgClass = 'bg-indigo-50/40 hover:bg-indigo-50/80';
                     if (isNotInCat) rowBgClass = 'bg-amber-50/40 hover:bg-amber-50/80';
@@ -320,7 +344,14 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
                       <tr key={item.id} className={`${rowBgClass} transition-colors`}>
                         {/* 2022 Columns */}
                         <td className="py-3 px-3 font-mono font-bold text-slate-500">{item.kodeLama}</td>
-                        <td className="py-3 px-4 font-bold text-slate-900">{item.namaLama}</td>
+                        <td className="py-3 px-4 font-bold text-slate-900">
+                          <span>{item.namaLama}</span>
+                          {isElective2022 && (
+                            <span className="ml-2 px-2 py-0.5 rounded text-[9px] font-black bg-purple-100 text-purple-900 border border-purple-200 inline-block">
+                              Pilihan 2022
+                            </span>
+                          )}
+                        </td>
                         <td className="py-3 px-3 text-center font-extrabold text-slate-700">
                           {item.sksLama}
                         </td>
@@ -335,9 +366,19 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
                           {item.kodeBaru || '-'}
                         </td>
                         <td className="py-3 px-4 font-extrabold text-blue-950">
-                          {item.namaBaru || (
-                            <span className="text-slate-400 italic">Tidak ada padanan</span>
-                          )}
+                          <div className="flex flex-wrap items-center gap-1.5">
+                            <span>
+                              {item.namaBaru || (
+                                <span className="text-slate-400 italic">Tidak ada padanan</span>
+                              )}
+                            </span>
+                            {/* Special Badge for 2026 Elective Course */}
+                            {isElective2026 && (
+                              <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-purple-600 text-white shadow-sm inline-flex items-center gap-1">
+                                <Sparkles className="w-2.5 h-2.5" /> MK Pilihan
+                              </span>
+                            )}
+                          </div>
                         </td>
                         <td className="py-3 px-3 text-center font-extrabold text-blue-900">
                           {item.sksBaru || 0}
@@ -421,7 +462,14 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
                   <tr key={course.kode_baru} className="hover:bg-slate-50 transition-colors">
                     <td className="py-3 px-4 text-center font-bold text-slate-400">{idx + 1}</td>
                     <td className="py-3 px-3 font-mono font-bold text-amber-800">{course.kode_baru}</td>
-                    <td className="py-3 px-4 font-extrabold text-slate-900">{course.nama_baru}</td>
+                    <td className="py-3 px-4 font-extrabold text-slate-900 flex items-center gap-2">
+                      <span>{course.nama_baru}</span>
+                      {course.sem_baru.toLowerCase().includes('pilihan') && (
+                        <span className="px-2 py-0.5 bg-purple-100 text-purple-900 rounded-full text-[10px] font-black border border-purple-200 inline-flex items-center gap-1">
+                          <Sparkles className="w-2.5 h-2.5 text-purple-600" /> MK Pilihan
+                        </span>
+                      )}
+                    </td>
                     <td className="py-3 px-3 text-center">
                       <span className="px-2.5 py-0.5 bg-amber-100 text-amber-900 rounded-full font-black text-xs">
                         {course.sks_baru} SKS
@@ -432,10 +480,11 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
                     </td>
                     <td className="py-3 px-4 text-center">
                       <span
-                        className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${course.sem_baru.toLowerCase().includes('pilihan')
+                        className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${
+                          course.sem_baru.toLowerCase().includes('pilihan')
                             ? 'bg-purple-100 text-purple-800'
                             : 'bg-blue-100 text-blue-800'
-                          }`}
+                        }`}
                       >
                         {course.sem_baru.toLowerCase().includes('pilihan') ? 'Pilihan' : 'Wajib'}
                       </span>

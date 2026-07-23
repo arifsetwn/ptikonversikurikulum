@@ -302,6 +302,7 @@ export const COURSE_NAME_CHANGES: CourseNameChangeItem[] = [
   { oldName: 'Pengembangan Bahan Ajar', oldSem: 'Sem 5', newName: 'Etika Profesi', newSem: 'Sem 1' },
   { oldName: 'Manajemen Pendidikan', oldSem: 'Sem 2', newName: 'Manajemen Pendidikan', newSem: 'Sem 5' },
   { oldName: 'Transformasi Digital', oldSem: 'Sem 3', newName: 'Literasi Digital', newSem: 'Sem 2' },
+  { oldName: 'Literasi Digital', oldSem: 'Pilihan', newName: 'Transformasi Digital', newSem: 'Pilihan' },
   { oldName: 'Administrasi Jaringan', oldSem: 'Sem 6', newName: 'Cybersecurity', newSem: 'Sem 5' },
   { oldName: 'Dasar Jaringan Komputer', oldSem: 'Sem 3', newName: 'Pengantar Sistem Jaringan Modern', newSem: 'Sem 3' },
   { oldName: 'Pembelajaran Mikro', oldSem: 'Sem 6', newName: 'Microteaching', newSem: 'Sem 6' },

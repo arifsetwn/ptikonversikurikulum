@@ -42,7 +42,9 @@ export interface GeneralChangeItem {
 
 export interface CourseNameChangeItem {
   oldName: string;
+  oldSem?: string;
   newName: string;
+  newSem?: string;
   note?: string;
 }
 
@@ -295,26 +297,28 @@ export const GENERAL_CHANGES: GeneralChangeItem[] = [
   }
 ];
 
-// PERUBAHAN NAMA MK (18 Pemetaan)
+// PERUBAHAN NAMA & SEMESTER MATA KULIAH
 export const COURSE_NAME_CHANGES: CourseNameChangeItem[] = [
-  { oldName: 'Transformasi Digital', newName: 'Literasi Digital' },
-  { oldName: 'Etika dan Profesi', newName: 'Etika dan Profesi' },
-  { oldName: 'Dasar Jaringan Komputer', newName: 'Pengantar Sistem Jaringan Modern' },
-  { oldName: 'Administrasi Jaringan', newName: 'Cybersecurity' },
-  { oldName: 'Pembelajaran Mikro', newName: 'Microteaching' },
-  { oldName: 'Proyek Mandiri', newName: 'Instructional Capstone Project' },
-  { oldName: 'PLP I & PLP II', newName: 'PLP (4 SKS)' },
-  { oldName: 'Skripsi', newName: 'Seminar Proposal + Tugas Akhir' },
-  { oldName: 'Teknologi Motion Tracking', newName: 'Teknologi Pembelajaran Modern' },
-  { oldName: 'Pengolahan Citra Digital', newName: 'Game based learning' },
-  { oldName: 'Multiplayer Game', newName: 'Learning Experience Design' },
-  { oldName: 'Perakitan Komputer dan Praktik', newName: 'Machine Learning' },
-  { oldName: 'Riset Operasi', newName: 'Pengembangan Aplikasi Modern' },
-  { oldName: 'Wireless Sensor Network', newName: '3D Design and Production' },
-  { oldName: 'Etika Profesi Keguruan', newName: 'Big Data Fundamental' },
-  { oldName: 'Perkembangan Peserta Didik', newName: 'Pemberdayaan Masyarakat' },
-  { oldName: 'Pembelajaran Tematik', newName: 'Media Komunikasi, Informasi dan Edukasi' },
-  { oldName: 'Aplikasi Mixed Reality', newName: 'Aplikasi Mixed Reality' }
+  { oldName: 'Pengembangan Bahan Ajar', oldSem: 'Sem 5', newName: 'Etika Profesi', newSem: 'Sem 1' },
+  { oldName: 'Manajemen Pendidikan', oldSem: 'Sem 2', newName: 'Manajemen Pendidikan', newSem: 'Sem 5' },
+  { oldName: 'Transformasi Digital', oldSem: 'Sem 3', newName: 'Literasi Digital', newSem: 'Sem 2' },
+  { oldName: 'Administrasi Jaringan', oldSem: 'Sem 6', newName: 'Cybersecurity', newSem: 'Sem 5' },
+  { oldName: 'Etika dan Profesi', oldSem: 'Sem 4', newName: 'Etika dan Profesi', newSem: 'Sem 1' },
+  { oldName: 'Dasar Jaringan Komputer', oldSem: 'Sem 3', newName: 'Pengantar Sistem Jaringan Modern', newSem: 'Sem 3' },
+  { oldName: 'Pembelajaran Mikro', oldSem: 'Sem 6', newName: 'Microteaching', newSem: 'Sem 6' },
+  { oldName: 'Proyek Mandiri', oldSem: 'Sem 6', newName: 'Instructional Capstone Project', newSem: 'Sem 6' },
+  { oldName: 'PLP I & PLP II', oldSem: 'Sem 4 & 7', newName: 'PLP (4 SKS)', newSem: 'Sem 7' },
+  { oldName: 'Skripsi', oldSem: 'Sem 8', newName: 'Seminar Proposal + Tugas Akhir', newSem: 'Sem 7 & 8' },
+  { oldName: 'Teknologi Motion Tracking', oldSem: 'Pilihan', newName: 'Teknologi Pembelajaran Modern', newSem: 'Pilihan' },
+  { oldName: 'Pengolahan Citra Digital', oldSem: 'Pilihan', newName: 'Game based learning', newSem: 'Pilihan' },
+  { oldName: 'Multiplayer Game', oldSem: 'Pilihan', newName: 'Learning Experience Design', newSem: 'Pilihan' },
+  { oldName: 'Perakitan Komputer dan Praktik', oldSem: 'Pilihan', newName: 'Machine Learning', newSem: 'Pilihan' },
+  { oldName: 'Riset Operasi', oldSem: 'Pilihan', newName: 'Pengembangan Aplikasi Modern', newSem: 'Pilihan' },
+  { oldName: 'Wireless Sensor Network', oldSem: 'Pilihan', newName: '3D Design and Production', newSem: 'Pilihan' },
+  { oldName: 'Etika Profesi Keguruan', oldSem: 'Sem 6', newName: 'Big Data Fundamental', newSem: 'Pilihan' },
+  { oldName: 'Perkembangan Peserta Didik', oldSem: 'Sem 6', newName: 'Pemberdayaan Masyarakat', newSem: 'Pilihan' },
+  { oldName: 'Pembelajaran Tematik', oldSem: 'Pilihan', newName: 'Media Komunikasi, Informasi dan Edukasi', newSem: 'Pilihan' },
+  { oldName: 'Aplikasi Mixed Reality', oldSem: 'Pilihan', newName: 'Aplikasi Mixed Reality', newSem: 'Pilihan' }
 ];
 
 // PERUBAHAN BOBOT SKS

@@ -9,7 +9,12 @@ export const PerubahanKurikulumSection: React.FC = () => {
   const filteredNameChanges = COURSE_NAME_CHANGES.filter(item => {
     if (!searchName.trim()) return true;
     const q = searchName.toLowerCase();
-    return item.oldName.toLowerCase().includes(q) || item.newName.toLowerCase().includes(q);
+    return (
+      item.oldName.toLowerCase().includes(q) ||
+      item.newName.toLowerCase().includes(q) ||
+      (item.oldSem && item.oldSem.toLowerCase().includes(q)) ||
+      (item.newSem && item.newSem.toLowerCase().includes(q))
+    );
   });
 
   return (
@@ -63,56 +68,63 @@ export const PerubahanKurikulumSection: React.FC = () => {
           <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-4 mb-6">
             <button
               onClick={() => setActiveTab('nama')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeTab === 'nama'
-                ? 'bg-blue-600 text-white shadow-md'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                }`}
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                activeTab === 'nama'
+                  ? 'bg-blue-600 text-white shadow-md'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              }`}
             >
-              Perubahan Nama MK (18 MK)
+              Perubahan Nama & Semester MK ({COURSE_NAME_CHANGES.length} MK)
             </button>
 
             <button
               onClick={() => setActiveTab('sks')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeTab === 'sks'
-                ? 'bg-blue-600 text-white shadow-md'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                }`}
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                activeTab === 'sks'
+                  ? 'bg-blue-600 text-white shadow-md'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              }`}
             >
-              Perubahan Bobot SKS (7 MK)
+              Perubahan Bobot SKS ({SKS_CHANGES.length} MK)
             </button>
 
             <button
               onClick={() => setActiveTab('baru')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeTab === 'baru'
-                ? 'bg-blue-600 text-white shadow-md'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                }`}
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                activeTab === 'baru'
+                  ? 'bg-blue-600 text-white shadow-md'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              }`}
             >
               Mata Kuliah Baru (2 MK)
             </button>
 
             <button
               onClick={() => setActiveTab('wajib')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeTab === 'wajib'
-                ? 'bg-blue-600 text-white shadow-md'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                }`}
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                activeTab === 'wajib'
+                  ? 'bg-blue-600 text-white shadow-md'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              }`}
             >
               Pilihan Jadi Wajib (2 MK)
             </button>
           </div>
 
-          {/* TAB 1: PERUBAHAN NAMA MK */}
+          {/* TAB 1: PERUBAHAN NAMA & SEMESTER MK */}
           {activeTab === 'nama' && (
             <div>
-              <div className="mb-4">
+              <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <input
                   type="text"
-                  placeholder="Cari nama mata kuliah lama / baru..."
+                  placeholder="Cari nama mata kuliah / semester..."
                   value={searchName}
                   onChange={e => setSearchName(e.target.value)}
                   className="w-full max-w-md px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
+                <span className="text-xs text-slate-500 italic">
+                  * Menampilkan pemetaan nama mata kuliah & perpindahan semester.
+                </span>
               </div>
 
               <div className="overflow-x-auto border border-slate-200 rounded-2xl">
@@ -120,20 +132,34 @@ export const PerubahanKurikulumSection: React.FC = () => {
                   <thead className="bg-slate-900 text-white font-bold uppercase tracking-wider">
                     <tr>
                       <th className="py-3 px-4 w-12 text-center">No</th>
-                      <th className="py-3 px-4">Nama Mata Kuliah Kurikulum 2022</th>
+                      <th className="py-3 px-4">Kurikulum 2022 (Mata Kuliah & Semester)</th>
                       <th className="py-3 px-4 w-10 text-center"></th>
-                      <th className="py-3 px-4">Nama Baru di Kurikulum 2026</th>
+                      <th className="py-3 px-4">Kurikulum 2026 (Mata Kuliah & Semester)</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 font-medium">
                     {filteredNameChanges.map((item, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 transition-colors">
                         <td className="py-3 px-4 text-center font-bold text-slate-400">{idx + 1}</td>
-                        <td className="py-3 px-4 text-slate-600 font-bold">{item.oldName}</td>
+                        <td className="py-3 px-4 text-slate-700 font-bold">
+                          <span>{item.oldName}</span>
+                          {item.oldSem && (
+                            <span className="ml-2 px-2 py-0.5 bg-slate-100 text-slate-600 rounded text-[10px] font-extrabold border border-slate-200">
+                              {item.oldSem}
+                            </span>
+                          )}
+                        </td>
                         <td className="py-3 px-4 text-center">
                           <ArrowRight className="w-4 h-4 text-blue-600 inline-block" />
                         </td>
-                        <td className="py-3 px-4 font-bold text-blue-900">{item.newName}</td>
+                        <td className="py-3 px-4 font-bold text-blue-900">
+                          <span>{item.newName}</span>
+                          {item.newSem && (
+                            <span className="ml-2 px-2 py-0.5 bg-blue-100 text-blue-800 rounded text-[10px] font-extrabold border border-blue-200">
+                              {item.newSem}
+                            </span>
+                          )}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -176,7 +202,7 @@ export const PerubahanKurikulumSection: React.FC = () => {
 
           {/* TAB 3: MATA KULIAH BARU */}
           {activeTab === 'baru' && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="p-5 rounded-2xl bg-indigo-50 border border-indigo-200">
                 <span className="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-indigo-200 text-indigo-900 uppercase">
                   Semester 7 • 2 SKS
@@ -196,8 +222,6 @@ export const PerubahanKurikulumSection: React.FC = () => {
                   Pecahan tahap ujian proposal Skripsi agar mahasiswa fokus menyelesaikan tahapan riset ilmiah secara terstruktur.
                 </p>
               </div>
-
-
             </div>
           )}
 

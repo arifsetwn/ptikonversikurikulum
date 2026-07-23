@@ -21,9 +21,6 @@ export const Header: React.FC = () => {
             </div>
             <div>
               <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-500/20 text-blue-300 border border-blue-400/30">
-                  Program Studi Teknik Informatika
-                </span>
                 <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
                   <ArrowRightLeft className="w-3 h-3" /> Kurikulum 2022 → 2026
                 </span>
@@ -32,7 +29,7 @@ export const Header: React.FC = () => {
                 Simulasi Konversi Kurikulum
               </h1>
               <p className="text-sm text-slate-300 mt-1">
-                Alat bantu mandiri (self-service) mahasiswa untuk mengecek pemetaan mata kuliah & SKS secara otomatis.
+                Alat bantu mandiri mahasiswa untuk mengecek pemetaan mata kuliah & SKS secara otomatis.
               </p>
             </div>
           </div>

@@ -68,44 +68,40 @@ export const PerubahanKurikulumSection: React.FC = () => {
           <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-4 mb-6">
             <button
               onClick={() => setActiveTab('nama')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                activeTab === 'nama'
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeTab === 'nama'
                   ? 'bg-blue-600 text-white shadow-md'
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
+                }`}
             >
               Perubahan Nama & Semester MK ({COURSE_NAME_CHANGES.length} MK)
             </button>
 
             <button
               onClick={() => setActiveTab('sks')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                activeTab === 'sks'
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeTab === 'sks'
                   ? 'bg-blue-600 text-white shadow-md'
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
+                }`}
             >
               Perubahan Bobot SKS ({SKS_CHANGES.length} MK)
             </button>
 
             <button
               onClick={() => setActiveTab('baru')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                activeTab === 'baru'
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeTab === 'baru'
                   ? 'bg-blue-600 text-white shadow-md'
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
+                }`}
             >
               Mata Kuliah Baru (2 MK)
             </button>
 
             <button
               onClick={() => setActiveTab('wajib')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                activeTab === 'wajib'
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeTab === 'wajib'
                   ? 'bg-blue-600 text-white shadow-md'
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
+                }`}
             >
               Pilihan Jadi Wajib (2 MK)
             </button>

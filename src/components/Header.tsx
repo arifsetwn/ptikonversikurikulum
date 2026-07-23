@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRightLeft, ShieldAlert } from 'lucide-react';
-import logoPti from '../img/logo_pti.webp';
+import logoPti from '../img/logo_pti.png';
 
 export const Header: React.FC = () => {
   return (

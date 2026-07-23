@@ -31,11 +31,10 @@ export const AturanKonversiSection: React.FC<AturanKonversiSectionProps> = ({ on
           {ATURAN_KONVERSI.map(item => (
             <div
               key={item.id}
-              className={`p-6 rounded-3xl border transition-all flex flex-col justify-between ${
-                item.isHighlight
-                  ? 'bg-gradient-to-b from-blue-900/60 to-slate-900 border-blue-500/50 ring-1 ring-blue-400/20 shadow-xl'
-                  : 'bg-slate-800/60 border-slate-700/60'
-              }`}
+              className={`p-6 rounded-3xl border transition-all flex flex-col justify-between ${item.isHighlight
+                ? 'bg-gradient-to-b from-blue-900/60 to-slate-900 border-blue-500/50 ring-1 ring-blue-400/20 shadow-xl'
+                : 'bg-slate-800/60 border-slate-700/60'
+                }`}
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -43,11 +42,10 @@ export const AturanKonversiSection: React.FC<AturanKonversiSectionProps> = ({ on
                     0{item.id}
                   </span>
                   <span
-                    className={`px-3 py-1 rounded-full text-[10px] font-extrabold ${
-                      item.isHighlight
-                        ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/30'
-                        : 'bg-slate-700 text-slate-300'
-                    }`}
+                    className={`px-3 py-1 rounded-full text-[10px] font-extrabold ${item.isHighlight
+                      ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/30'
+                      : 'bg-slate-700 text-slate-300'
+                      }`}
                   >
                     {item.status}
                   </span>
@@ -63,13 +61,13 @@ export const AturanKonversiSection: React.FC<AturanKonversiSectionProps> = ({ on
         {/* Actionable CTA Box */}
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl p-8 sm:p-10 shadow-2xl text-center max-w-4xl mx-auto border border-blue-400/30">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/20 text-white rounded-full text-xs font-bold mb-3 backdrop-blur-sm">
-            <Sparkles className="w-3.5 h-3.5" /> Langsung Cek Konversi Nilai Anda
+            <Sparkles className="w-3.5 h-3.5" /> Langsung Cek Konversi Nilai Kamu
           </div>
           <h3 className="text-xl sm:text-3xl font-extrabold text-white mb-2">
-            Apakah Nilai Anda Sudah Memenuhi Kurikulum 2026?
+            Apakah Nilai Kamu Sudah Memenuhi Kurikulum 2026?
           </h3>
           <p className="text-xs sm:text-sm text-blue-100 max-w-xl mx-auto mb-6">
-            Gunakan tool simulasi konversi mandiri 100% gratis & tanpa login untuk mengecek kesetaraan mata kuliah dan IPK 2026 secara instan.
+            Gunakan tool simulasi konversi mandiri untuk mengecek kesetaraan mata kuliah dan IPK 2026 secara instan.
           </p>
 
           <button

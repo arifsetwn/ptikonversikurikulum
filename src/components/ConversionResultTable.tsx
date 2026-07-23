@@ -80,7 +80,7 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
               </h2>
             </div>
             <p className="text-xs text-slate-500 mt-1">
-              Rincian IPK sebelum/setelah konversi, pemetaan mata kuliah diakui, SKS hilang, dan sisa MK 2026.
+              Rincian IPK sebelum/setelah konversi, pemetaan mata kuliah diakui dan sisa MK 2026.
             </p>
           </div>
         </div>
@@ -205,11 +205,10 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
       <div className="flex items-center gap-2 border-b border-slate-200 mb-6">
         <button
           onClick={() => setActiveTab('conversion')}
-          className={`pb-3 px-4 text-xs font-extrabold flex items-center gap-2 border-b-2 transition-all cursor-pointer ${
-            activeTab === 'conversion'
+          className={`pb-3 px-4 text-xs font-extrabold flex items-center gap-2 border-b-2 transition-all cursor-pointer ${activeTab === 'conversion'
               ? 'border-blue-600 text-blue-600'
               : 'border-transparent text-slate-500 hover:text-slate-900'
-          }`}
+            }`}
         >
           <FileSpreadsheet className="w-4 h-4" /> Tabel Hasil Pemetaan & Nilai Konversi
           <span className="px-2.5 py-0.5 rounded-full text-[10px] bg-blue-100 text-blue-900 font-black">
@@ -219,11 +218,10 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
 
         <button
           onClick={() => setActiveTab('remaining')}
-          className={`pb-3 px-4 text-xs font-extrabold flex items-center gap-2 border-b-2 transition-all cursor-pointer ${
-            activeTab === 'remaining'
+          className={`pb-3 px-4 text-xs font-extrabold flex items-center gap-2 border-b-2 transition-all cursor-pointer ${activeTab === 'remaining'
               ? 'border-amber-600 text-amber-600'
               : 'border-transparent text-slate-500 hover:text-slate-900'
-          }`}
+            }`}
         >
           <BookMarked className="w-4 h-4" /> Rekapitulasi MK 2026 Belum Diambil
           <span className="px-2.5 py-0.5 rounded-full text-[10px] bg-amber-100 text-amber-900 font-black">
@@ -240,33 +238,29 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
             <div className="flex flex-wrap items-center gap-1.5 bg-slate-100 p-1.5 rounded-2xl">
               <button
                 onClick={() => setFilterStatus('all')}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  filterStatus === 'all' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                }`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${filterStatus === 'all' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+                  }`}
               >
                 Semua Hasil ({results.length})
               </button>
               <button
                 onClick={() => setFilterStatus('converted')}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  filterStatus === 'converted' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                }`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${filterStatus === 'converted' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
+                  }`}
               >
                 Terkonversi ({results.filter(r => r.status === 'converted_1to1' || r.status === 'converted_1toMany').length})
               </button>
               <button
                 onClick={() => setFilterStatus('unconverted')}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  filterStatus === 'unconverted' ? 'bg-rose-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                }`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${filterStatus === 'unconverted' ? 'bg-rose-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
+                  }`}
               >
                 SKS Hilang ({results.filter(r => r.status === 'unconverted').length})
               </button>
               <button
                 onClick={() => setFilterStatus('multimatch')}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  filterStatus === 'multimatch' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                }`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${filterStatus === 'multimatch' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
+                  }`}
               >
                 Multi-Match ({results.filter(r => r.status === 'converted_1toMany').length})
               </button>
@@ -438,11 +432,10 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
                     </td>
                     <td className="py-3 px-4 text-center">
                       <span
-                        className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${
-                          course.sem_baru.toLowerCase().includes('pilihan')
+                        className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${course.sem_baru.toLowerCase().includes('pilihan')
                             ? 'bg-purple-100 text-purple-800'
                             : 'bg-blue-100 text-blue-800'
-                        }`}
+                          }`}
                       >
                         {course.sem_baru.toLowerCase().includes('pilihan') ? 'Pilihan' : 'Wajib'}
                       </span>

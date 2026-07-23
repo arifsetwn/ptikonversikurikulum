@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRightLeft, Menu, X, BookOpen, Sparkles, GraduationCap } from 'lucide-react';
-import logoPti from '../img/logo_pti.webp';
+import logoPti from '../img/logo_pti.png';
 
 interface NavbarProps {
   activePage: 'landing' | 'simulasi';

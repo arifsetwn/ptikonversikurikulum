@@ -3,7 +3,7 @@ import { X, Download, Printer, GraduationCap, ShieldAlert, Loader2 } from 'lucid
 import { ConversionResultItem, ConversionSummaryStats, StudentInfo } from '../types';
 import { generatePdfFromElement } from '../utils/pdfGenerator';
 import { getRemaining2026Courses } from '../utils/conversionEngine';
-import logoPti from '../img/logo_pti.webp';
+import logoPti from '../img/logo_pti.png';
 
 interface PdfExportModalProps {
   isOpen: boolean;

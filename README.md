@@ -83,7 +83,7 @@ ptikonversikurikulum/
 ├── src/
 │   ├── components/         # Komponen UI (Navbar, Hero, LandingPage, Forms, ResultTable, PDF Modal)
 │   ├── data/               # Master Data JSON (mappingData, courses2022, courses2026, landingData)
-│   ├── img/                # Asset Gambar (logo_pti.webp, alur_kurikulum.png)
+│   ├── img/                # Asset Gambar (logo_pti.png, alur_kurikulum.png)
 │   ├── types/              # Type Definitions TypeScript (Course, Mapping, Stats, Grade)
 │   ├── utils/              # Conversion Engine, Excel Parser, PDF Generator, & Sample Data
 │   ├── App.tsx             # Main App Router & View Controller

@@ -97,6 +97,59 @@ ptikonversikurikulum/
 
 ---
 
+## 🚀 Panduan Deployment ke Shared Hosting (cPanel / Hostinger / Niagahoster)
+
+Aplikasi berbasis **Vite + React SPA** (Single Page Application) ini berjalan 100% di browser *client-side*, sehingga dapat di-deploy dengan mudah ke layanan **Shared Hosting (Apache / Nginx)** tanpa memerlukan Node.js server aktif.
+
+### Langkah 1: Build Produksi
+Jalankan perintah build pada terminal lokal Anda:
+```bash
+npm run build
+```
+Perintah ini akan menghasilkan bundel produksi teroptimasi di dalam direktori **`dist/`**.
+
+---
+
+### Langkah 2: Menyiapkan File `.htaccess` (Untuk Apache / cPanel)
+Untuk memastikan routing Single Page Application berjalan lancar tanpa error `404 Not Found` saat halaman direfresh, sertakan file **`.htaccess`** di dalam folder `public_html` hosting Anda:
+
+```apache
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Gzip Compression for Fast Loading
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json
+</IfModule>
+```
+
+---
+
+### Langkah 3: Upload ke Shared Hosting via File Manager / cPanel
+1. Buka dashboard **cPanel** / **Hostinger hPanel** / **Niagahoster** / **Rumahweb**.
+2. Masuk ke **File Manager** dan buka direktori **`public_html/`** (atau folder subdomain Anda).
+3. Compress/Zip seluruh isi folder **`dist/`** di lokal komputer Anda, lalu upload file ZIP tersebut ke `public_html/`.
+4. Extrak file ZIP di dalam `public_html/`. Pastikan file `index.html`, folder `assets/`, dan file `.htaccess` berada di dalam root `public_html/`.
+   ```
+   public_html/
+   ├── assets/
+   │   ├── index-XXXX.js
+   │   ├── index-XXXX.css
+   │   └── ...
+   ├── index.html
+   └── .htaccess
+   ```
+5. Buka nama domain / subdomain Anda di browser. Aplikasi Konversi Kurikulum PTI UMS 2026 kini dapat diakses secara langsung!
+
+---
+
 ## 📄 Lisensi & Hak Cipta
 
 Hak Cipta © 2026 **Program Studi Pendidikan Teknik Informatika (PTI) — Universitas Muhammadiyah Surakarta**. All rights reserved.
+

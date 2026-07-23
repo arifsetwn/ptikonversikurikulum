@@ -311,7 +311,7 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
                 1. <strong>Skala Penilaian IPK:</strong> A (4.00), A/B (3.50), B (3.00), B/C (2.50), C (2.00), C/D (1.50), D (1.00), E (0.00).<br />
                 2. <strong>Perhitungan IPK:</strong> IPK 2022 dihitung dari seluruh MK diinput. IPK 2026 dihitung dari MK yang berhasil dikonversi ke Kurikulum 2026.<br />
                 3. <strong>MK Pilihan:</strong> Mahasiswa hanya perlu mengambil 3 mata kuliah pilihan (total 9 SKS) untuk kelulusan.<br />
-                4. Dokumen ini merupakan hasil simulasi mandiri berbasis tabel pemetaan resmi prodi Teknik Informatika untuk konsultasi Dosen PA/Prodi dan bukan pengganti transkrip resmi BAAK.
+                4. Dokumen ini merupakan hasil simulasi mandiri berbasis tabel pemetaan resmi prodi Teknik Informatika untuk konsultasi Dosen PA/Prodi dan bukan pengganti transkrip resmi UMS.
               </div>
             </div>
           </div>

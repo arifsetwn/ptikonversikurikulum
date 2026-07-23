@@ -220,7 +220,7 @@ export const LEARNING_PATHS: LearningPathItem[] = [
     name: 'Educational Technology & E-Learning',
     desc: 'Fokus pada inovasi pedagogi digital, desain e-learning, pengolahan media edukasi, dan penulisan ilmiah.',
     iconName: 'BookOpen',
-    courses: ['Teknologi Pembelajaran Modern', 'E-learning', 'Media Komunikasi, Informasi dan Edukasi', 'Penulisan Karya Ilmiah']
+    courses: ['Teknologi Pembelajaran Modern', 'Learning Experience Design', 'E-learning', 'Media Komunikasi, Informasi dan Edukasi', 'Penulisan Karya Ilmiah']
   },
   {
     id: 'lp-media',

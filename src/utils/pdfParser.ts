@@ -43,9 +43,8 @@ export function sanitizeCourseName(rawName: string): string {
   cleaned = cleaned.replace(/.*MATA\s+KULIAH\s+SKS\s+NILAI\s*/gi, '');
   cleaned = cleaned.replace(/.*Nomor\s+\d+\/[^\n\r]*/gi, '');
 
-  // 2. Strip SEMESTER X prefix
-  cleaned = cleaned.replace(/^SEMESTER\s+\d+\s*/gi, '');
-  cleaned = cleaned.replace(/^SEMESTER\s+[A-Za-z0-9]+\s*/gi, '');
+  // 2. Strip SEMESTER X prefix (matches any text before & including SEMESTER followed by digit/letter)
+  cleaned = cleaned.replace(/.*SEMESTER\s+[A-Za-z0-9]+\s*/gi, '');
 
   return cleaned.trim();
 }

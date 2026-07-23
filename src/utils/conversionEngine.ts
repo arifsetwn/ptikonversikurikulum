@@ -28,6 +28,25 @@ export function normalizeText(text: string): string {
     .replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, '');
 }
 
+// Course alias dictionary mapping transcript naming variations to standard mappingData course names
+const COURSE_ALIASES: Record<string, string> = {
+  [normalizeText('Microteaching')]: normalizeText('Pembelajaran Mikro'),
+  [normalizeText('Pembelajaran Mikro')]: normalizeText('Pembelajaran Mikro'),
+  [normalizeText('Ibadah dan Muamalah')]: normalizeText('Ibadah Muamalah'),
+  [normalizeText('Islam dan IPTEKS')]: normalizeText('Islam dan Iptek'),
+  [normalizeText('Statistik & Probabilitas')]: normalizeText('Statistik dan Probabilitas'),
+  [normalizeText('Statistika & Probabilitas')]: normalizeText('Statistik dan Probabilitas'),
+  [normalizeText('Pengenalan Lapangan Persekolahan I (PLP I)')]: normalizeText('PLP I'),
+  [normalizeText('Pengenalan Lapangan Persekolahan I')]: normalizeText('PLP I'),
+  [normalizeText('Pengenalan Lapangan Persekolahan II (PLP II)')]: normalizeText('PLP II'),
+  [normalizeText('Pengenalan Lapangan Persekolahan II')]: normalizeText('PLP II'),
+  [normalizeText('Metode Penelitian')]: normalizeText('Metodologi Penelitian'),
+  [normalizeText('Komputer Grafik & Animasi')]: normalizeText('Komputer Grafik dan Animasi'),
+  [normalizeText('Praktikum Komputer Grafik & Animasi')]: normalizeText('Praktikum Komputer Grafik dan Animasi'),
+  [normalizeText('Keterampilan Berkehidupan/KKN Pendidikan')]: normalizeText('KKN Pendidikan'),
+  [normalizeText('Keterampilan Berkehidupan / KKN Pendidikan')]: normalizeText('KKN Pendidikan'),
+};
+
 // Fast lookup map for normalized 2022 course names -> mapping rules
 const mappingByNormalizedName = new Map<string, MappingRule[]>();
 
@@ -50,8 +69,12 @@ masterCourses2022.forEach(course => {
  * Finds matching 2022 course from master list using normalized or fuzzy search
  */
 export function findMatching2022Course(inputName: string): Course2022 | undefined {
-  const normInput = normalizeText(inputName);
+  let normInput = normalizeText(inputName);
   if (!normInput) return undefined;
+
+  if (COURSE_ALIASES[normInput]) {
+    normInput = COURSE_ALIASES[normInput];
+  }
 
   if (masterCourseByNormalizedName.has(normInput)) {
     return masterCourseByNormalizedName.get(normInput);
@@ -74,8 +97,13 @@ export function processCurriculumConversion(inputs: StudentInputCourse[]): Conve
   const results: ConversionResultItem[] = [];
 
   inputs.forEach(input => {
-    const normName = normalizeText(input.nama);
+    let normName = normalizeText(input.nama);
     if (!normName) return;
+
+    // Apply course alias mapping if available
+    if (COURSE_ALIASES[normName]) {
+      normName = COURSE_ALIASES[normName];
+    }
 
     const nilaiLama: GradeType = input.nilai || 'A';
     const bobotLama = GRADE_WEIGHTS[nilaiLama] ?? 4.0;

@@ -196,14 +196,14 @@ export const CPL_DATA: CPLItem[] = [
 export const LEARNING_PATHS: LearningPathItem[] = [
   {
     id: 'lp-ai',
-    name: 'Artificial Intelligence & Data Science',
+    name: 'Artificial Intelligence',
     desc: 'Fokus pada pengembangan model cerdas, Machine Learning, Computer Vision, Big Data, dan Analisis Data.',
     iconName: 'Cpu',
     courses: ['Machine Learning', 'Computer Vision', 'Big Data Fundamental', 'Data Science']
   },
   {
     id: 'lp-se',
-    name: 'Software Engineering & App Development',
+    name: 'Software Engineering',
     desc: 'Fokus pada rekayasa perangkat lunak modern, aplikasi web lanjut, aplikasi mobile, dan modern app dev.',
     iconName: 'Code',
     courses: ['Pemrograman Web Lanjut', 'Pengembangan Aplikasi Mobile', 'Pengembangan Aplikasi Modern', 'e-Commerce']
@@ -217,7 +217,7 @@ export const LEARNING_PATHS: LearningPathItem[] = [
   },
   {
     id: 'lp-edtech',
-    name: 'Educational Technology & E-Learning',
+    name: 'Educational Technology',
     desc: 'Fokus pada inovasi pedagogi digital, desain e-learning, pengolahan media edukasi, dan penulisan ilmiah.',
     iconName: 'BookOpen',
     courses: ['Teknologi Pembelajaran Modern', 'Learning Experience Design', 'E-learning', 'Media Komunikasi, Informasi dan Edukasi', 'Penulisan Karya Ilmiah']
@@ -231,7 +231,7 @@ export const LEARNING_PATHS: LearningPathItem[] = [
   },
   {
     id: 'lp-techno',
-    name: 'Digital Entrepreneurship & EdTech Startup',
+    name: 'Digital Entrepreneurship',
     desc: 'Fokus pada pendirian start-up digital, tata kelola IT, bisnis digital, dan komersialisasi produk teknologi.',
     iconName: 'Rocket',
     courses: ['Bisnis Digital', 'Audit Sistem Informasi', 'Kewirausahaan', 'Hak Kekayaan Intelektual', 'Pemberdayaan Masyarakat']

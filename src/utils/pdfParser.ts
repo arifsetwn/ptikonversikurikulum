@@ -70,7 +70,7 @@ export async function parseTranscriptPdf(file: File): Promise<ParsedPdfResult> {
   // Fallback regex to split text concatenated by spaces
   const courseRegex = /([A-Za-z0-9\s()\/&\-\.,]+?)\s+([1-6])\s+(A\/B|B\/C|C\/D|A|AB|B|BC|C|CD|D|E)(?=\s+[A-Za-z0-9]|$)/g;
 
-  // Let's first try parsing line by line
+  // Primary line-by-line regex
   const lineRegex = /^(.+?)\s+([1-6])\s+(A\/B|B\/C|C\/D|A|AB|B|BC|C|CD|D|E)\s*$/i;
 
   lines.forEach((line, index) => {
@@ -79,9 +79,17 @@ export async function parseTranscriptPdf(file: File): Promise<ParsedPdfResult> {
 
     const match = cleanLine.match(lineRegex);
     if (match) {
-      const courseName = match[1].trim();
+      let courseName = match[1].trim();
+
+      // Clean leading "SEMESTER X" section header prefix if attached to course name
+      courseName = courseName.replace(/^SEMESTER\s+\d+\s*/i, '').trim();
+
       // Ignore header/footer lines that might accidentally match
-      if (courseName.toLowerCase().includes('laporan perkembangan') || courseName.toLowerCase().includes('nama mahasiswa')) {
+      if (
+        courseName.toLowerCase().includes('laporan perkembangan') ||
+        courseName.toLowerCase().includes('nama mahasiswa') ||
+        !courseName
+      ) {
         return;
       }
 
@@ -98,15 +106,22 @@ export async function parseTranscriptPdf(file: File): Promise<ParsedPdfResult> {
     }
   });
 
-  // If line-by-line found nothing (e.g. because pdfjs concatenated text without newlines), run regex match all
+  // Fallback regex match all if line-by-line returned empty
   if (courses.length === 0) {
     let match: RegExpExecArray | null;
     let idx = 0;
     while ((match = courseRegex.exec(fullText)) !== null) {
-      const courseName = match[1].trim();
-      if (courseName.toLowerCase().includes('laporan') || courseName.toLowerCase().includes('nama mahasiswa')) {
+      let courseName = match[1].trim();
+      courseName = courseName.replace(/^SEMESTER\s+\d+\s*/i, '').trim();
+
+      if (
+        courseName.toLowerCase().includes('laporan') ||
+        courseName.toLowerCase().includes('nama mahasiswa') ||
+        !courseName
+      ) {
         continue;
       }
+
       const sks = parseInt(match[2], 10);
       const rawGrade = match[3].toUpperCase();
       const nilai = GRADE_MAP[rawGrade] || 'A';

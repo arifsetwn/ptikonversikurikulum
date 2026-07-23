@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { User, CreditCard, Upload, Sparkles, FileText, Trash2, AlertCircle, Loader2, CheckCircle2 } from 'lucide-react';
+import { User, CreditCard, Upload, Sparkles, FileText, Trash2, AlertCircle, Loader2, CheckCircle2, FileCheck, ArrowRight } from 'lucide-react';
 import { StudentInfo, StudentInputCourse } from '../types';
 import { parseTranscriptPdf } from '../utils/pdfParser';
 
@@ -55,9 +55,9 @@ export const StudentForm: React.FC<StudentFormProps> = ({
 
       setCourses(result.courses);
 
-      const identityText = result.studentInfo.nama ? ` (Mahasiswa: ${result.studentInfo.nama})` : '';
+      const identityText = result.studentInfo.nama ? ` (${result.studentInfo.nama})` : '';
       setUploadSuccessMsg(
-        `Berhasil membaca transkrip PDF ${file.name}${identityText}: ${result.courses.length} mata kuliah (${result.totalParsedSks} SKS) otomatis diimpor.`
+        `Berhasil mengimpor transkrip PDF ${file.name}${identityText}: ${result.courses.length} mata kuliah (${result.totalParsedSks} SKS) otomatis dimuat.`
       );
 
       if (fileInputRef.current) fileInputRef.current.value = '';
@@ -90,23 +90,28 @@ export const StudentForm: React.FC<StudentFormProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-6 mb-8">
-      {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 pb-6 border-b border-slate-100">
-        <div>
-          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-            <Upload className="w-5 h-5 text-blue-600" /> Unggah Transkrip & Identitas Mahasiswa
-          </h2>
-          <p className="text-xs text-slate-500 mt-0.5">
-            Unggah dokumen PDF transkrip nilai (*Laporan Perkembangan UMS*) untuk pengisian otomatis Nama, NIM, dan Mata Kuliah.
-          </p>
+    <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-8 mb-8 card-hover-glow">
+      {/* Step Header */}
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-6 border-b border-slate-100">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-2xl bg-blue-600 text-white font-extrabold text-sm flex items-center justify-center shadow-md shadow-blue-500/20 shrink-0">
+            1
+          </div>
+          <div>
+            <h2 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+              Unggah Transkrip & Identitas Mahasiswa
+            </h2>
+            <p className="text-xs text-slate-500 mt-0.5">
+              Unggah dokumen PDF transkrip nilai (*Laporan Perkembangan UMS*) untuk pengisian otomatis Nama, NIM, dan Mata Kuliah.
+            </p>
+          </div>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
           <button
             type="button"
             onClick={onLoadSample}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-xl bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors border border-indigo-200 cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-all border border-indigo-200/80 cursor-pointer"
           >
             <Sparkles className="w-4 h-4 text-indigo-600" /> Muat Contoh Transkrip
           </button>
@@ -115,7 +120,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
             <button
               type="button"
               onClick={onClearAll}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-xl bg-slate-100 text-slate-700 hover:bg-rose-50 hover:text-rose-700 transition-colors border border-slate-200 hover:border-rose-200 cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-700 hover:bg-rose-50 hover:text-rose-700 transition-all border border-slate-200 hover:border-rose-200 cursor-pointer"
             >
               <Trash2 className="w-4 h-4" /> Reset Transkrip
             </button>
@@ -126,10 +131,10 @@ export const StudentForm: React.FC<StudentFormProps> = ({
       <div className="space-y-6 pt-6">
         {/* 1. PRIMARY PRIORITY: UPLOAD TRANSKRIP PDF BOX */}
         <div>
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
-            <label className="block text-xs font-extrabold text-blue-900 uppercase tracking-wider flex items-center gap-2">
-              <span className="px-2 py-0.5 bg-blue-600 text-white rounded text-[10px] font-black">
-                PRIORITAS UTAMA
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2.5">
+            <label className="block text-xs font-extrabold text-slate-800 uppercase tracking-wider flex items-center gap-2">
+              <span className="px-2.5 py-0.5 bg-blue-600 text-white rounded-lg text-[10px] font-black uppercase tracking-wider shadow-sm">
+                UTAMA
               </span>
               <span>1. Upload File Transkrip Nilai (PDF UMS)</span>
             </label>
@@ -151,20 +156,20 @@ export const StudentForm: React.FC<StudentFormProps> = ({
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
-            className={`w-full flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-2xl border-2 border-dashed text-xs font-semibold cursor-pointer transition-all ${
+            className={`w-full flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl border-2 border-dashed text-xs font-semibold cursor-pointer transition-all ${
               isDragOver
-                ? 'bg-blue-100 border-blue-600 text-blue-900 ring-4 ring-blue-500/20 scale-[1.005]'
+                ? 'bg-blue-100/80 border-blue-600 text-blue-900 ring-4 ring-blue-500/20 scale-[1.005]'
                 : isUploading
                 ? 'bg-blue-50 border-blue-400 text-blue-800 animate-pulse'
-                : 'bg-gradient-to-r from-blue-50/90 via-indigo-50/50 to-slate-50 border-blue-400 text-blue-900 hover:bg-blue-100/60 hover:border-blue-600 shadow-sm'
+                : 'bg-gradient-to-r from-blue-50/90 via-indigo-50/40 to-slate-50/80 border-blue-400/80 text-blue-950 hover:bg-blue-100/60 hover:border-blue-600 shadow-sm'
             }`}
           >
-            <div className="flex items-center gap-3.5">
-              <div className="p-3.5 bg-white rounded-2xl shadow-sm border border-blue-200 shrink-0">
+            <div className="flex items-center gap-4">
+              <div className="p-3.5 bg-white rounded-2xl shadow-sm border border-blue-200/80 shrink-0">
                 {isUploading ? (
-                  <Loader2 className="w-6 h-6 text-blue-600 animate-spin" />
+                  <Loader2 className="w-7 h-7 text-blue-600 animate-spin" />
                 ) : (
-                  <FileText className="w-6 h-6 text-rose-500" />
+                  <FileText className="w-7 h-7 text-rose-500" />
                 )}
               </div>
               <div>
@@ -173,13 +178,13 @@ export const StudentForm: React.FC<StudentFormProps> = ({
                     ? 'Membaca Transkrip PDF...'
                     : 'Pilih atau Drag & Drop File PDF Transkrip Laporan Perkembangan UMS'}
                 </span>
-                <span className="text-slate-500 text-xs mt-0.5 block font-normal">
-                  Dokumen berformat <strong className="text-slate-700">.PDF</strong> dari sistem BAAK UMS
+                <span className="text-slate-500 text-xs mt-0.5 block font-medium">
+                  Dokumen berformat <strong className="text-slate-800">.PDF</strong> dari menu perkembangan studi MyAkademik.ums.ac.id
                 </span>
               </div>
             </div>
 
-            <div className="px-5 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-extrabold text-xs shadow-md shadow-blue-500/20 transition-all flex items-center gap-2 shrink-0 self-stretch sm:self-auto justify-center">
+            <div className="px-5 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-extrabold text-xs shadow-md shadow-blue-500/25 hover:shadow-blue-500/40 transition-all flex items-center gap-2 shrink-0 self-stretch sm:self-auto justify-center cursor-pointer">
               <Upload className="w-4 h-4" />
               <span>Upload PDF Transkrip</span>
             </div>
@@ -203,7 +208,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
                 placeholder="Contoh: Ardhian Akbar Ahmadi"
                 value={studentInfo.nama}
                 onChange={e => setStudentInfo({ ...studentInfo, nama: e.target.value })}
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all font-semibold"
+                className="w-full pl-10 pr-4 py-2.5 bg-slate-50/80 border border-slate-200 rounded-xl text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all font-semibold"
               />
             </div>
           </div>
@@ -223,7 +228,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
                 placeholder="Contoh: A710200001"
                 value={studentInfo.nim}
                 onChange={e => setStudentInfo({ ...studentInfo, nim: e.target.value })}
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all font-mono font-semibold"
+                className="w-full pl-10 pr-4 py-2.5 bg-slate-50/80 border border-slate-200 rounded-xl text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all font-mono font-semibold"
               />
             </div>
           </div>
@@ -232,16 +237,16 @@ export const StudentForm: React.FC<StudentFormProps> = ({
 
       {/* Messages */}
       {uploadError && (
-        <div className="mt-4 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2">
+        <div className="mt-4 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2.5">
           <AlertCircle className="w-4 h-4 shrink-0 text-rose-600" />
-          <span>{uploadError}</span>
+          <span className="font-medium">{uploadError}</span>
         </div>
       )}
 
       {uploadSuccessMsg && (
-        <div className="mt-4 p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center gap-2">
+        <div className="mt-4 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs flex items-center gap-2.5">
           <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-          <span className="font-semibold">{uploadSuccessMsg}</span>
+          <span className="font-bold">{uploadSuccessMsg}</span>
         </div>
       )}
     </div>

@@ -12,7 +12,7 @@ export const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="flex items-center gap-4">
-            <div className="p-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg shrink-0">
+            <div className="p-2 bg-white rounded-2xl shadow-lg shrink-0 border border-slate-200">
               <img
                 src={logoPti}
                 alt="Logo PTI"

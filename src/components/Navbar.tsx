@@ -33,8 +33,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
             onClick={() => setActivePage('landing')}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="p-1 bg-white/10 border border-white/20 rounded-xl group-hover:scale-105 transition-transform">
-              <img src={logoPti} alt="Logo PTI" className="w-8 h-8 object-contain" />
+            <div className="p-1.5 bg-white rounded-xl shadow-md border border-slate-200 group-hover:scale-105 transition-transform">
+              <img src={logoPti} alt="Logo PTI" className="h-8 w-auto object-contain" />
             </div>
             <div>
               <span className="font-extrabold text-sm sm:text-base tracking-tight text-white block leading-tight">

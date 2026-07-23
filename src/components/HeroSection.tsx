@@ -64,8 +64,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStartSimulation }) =
             <span className="text-xs text-slate-400">Wajib Pilihan (9 SKS)</span>
           </div>
           <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-            <span className="text-2xl font-black text-emerald-400 block">Self-Service</span>
-            <span className="text-xs text-slate-400">Simulasi 100% Mandiri</span>
+            <span className="text-2xl font-black text-emerald-400 block">OBE</span>
+            <span className="text-xs text-slate-400">Implementasi Kampus Berdampak</span>
           </div>
         </div>
       </div>

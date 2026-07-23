@@ -93,9 +93,9 @@ export const PROFIL_LULUSAN: ProfilLulusan[] = [
     kode: 'PL-1',
     title: 'Pendidik Informatika',
     category: 'Sektor Pendidikan',
-    desc: 'Lulusan yang menguasai keahlian mengajar, mendesain media pembelajaran digital, dan mengelola laboratorium informatika di jenjang sekolah menengah (SMA/SMK/MA) maupun lembaga pelatihan.',
+    desc: 'Lulusan yang menguasai keahlian mengajar, mendesain media pembelajaran digital, dan mengelola laboratorium informatika di jenjang sekolah (SD,SMP,SMA/SMK/MA) maupun lembaga pelatihan.',
     careers: [
-      'Guru Mata Pelajaran Informatika / TIK (SMA/SMK/MA)',
+      'Guru Mata Pelajaran Informatika / Koding KA (SD, SMP, SMA/SMK/MA)',
       'Instruktur / Trainer Bidang Pemrograman & EdTech',
       'Tenaga Kependidikan / Pengelola Laboratorium Komputer',
       'Asisten Peneliti Teknologi Pendidikan',
@@ -105,7 +105,7 @@ export const PROFIL_LULUSAN: ProfilLulusan[] = [
   {
     id: 'pl-2',
     kode: 'PL-2',
-    title: 'IT Engineer / Software Specialist',
+    title: 'IT Engineer',
     category: 'Sektor Industri Teknologi',
     desc: 'Lulusan yang memiliki kompetensi teknis tinggi dalam merancang, membangun, menguji, dan mengamankan aplikasi sistem komputer modern serta infrastruktur jaringan.',
     careers: [
@@ -121,7 +121,7 @@ export const PROFIL_LULUSAN: ProfilLulusan[] = [
   {
     id: 'pl-3',
     kode: 'PL-3',
-    title: 'Technopreneur / Digital Entrepreneur',
+    title: 'Technopreneur',
     category: 'Sektor Wirausaha Teknologi',
     desc: 'Lulusan yang memiliki jiwa kewirausahaan berbasis teknologi digital, mampu menciptakan produk EdTech inovatif, dan memimpin start-up digital.',
     careers: [
@@ -158,37 +158,37 @@ export const CPL_DATA: CPLItem[] = [
   {
     kode: 'CPL-1',
     category: 'Sikap',
-    desc: 'Menunjukkan sikap bertakwa kepada Tuhan Yang Maha Esa, menjunjung tinggi nilai kemanusiaan, etika profesi, serta menginternalisasi nilai-nilai Al-Islam dan Kemuhammadiyahan.'
+    desc: 'Menunjukkan ketakwaan kepada Tuhan Yang Maha Esa, menjunjung tinggi nilai kemanusiaan, etika, moral, dan nasionalisme berlandaskan Pancasila, serta bertanggung jawab atas tugas bidang keahliannya dengan kepekaan sosial dan kepedulian lingkungan.'
   },
   {
     kode: 'CPL-2',
     category: 'Pengetahuan',
-    desc: 'Menguasai konsep teoritis keilmuan Informatika, Computational Thinking, Algoritma, Rekayasa Perangkat Lunak, dan Keamanan Komputer secara mendalam.'
+    desc: 'Mengintegrasikan konsep serta prinsip didaktik-pedagogik pendidikan yang berlandaskan nilai Al-Islam dan Kemuhammadiyahan (AIK).'
   },
   {
     kode: 'CPL-3',
     category: 'Pengetahuan',
-    desc: 'Menguasai teoretis Pedagogi Informatika, teori belajar, desain pesan pembelajaran digital, serta metodologi penelitian teknologi pendidikan.'
+    desc: 'Mengintegrasikan konsep teoritis informatika berbasis computational thinking dengan metode ilmiah untuk memecahkan masalah di bidang pendidikan dan teknologi'
   },
   {
     kode: 'CPL-4',
-    category: 'Keterampilan Khusus',
-    desc: 'Mampu merancang, mengembangkan, menguji, dan mengevaluasi perangkat lunak, sistem berbasis web/mobile, kecerdasan buatan, serta media pembelajaran interaktif.'
+    category: 'Keterampilan Umum',
+    desc: 'Bekerja sama, berkomunikasi, dan berkolaborasi secara efektif dalam tim serta menunjukkan kepemimpinan dan kemandirian dalam pembelajaran sepanjang hayat.'
   },
   {
     kode: 'CPL-5',
     category: 'Keterampilan Khusus',
-    desc: 'Mampu mengelola dan merencanakan pembelajaran Informatika yang inovatif, inspiratif, dan berpusat pada siswa berbasis teknologi digital modern.'
+    desc: 'Mengembangkan pembelajaran inovatif berbasis teknologi informasi berdasarkan prinsip didaktik-pedagogik sesuai tantangan abad ke-21.'
   },
   {
     kode: 'CPL-6',
-    category: 'Keterampilan Umum',
-    desc: 'Mampu menerapkan pemikiran logis, kritis, sistematis, dan inovatif dalam konteks pengembangan atau implementasi ilmu pengetahuan dan teknologi.'
+    category: 'Keterampilan Khusus',
+    desc: 'Mengembangkan solusi, media, dan aplikasi berbasis teknologi yang inovatif, berkelanjutan, dan memberikan dampak nyata bagi pendidikan dan masyarakat.'
   },
   {
     kode: 'CPL-7',
-    category: 'Keterampilan Umum',
-    desc: 'Mampu mengambil keputusan secara tepat dalam konteks penyelesaian masalah di bidang keahliannya, serta memiliki jiwa kepemimpinan dan kewirausahaan (Technopreneurship).'
+    category: 'Keterampilan Khusus',
+    desc: 'Mengembangkan semangat kemandirian, kreativitas, dan jiwa kewirausahaan berbasis teknologi (technopreneurship) untuk menciptakan inovasi dan peluang usaha yang berkelanjutan di bidang pendidikan dan informatika'
   }
 ];
 
@@ -250,16 +250,16 @@ export const ATURAN_KONVERSI = [
   {
     id: 2,
     title: 'Mahasiswa KRS Semester Gasal TA 2026/2027',
-    status: 'Wajib Konversi Kurikulum 2026',
+    status: 'Berlaku Konversi Kurikulum 2026',
     isHighlight: true,
     desc: 'Seluruh mahasiswa aktif PTI yang mengambil KRS pada Semester Gasal 2026/2027 secara otomatis dikonversi ke Kurikulum 2026.'
   },
   {
     id: 3,
-    title: 'Mahasiswa Bebas Teori & Menempuh Skripsi',
+    title: 'Mahasiswa Bebas Teori & Sedang Menempuh Skripsi',
     status: 'Berlaku Konversi Kurikulum 2026',
     isHighlight: true,
-    desc: 'Mahasiswa yang sudah dinyatakan bebas teori dan sedang menyelesaikan Skripsi tetap dikonversi (Skripsi 2022 terpetakan menjadi Seminar Proposal 2 SKS + Tugas Akhir 4 SKS).'
+    desc: 'Mahasiswa yang sudah dinyatakan bebas teori dan sedang menyelesaikan Skripsi tetap dikonversi tanpa perlu mengambil mata kuliah Seminar Proposal.'
   }
 ];
 
@@ -303,7 +303,6 @@ export const COURSE_NAME_CHANGES: CourseNameChangeItem[] = [
   { oldName: 'Manajemen Pendidikan', oldSem: 'Sem 2', newName: 'Manajemen Pendidikan', newSem: 'Sem 5' },
   { oldName: 'Transformasi Digital', oldSem: 'Sem 3', newName: 'Literasi Digital', newSem: 'Sem 2' },
   { oldName: 'Administrasi Jaringan', oldSem: 'Sem 6', newName: 'Cybersecurity', newSem: 'Sem 5' },
-  { oldName: 'Etika dan Profesi', oldSem: 'Sem 4', newName: 'Etika dan Profesi', newSem: 'Sem 1' },
   { oldName: 'Dasar Jaringan Komputer', oldSem: 'Sem 3', newName: 'Pengantar Sistem Jaringan Modern', newSem: 'Sem 3' },
   { oldName: 'Pembelajaran Mikro', oldSem: 'Sem 6', newName: 'Microteaching', newSem: 'Sem 6' },
   { oldName: 'Proyek Mandiri', oldSem: 'Sem 6', newName: 'Instructional Capstone Project', newSem: 'Sem 6' },

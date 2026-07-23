@@ -121,8 +121,8 @@ export const LearningPathSection: React.FC = () => {
                   key={lp.id}
                   onClick={() => setSelectedPathId(lp.id)}
                   className={`p-4 rounded-2xl border text-left transition-all cursor-pointer flex items-start gap-3 ${isSelected
-                      ? 'bg-slate-900 text-white border-slate-900 shadow-lg ring-2 ring-purple-500/30'
-                      : 'bg-slate-50 text-slate-800 border-slate-200 hover:bg-slate-100'
+                    ? 'bg-slate-900 text-white border-slate-900 shadow-lg ring-2 ring-purple-500/30'
+                    : 'bg-slate-50 text-slate-800 border-slate-200 hover:bg-slate-100'
                     }`}
                 >
                   <div className={`p-2.5 rounded-xl shrink-0 ${isSelected ? 'bg-white/10' : 'bg-white shadow-sm'}`}>
@@ -208,7 +208,7 @@ export const LearningPathSection: React.FC = () => {
           >
             <div className="flex items-center gap-2">
               <ImageIcon className="w-5 h-5 text-blue-400" />
-              <h3 className="text-sm font-bold">Peta Alur Kurikulum 2026 (Semester 1 s/d 8)</h3>
+              <h3 className="text-sm font-bold">Peta Alur Kurikulum 2026</h3>
             </div>
 
             <button

@@ -30,53 +30,48 @@ export const CplSection: React.FC = () => {
         <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
           <button
             onClick={() => setSelectedCategory('all')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              selectedCategory === 'all'
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${selectedCategory === 'all'
                 ? 'bg-slate-900 text-white shadow-md'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
-            }`}
+              }`}
           >
             Semua CPL ({CPL_DATA.length})
           </button>
           <button
             onClick={() => setSelectedCategory('Sikap')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              selectedCategory === 'Sikap'
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${selectedCategory === 'Sikap'
                 ? 'bg-blue-600 text-white shadow-md'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
-            }`}
+              }`}
           >
-            Sikap (CPL-1)
+            Sikap
           </button>
           <button
             onClick={() => setSelectedCategory('Pengetahuan')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              selectedCategory === 'Pengetahuan'
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${selectedCategory === 'Pengetahuan'
                 ? 'bg-indigo-600 text-white shadow-md'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
-            }`}
+              }`}
           >
-            Pengetahuan (CPL-2 & CPL-3)
+            Pengetahuan
           </button>
           <button
             onClick={() => setSelectedCategory('Keterampilan Khusus')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              selectedCategory === 'Keterampilan Khusus'
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${selectedCategory === 'Keterampilan Khusus'
                 ? 'bg-purple-600 text-white shadow-md'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
-            }`}
+              }`}
           >
-            Keterampilan Khusus (CPL-4 & CPL-5)
+            Keterampilan Khusus
           </button>
           <button
             onClick={() => setSelectedCategory('Keterampilan Umum')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              selectedCategory === 'Keterampilan Umum'
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${selectedCategory === 'Keterampilan Umum'
                 ? 'bg-emerald-600 text-white shadow-md'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
-            }`}
+              }`}
           >
-            Keterampilan Umum (CPL-6 & CPL-7)
+            Keterampilan Umum
           </button>
         </div>
 
@@ -93,15 +88,14 @@ export const CplSection: React.FC = () => {
                     {cpl.kode}
                   </span>
                   <span
-                    className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
-                      cpl.category === 'Sikap'
+                    className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${cpl.category === 'Sikap'
                         ? 'bg-blue-100 text-blue-800'
                         : cpl.category === 'Pengetahuan'
-                        ? 'bg-indigo-100 text-indigo-800'
-                        : cpl.category === 'Keterampilan Khusus'
-                        ? 'bg-purple-100 text-purple-800'
-                        : 'bg-emerald-100 text-emerald-800'
-                    }`}
+                          ? 'bg-indigo-100 text-indigo-800'
+                          : cpl.category === 'Keterampilan Khusus'
+                            ? 'bg-purple-100 text-purple-800'
+                            : 'bg-emerald-100 text-emerald-800'
+                      }`}
                   >
                     {cpl.category}
                   </span>

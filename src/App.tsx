@@ -168,12 +168,12 @@ export function App() {
 
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-auto">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="font-semibold text-slate-300">
-            Platform Informasi & Simulasi Konversi Kurikulum 2026 • Program Studi Pendidikan Teknik Informatika UMS
+        <div className="max-w-7xl mx-auto px-4 text-center space-y-1.5">
+          <p className="font-extrabold text-slate-200 tracking-wide text-sm">
+            PTI KREATIF - Kompeten, Religius, Efektif, Amanah, Terampil, Inovatif, Future
           </p>
-          <p className="text-[11px] text-slate-500 mt-1">
-            Dirancang sebagai platform self-service mandiri mahasiswa. Berjalan 100% di browser tanpa penyimpanan data permanen.
+          <p className="text-xs text-slate-400 font-semibold">
+            2026 Made with ❤️ and 🍔
           </p>
         </div>
       </footer>

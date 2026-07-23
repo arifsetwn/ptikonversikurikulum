@@ -1,0 +1,554 @@
+[
+  {
+    "kode_baru": "IFE1261201",
+    "nama_baru": "Agama",
+    "sks_baru": 2,
+    "sem_baru": "1"
+  },
+  {
+    "kode_baru": "IFE1261202",
+    "nama_baru": "English for Academic Purposes",
+    "sks_baru": 2,
+    "sem_baru": "1"
+  },
+  {
+    "kode_baru": "IFE2261201",
+    "nama_baru": "Filsafat Pendidikan",
+    "sks_baru": 2,
+    "sem_baru": "1"
+  },
+  {
+    "kode_baru": "IFE3261205",
+    "nama_baru": "Informatika Kependidikan",
+    "sks_baru": 2,
+    "sem_baru": "1"
+  },
+  {
+    "kode_baru": "IFE3261363",
+    "nama_baru": "Transformasi Digital",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261206",
+    "nama_baru": "Sistem Digital",
+    "sks_baru": 2,
+    "sem_baru": "1"
+  },
+  {
+    "kode_baru": "IFE3261307",
+    "nama_baru": "Algoritma dan Pemrograman",
+    "sks_baru": 3,
+    "sem_baru": "1"
+  },
+  {
+    "kode_baru": "IFE3261108",
+    "nama_baru": "Praktikum Algoritma dan Pemrograman",
+    "sks_baru": 1,
+    "sem_baru": "1"
+  },
+  {
+    "kode_baru": "IFE3261209",
+    "nama_baru": "Kalkulus",
+    "sks_baru": 2,
+    "sem_baru": "1"
+  },
+  {
+    "kode_baru": "IFE3261210",
+    "nama_baru": "Aljabar Linier",
+    "sks_baru": 2,
+    "sem_baru": "1"
+  },
+  {
+    "kode_baru": "IFE2261206",
+    "nama_baru": "Etika dan Profesi",
+    "sks_baru": 2,
+    "sem_baru": "1"
+  },
+  {
+    "kode_baru": "IFE1261203",
+    "nama_baru": "Ibadah Muamalah",
+    "sks_baru": 2,
+    "sem_baru": "2"
+  },
+  {
+    "kode_baru": "IFE1261204",
+    "nama_baru": "Standardized Test Preparation",
+    "sks_baru": 2,
+    "sem_baru": "2"
+  },
+  {
+    "kode_baru": "IFE2261202",
+    "nama_baru": "Kurikulum dan Pembelajaran",
+    "sks_baru": 2,
+    "sem_baru": "2"
+  },
+  {
+    "kode_baru": "IFE3261311",
+    "nama_baru": "Arsitektur dan Organisasi Komputer",
+    "sks_baru": 3,
+    "sem_baru": "2"
+  },
+  {
+    "kode_baru": "IFE3261312",
+    "nama_baru": "Struktur Data",
+    "sks_baru": 3,
+    "sem_baru": "2"
+  },
+  {
+    "kode_baru": "IFE3261313",
+    "nama_baru": "Pemrograman Berorientasi Objek",
+    "sks_baru": 3,
+    "sem_baru": "2"
+  },
+  {
+    "kode_baru": "IFE3261114",
+    "nama_baru": "Praktikum Pemrograman Berorientasi Objek",
+    "sks_baru": 1,
+    "sem_baru": "2"
+  },
+  {
+    "kode_baru": "IFE3261215",
+    "nama_baru": "Logika dan Himpunan",
+    "sks_baru": 2,
+    "sem_baru": "2"
+  },
+  {
+    "kode_baru": "IFE1261205",
+    "nama_baru": "Literasi Digital",
+    "sks_baru": 2,
+    "sem_baru": "2"
+  },
+  {
+    "kode_baru": "IFE1261206",
+    "nama_baru": "Islam dan Iptek",
+    "sks_baru": 2,
+    "sem_baru": "3"
+  },
+  {
+    "kode_baru": "IFE2261203",
+    "nama_baru": "Psikologi Pendidikan",
+    "sks_baru": 2,
+    "sem_baru": "3"
+  },
+  {
+    "kode_baru": "IFE3261201",
+    "nama_baru": "Perencanaan Pembelajaran",
+    "sks_baru": 2,
+    "sem_baru": "3"
+  },
+  {
+    "kode_baru": "IFE3261219",
+    "nama_baru": "Pengantar Sistem Jaringan Modern",
+    "sks_baru": 2,
+    "sem_baru": "3"
+  },
+  {
+    "kode_baru": "IFE3261216",
+    "nama_baru": "Struktur Diskret",
+    "sks_baru": 2,
+    "sem_baru": "3"
+  },
+  {
+    "kode_baru": "IFE3261221",
+    "nama_baru": "Multimedia Dasar",
+    "sks_baru": 2,
+    "sem_baru": "3"
+  },
+  {
+    "kode_baru": "IFE3261317",
+    "nama_baru": "Sistem Operasi",
+    "sks_baru": 3,
+    "sem_baru": "3"
+  },
+  {
+    "kode_baru": "IFE3261118",
+    "nama_baru": "Praktikum Sistem Operasi",
+    "sks_baru": 1,
+    "sem_baru": "3"
+  },
+  {
+    "kode_baru": "IFE3261220",
+    "nama_baru": "Statistik dan Probabilitas",
+    "sks_baru": 2,
+    "sem_baru": "3"
+  },
+  {
+    "kode_baru": "IFE3261222",
+    "nama_baru": "Rekayasa Perangkat Lunak",
+    "sks_baru": 2,
+    "sem_baru": "3"
+  },
+  {
+    "kode_baru": "IFE1261207",
+    "nama_baru": "Kemuhammadiyahan",
+    "sks_baru": 2,
+    "sem_baru": "4"
+  },
+  {
+    "kode_baru": "IFE1261208",
+    "nama_baru": "Bahasa Indonesia dan PKTI",
+    "sks_baru": 2,
+    "sem_baru": "4"
+  },
+  {
+    "kode_baru": "IFE2261204",
+    "nama_baru": "Bimbingan dan Konseling",
+    "sks_baru": 2,
+    "sem_baru": "4"
+  },
+  {
+    "kode_baru": "IFE3261202",
+    "nama_baru": "Strategi Pembelajaran Informatika",
+    "sks_baru": 2,
+    "sem_baru": "4"
+  },
+  {
+    "kode_baru": "IFE3261225",
+    "nama_baru": "Interaksi Manusia dan Komputer",
+    "sks_baru": 2,
+    "sem_baru": "4"
+  },
+  {
+    "kode_baru": "IFE3261326",
+    "nama_baru": "Sistem Basis Data",
+    "sks_baru": 3,
+    "sem_baru": "4"
+  },
+  {
+    "kode_baru": "IFE3261127",
+    "nama_baru": "Praktikum Sistem Basis Data",
+    "sks_baru": 1,
+    "sem_baru": "4"
+  },
+  {
+    "kode_baru": "IFE3261323",
+    "nama_baru": "Jaringan Komputer",
+    "sks_baru": 3,
+    "sem_baru": "4"
+  },
+  {
+    "kode_baru": "IFE3261124",
+    "nama_baru": "Praktikum Jaringan Komputer",
+    "sks_baru": 1,
+    "sem_baru": "4"
+  },
+  {
+    "kode_baru": "IFE3261203",
+    "nama_baru": "Teknologi dan Inovasi Pembelajaran",
+    "sks_baru": 2,
+    "sem_baru": "4"
+  },
+  {
+    "kode_baru": "IFE3261228",
+    "nama_baru": "Kecerdasan Buatan",
+    "sks_baru": 2,
+    "sem_baru": "4"
+  },
+  {
+    "kode_baru": "IFE2261205",
+    "nama_baru": "Manajemen Pendidikan",
+    "sks_baru": 2,
+    "sem_baru": "5"
+  },
+  {
+    "kode_baru": "IFE1261209",
+    "nama_baru": "Pancasila",
+    "sks_baru": 2,
+    "sem_baru": "5"
+  },
+  {
+    "kode_baru": "IFE3261204",
+    "nama_baru": "Penilaian Pembelajaran",
+    "sks_baru": 2,
+    "sem_baru": "5"
+  },
+  {
+    "kode_baru": "IFE3261330",
+    "nama_baru": "Pemrograman Web",
+    "sks_baru": 3,
+    "sem_baru": "5"
+  },
+  {
+    "kode_baru": "IFE3261132",
+    "nama_baru": "Praktikum Pemrograman Web",
+    "sks_baru": 1,
+    "sem_baru": "5"
+  },
+  {
+    "kode_baru": "IFE3261233",
+    "nama_baru": "Komputer Grafik dan Animasi",
+    "sks_baru": 3,
+    "sem_baru": "5"
+  },
+  {
+    "kode_baru": "IFE3261134",
+    "nama_baru": "Praktikum Komputer Grafik dan Animasi",
+    "sks_baru": 1,
+    "sem_baru": "5"
+  },
+  {
+    "kode_baru": "IFE3261329",
+    "nama_baru": "Metodologi Penelitian",
+    "sks_baru": 3,
+    "sem_baru": "5"
+  },
+  {
+    "kode_baru": "IFE3261236",
+    "nama_baru": "Cybersecurity",
+    "sks_baru": 2,
+    "sem_baru": "5"
+  },
+  {
+    "kode_baru": "IFE1261210",
+    "nama_baru": "Kewarganegaraan",
+    "sks_baru": 2,
+    "sem_baru": "6"
+  },
+  {
+    "kode_baru": "IFE2261207",
+    "nama_baru": "Microteaching",
+    "sks_baru": 2,
+    "sem_baru": "6"
+  },
+  {
+    "kode_baru": "IFE3261235",
+    "nama_baru": "Instructional Capstone Project",
+    "sks_baru": 2,
+    "sem_baru": "6"
+  },
+  {
+    "kode_baru": "IFE3261337",
+    "nama_baru": "Game Edukasi",
+    "sks_baru": 3,
+    "sem_baru": "6"
+  },
+  {
+    "kode_baru": "IFE3261138",
+    "nama_baru": "Praktikum Game Edukasi",
+    "sks_baru": 1,
+    "sem_baru": "6"
+  },
+  {
+    "kode_baru": "IFE3261339",
+    "nama_baru": "Technopreneurship",
+    "sks_baru": 3,
+    "sem_baru": "6"
+  },
+  {
+    "kode_baru": "IFE2261408",
+    "nama_baru": "KKN Pendidikan",
+    "sks_baru": 4,
+    "sem_baru": "6"
+  },
+  {
+    "kode_baru": "IFE3261331",
+    "nama_baru": "Internet of Things",
+    "sks_baru": 3,
+    "sem_baru": "6"
+  },
+  {
+    "kode_baru": "IFE2261406",
+    "nama_baru": "PLP",
+    "sks_baru": 4,
+    "sem_baru": "7"
+  },
+  {
+    "kode_baru": "IFE3261440",
+    "nama_baru": "Praktik Industri",
+    "sks_baru": 4,
+    "sem_baru": "7"
+  },
+  {
+    "kode_baru": "IFE3261241",
+    "nama_baru": "Seminar Proposal",
+    "sks_baru": 2,
+    "sem_baru": "7"
+  },
+  {
+    "kode_baru": "IFE1261412",
+    "nama_baru": "Tugas Akhir",
+    "sks_baru": 4,
+    "sem_baru": "8"
+  },
+  {
+    "kode_baru": "IFE1261211",
+    "nama_baru": "Life Skills",
+    "sks_baru": 2,
+    "sem_baru": "7"
+  },
+  {
+    "kode_baru": "IFE3261342",
+    "nama_baru": "Aplikasi Mixed Reality",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261343",
+    "nama_baru": "Teknologi Pembelajaran Modern",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261344",
+    "nama_baru": "Cinematography",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261345",
+    "nama_baru": "Game based learning",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261346",
+    "nama_baru": "Learning Experience Design",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261347",
+    "nama_baru": "Machine Learning",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261348",
+    "nama_baru": "Computer Vision",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261349",
+    "nama_baru": "Pemrograman Web Lanjut",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261350",
+    "nama_baru": "e-Commerce",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261351",
+    "nama_baru": "E-learning",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261352",
+    "nama_baru": "Pengembangan Aplikasi Mobile",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261353",
+    "nama_baru": "Data Science",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261354",
+    "nama_baru": "Pengembangan Aplikasi Modern",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261355",
+    "nama_baru": "Jaringan Nirkabel",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261356",
+    "nama_baru": "Ethical Hacking",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261357",
+    "nama_baru": "System Administrator",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261358",
+    "nama_baru": "Cloud Computing",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261359",
+    "nama_baru": "3D Design and Production",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261360",
+    "nama_baru": "Audit Sistem Informasi",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261361",
+    "nama_baru": "Kewirausahaan",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261362",
+    "nama_baru": "Hak Kekayaan Intelektual",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261364",
+    "nama_baru": "Big Data Fundamental",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261365",
+    "nama_baru": "Modul Nusantara",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261366",
+    "nama_baru": "Pemberdayaan Masyarakat",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261367",
+    "nama_baru": "Penulisan Karya Ilmiah",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261368",
+    "nama_baru": "Pengembangan Sekolah",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261369",
+    "nama_baru": "Bisnis Digital",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261370",
+    "nama_baru": "Media Komunikasi, Informasi dan Edukasi",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  },
+  {
+    "kode_baru": "IFE3261371",
+    "nama_baru": "Sertifikasi Kompetensi",
+    "sks_baru": 3,
+    "sem_baru": "Pilihan"
+  }
+]

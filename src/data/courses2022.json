@@ -1,0 +1,548 @@
+[
+  {
+    "kode": "IFE3221251",
+    "nama": "Administrasi Jaringan",
+    "sks": 2,
+    "semester": "6"
+  },
+  {
+    "kode": "IFE1221201",
+    "nama": "Agama",
+    "sks": 2,
+    "semester": "1"
+  },
+  {
+    "kode": "IFE3221306",
+    "nama": "Algoritma dan Pemrograman",
+    "sks": 3,
+    "semester": "1"
+  },
+  {
+    "kode": "IFE3221309",
+    "nama": "Aljabar Linier",
+    "sks": 3,
+    "semester": "1"
+  },
+  {
+    "kode": "IFE3221360",
+    "nama": "Aplikasi Mixed Reality",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221314",
+    "nama": "Arsitektur dan Organisasi Komputer",
+    "sks": 3,
+    "semester": "2"
+  },
+  {
+    "kode": "IFE3221391",
+    "nama": "Audit Sistem Informasi",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE1221230",
+    "nama": "Bahasa Indonesia dan PKTI",
+    "sks": 2,
+    "semester": "4"
+  },
+  {
+    "kode": "IFE2221232",
+    "nama": "Bimbingan dan Konseling",
+    "sks": 2,
+    "semester": "4"
+  },
+  {
+    "kode": "IFE3221388",
+    "nama": "Bisnis Digital",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221362",
+    "nama": "Cinematography",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221378",
+    "nama": "Cloud Computing",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221366",
+    "nama": "Computer Vision",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221377",
+    "nama": "Cyber Security",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221222",
+    "nama": "Dasar Jaringan Komputer",
+    "sks": 2,
+    "semester": "3"
+  },
+  {
+    "kode": "IFE3221372",
+    "nama": "Data Science",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221369",
+    "nama": "E-learning",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE1221202",
+    "nama": "English for Academic Purposes",
+    "sks": 2,
+    "semester": "1"
+  },
+  {
+    "kode": "IFE3221375",
+    "nama": "Ethical Hacking",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221383",
+    "nama": "Etika Profesi Keguruan",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE2221203",
+    "nama": "Filsafat Pendidikan",
+    "sks": 2,
+    "semester": "1"
+  },
+  {
+    "kode": "IFE3221353",
+    "nama": "Game Edukasi",
+    "sks": 3,
+    "semester": "6"
+  },
+  {
+    "kode": "IFE3221381",
+    "nama": "Hak Kekayaan Intelektual",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE1221210",
+    "nama": "Ibadah Muamalah",
+    "sks": 2,
+    "semester": "2"
+  },
+  {
+    "kode": "IFE3221204",
+    "nama": "Informatika Kependidikan",
+    "sks": 2,
+    "semester": "1"
+  },
+  {
+    "kode": "IFE3221234",
+    "nama": "Interaksi Manusia dan Komputer",
+    "sks": 2,
+    "semester": "4"
+  },
+  {
+    "kode": "IFE3221376",
+    "nama": "Internet of Things",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE1221219",
+    "nama": "Islam dan Iptek",
+    "sks": 2,
+    "semester": "3"
+  },
+  {
+    "kode": "IFE3221338",
+    "nama": "Jaringan Komputer",
+    "sks": 3,
+    "semester": "4"
+  },
+  {
+    "kode": "IFE3221374",
+    "nama": "Jaringan Nirkabel",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE2221457",
+    "nama": "KKN Pendidikan",
+    "sks": 4,
+    "semester": "6"
+  },
+  {
+    "kode": "IFE3221308",
+    "nama": "Kalkulus",
+    "sks": 3,
+    "semester": "1"
+  },
+  {
+    "kode": "IFE3221370",
+    "nama": "Kecerdasan Buatan",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE1221229",
+    "nama": "Kemuhammadiyahan",
+    "sks": 2,
+    "semester": "4"
+  },
+  {
+    "kode": "IFE1221248",
+    "nama": "Kewarganegaraan",
+    "sks": 2,
+    "semester": "6"
+  },
+  {
+    "kode": "IFE3221380",
+    "nama": "Kewirausahaan",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221345",
+    "nama": "Komputer Grafik dan Animasi",
+    "sks": 3,
+    "semester": "5"
+  },
+  {
+    "kode": "IFE3221213",
+    "nama": "Kurikulum dan Pembelajaran",
+    "sks": 2,
+    "semester": "2"
+  },
+  {
+    "kode": "IFE3221382",
+    "nama": "Literasi Digital",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221318",
+    "nama": "Logika dan Himpunan",
+    "sks": 3,
+    "semester": "2"
+  },
+  {
+    "kode": "IFE2221212",
+    "nama": "Manajemen Pendidikan",
+    "sks": 2,
+    "semester": "2"
+  },
+  {
+    "kode": "IFE3221347",
+    "nama": "Metodologi Penelitian",
+    "sks": 3,
+    "semester": "5"
+  },
+  {
+    "kode": "IFE3221384",
+    "nama": "Modul Nusantara",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221225",
+    "nama": "Multimedia Dasar",
+    "sks": 2,
+    "semester": "3"
+  },
+  {
+    "kode": "IFE3221364",
+    "nama": "Multiplayer Game",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE2221131",
+    "nama": "PLP I",
+    "sks": 1,
+    "semester": "4"
+  },
+  {
+    "kode": "IFE2221356",
+    "nama": "PLP II",
+    "sks": 3,
+    "semester": "7"
+  },
+  {
+    "kode": "IFE1221240",
+    "nama": "Pancasila",
+    "sks": 2,
+    "semester": "5"
+  },
+  {
+    "kode": "IFE2221249",
+    "nama": "Pembelajaran Mikro",
+    "sks": 2,
+    "semester": "6"
+  },
+  {
+    "kode": "IFE3221389",
+    "nama": "Pembelajaran Tematik",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221316",
+    "nama": "Pemrograman Berorientasi Objek",
+    "sks": 3,
+    "semester": "2"
+  },
+  {
+    "kode": "IFE3221343",
+    "nama": "Pemrograman Web",
+    "sks": 3,
+    "semester": "5"
+  },
+  {
+    "kode": "IFE3221367",
+    "nama": "Pemrograman Web Lanjut",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221371",
+    "nama": "Pengembangan Aplikasi Mobile",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221250",
+    "nama": "Pengembangan Bahan Ajar Informatika",
+    "sks": 2,
+    "semester": "6"
+  },
+  {
+    "kode": "IFE3221387",
+    "nama": "Pengembangan Sekolah",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221363",
+    "nama": "Pengolahan Citra Digital",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221241",
+    "nama": "Penilaian Pembelajaran",
+    "sks": 2,
+    "semester": "5"
+  },
+  {
+    "kode": "IFE3221386",
+    "nama": "Penulisan Karya Ilmiah",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221365",
+    "nama": "Perakitan Komputer dan Praktik",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221221",
+    "nama": "Perencanaan Pembelajaran",
+    "sks": 2,
+    "semester": "3"
+  },
+  {
+    "kode": "IFE3221385",
+    "nama": "Perkembangan Peserta Didik",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221258",
+    "nama": "Praktik Industri",
+    "sks": 2,
+    "semester": "7"
+  },
+  {
+    "kode": "IFE3221107",
+    "nama": "Praktikum Algoritma dan Pemrograman",
+    "sks": 1,
+    "semester": "1"
+  },
+  {
+    "kode": "IFE3221154",
+    "nama": "Praktikum Game Edukasi",
+    "sks": 1,
+    "semester": "6"
+  },
+  {
+    "kode": "IFE3221139",
+    "nama": "Praktikum Jaringan Komputer",
+    "sks": 1,
+    "semester": "4"
+  },
+  {
+    "kode": "IFE3221146",
+    "nama": "Praktikum Komputer Grafik dan Animasi",
+    "sks": 1,
+    "semester": "5"
+  },
+  {
+    "kode": "IFE3221117",
+    "nama": "Praktikum Pemrograman Berorientasi Objek",
+    "sks": 1,
+    "semester": "2"
+  },
+  {
+    "kode": "IFE3221144",
+    "nama": "Praktikum Pemrograman Web",
+    "sks": 1,
+    "semester": "5"
+  },
+  {
+    "kode": "IFE3221137",
+    "nama": "Praktikum Sistem Basis Data",
+    "sks": 1,
+    "semester": "4"
+  },
+  {
+    "kode": "IFE3221127",
+    "nama": "Praktikum Sistem Operasi",
+    "sks": 1,
+    "semester": "3"
+  },
+  {
+    "kode": "IFE3221252",
+    "nama": "Proyek Mandiri",
+    "sks": 2,
+    "semester": "6"
+  },
+  {
+    "kode": "IFE2221220",
+    "nama": "Psikologi Pendidikan",
+    "sks": 2,
+    "semester": "3"
+  },
+  {
+    "kode": "IFE3221235",
+    "nama": "Rekayasa Perangkat Lunak",
+    "sks": 2,
+    "semester": "4"
+  },
+  {
+    "kode": "IFE3221373",
+    "nama": "Riset Operasi",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221390",
+    "nama": "Sertifikasi Kompetensi",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221336",
+    "nama": "Sistem Basis Data",
+    "sks": 3,
+    "semester": "4"
+  },
+  {
+    "kode": "IFE3221205",
+    "nama": "Sistem Digital",
+    "sks": 2,
+    "semester": "1"
+  },
+  {
+    "kode": "IFE3221326",
+    "nama": "Sistem Operasi",
+    "sks": 3,
+    "semester": "3"
+  },
+  {
+    "kode": "IFE2221459",
+    "nama": "Skripsi",
+    "sks": 4,
+    "semester": "8"
+  },
+  {
+    "kode": "IFE1221211",
+    "nama": "Standardized Test Preparation",
+    "sks": 2,
+    "semester": "2"
+  },
+  {
+    "kode": "IFE3221228",
+    "nama": "Statistik dan Probabilitas",
+    "sks": 2,
+    "semester": "3"
+  },
+  {
+    "kode": "IFE3221233",
+    "nama": "Strategi Pembelajaran Informatika",
+    "sks": 2,
+    "semester": "4"
+  },
+  {
+    "kode": "IFE3221315",
+    "nama": "Struktur Data",
+    "sks": 3,
+    "semester": "2"
+  },
+  {
+    "kode": "IFE3221223",
+    "nama": "Struktur Diskret",
+    "sks": 2,
+    "semester": "3"
+  },
+  {
+    "kode": "IFE3221355",
+    "nama": "TechnoPreneurship",
+    "sks": 3,
+    "semester": "6"
+  },
+  {
+    "kode": "IFE3221361",
+    "nama": "Teknologi Motion Tracking",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221242",
+    "nama": "Teknologi dan Inovasi Pembelajaran",
+    "sks": 2,
+    "semester": "5"
+  },
+  {
+    "kode": "IFE3221324",
+    "nama": "Transformasi Digital",
+    "sks": 2,
+    "semester": "3"
+  },
+  {
+    "kode": "IFE3221379",
+    "nama": "Wireless Sensor Network",
+    "sks": 3,
+    "semester": "Pilihan"
+  },
+  {
+    "kode": "IFE3221368",
+    "nama": "e-Commerce",
+    "sks": 3,
+    "semester": "Pilihan"
+  }
+]

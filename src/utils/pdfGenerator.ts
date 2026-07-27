@@ -2,8 +2,29 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 /**
+ * Helper to convert an image URL (relative or absolute) to a Base64 Data URI.
+ * Eliminates CORS and Tainted Canvas issues in html2canvas on shared hosting.
+ */
+async function fetchImageAsBase64(url: string): Promise<string> {
+  if (!url || url.startsWith('data:')) return url;
+  try {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    return new Promise<string>((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve((reader.result as string) || url);
+      reader.onerror = () => resolve(url);
+      reader.readAsDataURL(blob);
+    });
+  } catch (err) {
+    console.warn('Failed to fetch image as base64:', url, err);
+    return url;
+  }
+}
+
+/**
  * Captures an HTML element and exports it directly as a downloadable PDF file client-side.
- * Uses smart element-aware row slicing to prevent text cut-offs and duplicate row overlaps across PDF pages.
+ * Compatible with shared hosting (cPanel/Hostinger/Apache), subfolder base paths, and mobile browsers.
  */
 export async function generatePdfFromElement(
   elementId: string,
@@ -32,19 +53,27 @@ export async function generatePdfFromElement(
       }
     });
 
-    // Sort positions by topPx ascending
     elementPositions.sort((a, b) => a.topPx - b.topPx);
 
-    // 2. Render targetElement using html2canvas
+    // 2. Render targetElement using html2canvas with sanitized Base64 images
     const canvas = await html2canvas(targetElement, {
       scale: 2, // High resolution
       useCORS: true,
-      allowTaint: true,
+      allowTaint: false, // Prevent tainted canvas security exceptions
       logging: false,
       backgroundColor: '#ffffff',
-      onclone: (clonedDoc) => {
+      onclone: async (clonedDoc) => {
         const clonedTarget = clonedDoc.getElementById(elementId);
         if (!clonedTarget) return;
+
+        // Convert all <img> tags inside cloned document to inline Base64 data URIs
+        const imgElements = Array.from(clonedTarget.querySelectorAll('img'));
+        await Promise.all(
+          imgElements.map(async (img) => {
+            const base64 = await fetchImageAsBase64(img.src);
+            img.src = base64;
+          })
+        );
 
         // Replace any oklch color definitions in cloned stylesheet or elements
         const styleElements = clonedDoc.querySelectorAll('style');
@@ -116,14 +145,12 @@ export async function generatePdfFromElement(
         const searchMinY = currentY + maxPageHeightCanvasPx * 0.6; // Only break in lower 40% of page
 
         for (const pos of canvasPositions) {
-          // If an element starts after searchMinY and crosses or ends near pageBreakY
           if (pos.top > searchMinY && pos.top < pageBreakY && pos.bottom > pageBreakY) {
             bestBreakY = pos.top;
             break;
           }
         }
 
-        // Ensure breakY moves forward significantly to avoid infinite loop or tiny slices
         if (bestBreakY > currentY + maxPageHeightCanvasPx * 0.3) {
           pageBreakY = bestBreakY;
         }
@@ -174,12 +201,20 @@ export async function generatePdfFromElement(
       pageIndex++;
     }
 
-    // Trigger direct browser file download
-    pdf.save(fileName);
+    // Direct Blob URL download for maximum shared hosting / mobile browser compatibility
+    const pdfBlob = pdf.output('blob');
+    const blobUrl = URL.createObjectURL(pdfBlob);
+    const link = document.createElement('a');
+    link.href = blobUrl;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+
     return true;
   } catch (err: any) {
     console.error('Failed to generate PDF via html2canvas:', err);
-    alert('Terjadi kesalahan saat membuat file PDF. Silakan coba kembali.');
     return false;
   }
 }

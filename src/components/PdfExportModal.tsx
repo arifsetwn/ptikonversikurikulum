@@ -37,8 +37,14 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
     const safeNim = studentInfo.nim ? studentInfo.nim.replace(/[^a-zA-Z0-9]/g, '_') : 'Mahasiswa';
     const filename = `Konversi_Kurikulum_${safeNim}.pdf`;
 
-    await generatePdfFromElement('pdf-document-content', filename);
+    const success = await generatePdfFromElement('pdf-document-content', filename);
     setIsGenerating(false);
+
+    if (!success) {
+      if (window.confirm('Proses ekspor PDF otomatis mengalami kendala di browser ini. Apakah Anda ingin membuka menu Cetak/Simpan PDF browser?')) {
+        window.print();
+      }
+    }
   };
 
   const handlePrintWindow = () => {

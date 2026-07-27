@@ -9,7 +9,6 @@ import {
   Rocket,
   Info,
   Image as ImageIcon,
-  Maximize2,
 } from 'lucide-react';
 import { LEARNING_PATHS } from '../data/landingData';
 import alurKurikulumImg from '../img/alur_kurikulum.png';
@@ -48,17 +47,11 @@ export const LearningPathSection: React.FC = () => {
 
         {/* Alur Kurikulum Image Banner Box with Animate UI ImageZoom */}
         <div className="mb-16 bg-[#1E205C] text-white rounded-3xl p-6 sm:p-8 shadow-xl overflow-hidden relative border border-[#1CBDB3]/30">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-            <div className="flex items-center gap-2">
-              <ImageIcon className="w-5 h-5 text-[#1CBDB3] shrink-0" />
-              <h3 className="text-xs sm:text-sm font-extrabold tracking-wide text-[#52E2DA]">
-                Peta Alur Kurikulum 2026 (Semester 1 s/d Semester 8)
-              </h3>
-            </div>
-
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#FFB800]/20 text-[#FFB800] border border-[#FFB800]/40 rounded-xl text-xs font-black self-start sm:self-auto backdrop-blur-md">
-              <Maximize2 className="w-3.5 h-3.5" /> Animate UI Spring Zoom Enabled
-            </span>
+          <div className="flex items-center gap-2 mb-4">
+            <ImageIcon className="w-5 h-5 text-[#1CBDB3] shrink-0" />
+            <h3 className="text-xs sm:text-sm font-extrabold tracking-wide text-[#52E2DA]">
+              Peta Alur Kurikulum 2026 (Semester 1 s/d Semester 8)
+            </h3>
           </div>
 
           {/* Animate UI Interactive ImageZoom Container */}
@@ -74,7 +67,7 @@ export const LearningPathSection: React.FC = () => {
           </div>
 
           <p className="text-[11px] text-slate-300 mt-3 text-center">
-            * Arahkan kursor untuk zoom interaktif (Spring Hover) atau klik gambar untuk mode Fullscreen Lightbox.
+            * Arahkan kursor untuk zoom atau klik gambar untuk fullscreen
           </p>
         </div>
 

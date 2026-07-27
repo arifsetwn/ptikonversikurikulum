@@ -206,7 +206,7 @@ export const LEARNING_PATHS: LearningPathItem[] = [
     name: 'Software Engineering',
     desc: 'Fokus pada rekayasa perangkat lunak modern, aplikasi web lanjut, aplikasi mobile, dan modern app dev.',
     iconName: 'Code',
-    courses: ['Pemrograman Web Lanjut', 'Pengembangan Aplikasi Mobile', 'Pengembangan Aplikasi Modern', 'e-Commerce']
+    courses: ['Pemrograman Web Lanjut', 'Pengembangan Aplikasi Mobile', 'Pengembangan Aplikasi Modern', 'Audit Sistem Informasi']
   },
   {
     id: 'lp-sec',
@@ -234,7 +234,7 @@ export const LEARNING_PATHS: LearningPathItem[] = [
     name: 'Digital Entrepreneurship',
     desc: 'Fokus pada pendirian start-up digital, tata kelola IT, bisnis digital, dan komersialisasi produk teknologi.',
     iconName: 'Rocket',
-    courses: ['Bisnis Digital', 'Audit Sistem Informasi', 'Kewirausahaan', 'Hak Kekayaan Intelektual', 'Pemberdayaan Masyarakat']
+    courses: ['Bisnis Digital', 'e-Commerce', 'Kewirausahaan', 'Hak Kekayaan Intelektual', 'Pemberdayaan Masyarakat']
   }
 ];
 

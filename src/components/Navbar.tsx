@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRightLeft, Menu, X, BookOpen, Sparkles, GraduationCap } from 'lucide-react';
+import { ArrowRightLeft, Menu, X, Sparkles, GraduationCap } from 'lucide-react';
 import logoPti from '../img/logo_pti.png';
 
 interface NavbarProps {
@@ -25,70 +25,70 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
   };
 
   return (
-    <nav className="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 text-white transition-all shadow-lg">
+    <nav className="sticky top-0 z-40 bg-slate-950/85 backdrop-blur-xl border-b border-slate-800/80 text-white transition-all shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo & Brand */}
+          {/* Logo & Brand Identity */}
           <div
             onClick={() => setActivePage('landing')}
-            className="flex items-center gap-3 cursor-pointer group"
+            className="flex items-center gap-3 cursor-pointer group shrink-0"
           >
-            <div className="p-1.5 bg-white rounded-xl shadow-md border border-slate-200 group-hover:scale-105 transition-transform">
-              <img src={logoPti} alt="Logo PTI" className="h-8 w-auto object-contain" />
+            <div className="p-1.5 bg-white rounded-xl shadow-sm border border-slate-200 group-hover:scale-105 transition-transform">
+              <img src={logoPti} alt="Logo PTI UMS" className="h-7 w-auto object-contain" />
             </div>
             <div>
               <span className="font-extrabold text-sm sm:text-base tracking-tight text-white block leading-tight">
                 Pendidikan Teknik Informatika
               </span>
-              <span className="text-[10px] text-blue-400 font-semibold tracking-wider uppercase block">
-                Kurikulum 2026 • UMS
+              <span className="text-[10px] text-blue-400 font-semibold tracking-wide uppercase block">
+                Kurikulum 2026 UMS
               </span>
             </div>
           </div>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-6 text-xs font-semibold text-slate-300">
+          {/* Desktop Single-Line Navigation */}
+          <div className="hidden xl:flex items-center gap-6 text-xs font-semibold text-slate-300">
             <button
               onClick={() => scrollToSection('visi')}
-              className="hover:text-blue-400 transition-colors cursor-pointer"
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Visi & PEO
             </button>
             <button
               onClick={() => scrollToSection('profil')}
-              className="hover:text-blue-400 transition-colors cursor-pointer"
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Profil Lulusan
             </button>
             <button
               onClick={() => scrollToSection('cpl')}
-              className="hover:text-blue-400 transition-colors cursor-pointer"
+              className="hover:text-white transition-colors cursor-pointer"
             >
               CPL
             </button>
             <button
               onClick={() => scrollToSection('learning-path')}
-              className="hover:text-blue-400 transition-colors cursor-pointer"
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Learning Path
             </button>
             <button
               onClick={() => scrollToSection('aturan')}
-              className="hover:text-blue-400 transition-colors cursor-pointer"
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Aturan Konversi
             </button>
             <button
               onClick={() => scrollToSection('perubahan')}
-              className="hover:text-blue-400 transition-colors cursor-pointer"
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Perubahan MK
             </button>
           </div>
 
-          {/* View Switch Buttons & CTA */}
-          <div className="hidden sm:flex items-center gap-3">
-            <div className="bg-slate-800 p-1 rounded-xl border border-slate-700 flex items-center gap-1">
+          {/* Actionable Switcher & Primary CTA */}
+          <div className="hidden sm:flex items-center gap-3 shrink-0">
+            <div className="bg-slate-900 p-1 rounded-xl border border-slate-800 flex items-center gap-1">
               <button
                 onClick={() => setActivePage('landing')}
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
@@ -114,9 +114,9 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
             {activePage === 'landing' && (
               <button
                 onClick={() => setActivePage('simulasi')}
-                className="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-xl text-xs shadow-md shadow-blue-500/20 transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-xl text-xs shadow-md shadow-blue-500/20 active:scale-[0.98] transition-all cursor-pointer"
               >
-                <Sparkles className="w-3.5 h-3.5" /> Simulasi Konversi
+                <Sparkles className="w-3.5 h-3.5" /> Simulasikan Konversi Nilai
               </button>
             )}
           </div>
@@ -140,9 +140,9 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="sm:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-4 space-y-2 text-xs font-semibold">
+        <div className="sm:hidden bg-slate-950 border-b border-slate-800 px-4 pt-2 pb-4 space-y-2 text-xs font-semibold">
           <button
             onClick={() => scrollToSection('visi')}
             className="block w-full text-left py-2 text-slate-300 hover:text-white"

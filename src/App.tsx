@@ -170,7 +170,7 @@ export function App() {
       <footer className="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-auto">
         <div className="max-w-7xl mx-auto px-4 text-center space-y-1.5">
           <p className="font-extrabold text-slate-200 tracking-wide text-sm">
-            PTI KREATIF - Kompeten, Religius, Efektif, Amanah, Terampil, Inovatif, Future
+            PTI KREATIF - Kompeten, Religius, Efektif, Amanah, Terampil, Inovatif, Future-oriented
           </p>
           <p className="text-xs text-slate-400 font-semibold">
             2026 Made with ❤️ and 🍔

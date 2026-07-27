@@ -318,7 +318,7 @@ export const COURSE_NAME_CHANGES: CourseNameChangeItem[] = [
   { oldName: 'Etika Profesi Keguruan', oldSem: 'Sem 6', newName: 'Big Data Fundamental', newSem: 'Pilihan' },
   { oldName: 'Perkembangan Peserta Didik', oldSem: 'Sem 6', newName: 'Pemberdayaan Masyarakat', newSem: 'Pilihan' },
   { oldName: 'Pembelajaran Tematik', oldSem: 'Pilihan', newName: 'Media Komunikasi, Informasi dan Edukasi', newSem: 'Pilihan' },
-  { oldName: 'Aplikasi Mixed Reality', oldSem: 'Pilihan', newName: 'Aplikasi Mixed Reality', newSem: 'Pilihan' }
+  { oldName: 'Aplikasi Mixed Reality', oldSem: 'Pilihan', newName: 'Mixed Reality Technology', newSem: 'Pilihan' }
 ];
 
 // PERUBAHAN BOBOT SKS

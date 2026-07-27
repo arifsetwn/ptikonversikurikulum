@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Download, Printer, GraduationCap, ShieldAlert, Loader2 } from 'lucide-react';
+import { X, Download, GraduationCap, ShieldAlert, Loader2 } from 'lucide-react';
 import { ConversionResultItem, ConversionSummaryStats, StudentInfo } from '../types';
 import { generatePdfFromElement } from '../utils/pdfGenerator';
 import { getRemaining2026Courses } from '../utils/conversionEngine';
@@ -41,14 +41,8 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
     setIsGenerating(false);
 
     if (!success) {
-      if (window.confirm('Proses ekspor PDF otomatis mengalami kendala di browser ini. Apakah Anda ingin membuka menu Cetak/Simpan PDF browser?')) {
-        window.print();
-      }
+      alert('Proses ekspor PDF mengalami kendala. Silakan periksa koneksi atau coba kembali.');
     }
-  };
-
-  const handlePrintWindow = () => {
-    window.print();
   };
 
   return (
@@ -75,13 +69,6 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
             Pastikan Nama & NIM sudah benar sebelum mengunduh dokumen PDF.
           </div>
           <div className="flex items-center gap-2">
-            <button
-              onClick={handlePrintWindow}
-              aria-label="Buka dialog cetak printer"
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-extrabold bg-white text-slate-800 hover:bg-slate-50 border border-slate-300 shadow-xs active:scale-95 transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-600"
-            >
-              <Printer className="w-4 h-4 text-slate-600" /> Cetak (Print)
-            </button>
             <button
               onClick={handleDownloadPdf}
               disabled={isGenerating}

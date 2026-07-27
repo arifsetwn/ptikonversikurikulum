@@ -145,7 +145,7 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
             </div>
 
             {/* Ringkasan Statistik & IPK Box */}
-            <div className="grid grid-cols-5 gap-2 mb-6">
+            <div className="grid grid-cols-5 gap-2 mb-4">
               <div style={{ backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }} className="p-2 rounded border text-center col-span-2 sm:col-span-1">
                 <span style={{ color: '#1e40af' }} className="text-[9px] uppercase font-bold block">IPK 2022</span>
                 <span style={{ color: '#1e3a8a' }} className="text-base font-black">{stats.ipkSebelumKonversi.toFixed(2)}</span>
@@ -165,6 +165,20 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
               <div style={{ backgroundColor: '#fffbeb', borderColor: '#fde68a' }} className="p-2 rounded border text-center">
                 <span style={{ color: '#92400e' }} className="text-[9px] uppercase font-bold block">Sisa 2026</span>
                 <span style={{ color: '#b45309' }} className="text-sm font-extrabold">{stats.totalRemainingSks2026} SKS</span>
+              </div>
+            </div>
+
+            {/* Disclaimer Resmi & Skala Penilaian (Halaman 1) */}
+            <div
+              style={{ backgroundColor: '#f8fafc', borderColor: '#cbd5e1', color: '#475569' }}
+              className="border rounded p-3 text-[9px] flex items-start gap-2 mb-6"
+            >
+              <ShieldAlert style={{ color: '#d97706' }} className="w-4 h-4 shrink-0 mt-0.5" />
+              <div>
+                <strong style={{ color: '#0f172a' }} className="block text-[10px]">CATATAN AKADEMIK & SKALA PENILAIAN IPK:</strong>
+                1. <strong>Perhitungan IPK:</strong> IPK 2022 dihitung dari seluruh MK diinput. IPK 2026 dihitung dari MK yang berhasil dikonversi ke Kurikulum 2026.<br />
+                2. <strong>MK Pilihan:</strong> Mahasiswa hanya perlu mengambil 3 mata kuliah pilihan (total 9 SKS) untuk kelulusan.<br />
+                3. Dokumen ini merupakan hasil simulasi mandiri berbasis tabel pemetaan resmi prodi Teknik Informatika untuk konsultasi Dosen PA/Prodi dan bukan pengganti transkrip resmi UMS.
               </div>
             </div>
 
@@ -331,21 +345,6 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
                   </tbody>
                 </table>
               )}
-            </div>
-
-            {/* Disclaimer Resmi & Skala Penilaian */}
-            <div
-              style={{ backgroundColor: '#f8fafc', borderColor: '#cbd5e1', color: '#475569' }}
-              className="border rounded p-3 text-[9px] flex items-start gap-2 mt-6"
-            >
-              <ShieldAlert style={{ color: '#d97706' }} className="w-4 h-4 shrink-0 mt-0.5" />
-              <div>
-                <strong style={{ color: '#0f172a' }} className="block text-[10px]">CATATAN AKADEMIK & SKALA PENILAIAN IPK:</strong>
-                1. <strong>Skala Penilaian IPK:</strong> A (4.00), A/B (3.50), B (3.00), B/C (2.50), C (2.00), C/D (1.50), D (1.00), E (0.00).<br />
-                2. <strong>Perhitungan IPK:</strong> IPK 2022 dihitung dari seluruh MK diinput. IPK 2026 dihitung dari MK yang berhasil dikonversi ke Kurikulum 2026.<br />
-                3. <strong>MK Pilihan:</strong> Mahasiswa hanya perlu mengambil 3 mata kuliah pilihan (total 9 SKS) untuk kelulusan.<br />
-                4. Dokumen ini merupakan hasil simulasi mandiri berbasis tabel pemetaan resmi prodi Teknik Informatika untuk konsultasi Dosen PA/Prodi dan bukan pengganti transkrip resmi UMS.
-              </div>
             </div>
           </div>
         </div>

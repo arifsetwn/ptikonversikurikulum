@@ -23,6 +23,48 @@ async function fetchImageAsBase64(url: string): Promise<string> {
 }
 
 /**
+ * Replaces modern CSS oklch(...) color functions with standard fallbacks.
+ */
+function replaceOklchInCss(css: string): string {
+  return css.replace(/oklch\([^)]+\)/gi, '#2563eb');
+}
+
+/**
+ * Pre-sanitizes document stylesheet tags before html2canvas parses CSS rules.
+ * Returns a restoration function to restore original style tags post-rendering.
+ */
+function sanitizeDocumentOklch(): () => void {
+  const originalStyles: { element: HTMLStyleElement; content: string }[] = [];
+
+  // Sanitize all <style> elements in the active document
+  const styleTags = Array.from(document.querySelectorAll('style'));
+  styleTags.forEach((styleEl) => {
+    if (styleEl.innerHTML && styleEl.innerHTML.includes('oklch')) {
+      originalStyles.push({ element: styleEl, content: styleEl.innerHTML });
+      styleEl.innerHTML = replaceOklchInCss(styleEl.innerHTML);
+    }
+  });
+
+  // Sanitize any elements with inline oklch style attributes
+  const elementsWithInlineStyle = Array.from(document.querySelectorAll('[style*="oklch"]')) as HTMLElement[];
+  const originalInlineStyles: { element: HTMLElement; content: string }[] = [];
+  elementsWithInlineStyle.forEach((el) => {
+    const inlineStyle = el.getAttribute('style') || '';
+    originalInlineStyles.push({ element: el, content: inlineStyle });
+    el.setAttribute('style', replaceOklchInCss(inlineStyle));
+  });
+
+  return () => {
+    originalStyles.forEach(({ element, content }) => {
+      element.innerHTML = content;
+    });
+    originalInlineStyles.forEach(({ element, content }) => {
+      element.setAttribute('style', content);
+    });
+  };
+}
+
+/**
  * Captures an HTML element and exports it directly as a downloadable PDF file client-side.
  * Compatible with shared hosting (cPanel/Hostinger/Apache), subfolder base paths, and mobile browsers.
  */
@@ -30,6 +72,7 @@ export async function generatePdfFromElement(
   elementId: string,
   fileName: string = 'Simulasi_Konversi_Kurikulum_TI.pdf'
 ): Promise<boolean> {
+  let restoreStyles: (() => void) | null = null;
   try {
     const targetElement = document.getElementById(elementId);
     if (!targetElement) {
@@ -55,7 +98,10 @@ export async function generatePdfFromElement(
 
     elementPositions.sort((a, b) => a.topPx - b.topPx);
 
-    // 2. Render targetElement using html2canvas with sanitized Base64 images
+    // 2. Pre-sanitize document style tags BEFORE html2canvas parses CSS rules
+    restoreStyles = sanitizeDocumentOklch();
+
+    // 3. Render targetElement using html2canvas
     const canvas = await html2canvas(targetElement, {
       scale: 2, // High resolution
       useCORS: true,
@@ -75,33 +121,11 @@ export async function generatePdfFromElement(
           })
         );
 
-        // Replace any oklch color definitions in cloned stylesheet or elements
+        // Double safeguard: sanitize any remaining oklch in cloned document
         const styleElements = clonedDoc.querySelectorAll('style');
         styleElements.forEach((styleTag) => {
           if (styleTag.innerHTML && styleTag.innerHTML.includes('oklch')) {
-            styleTag.innerHTML = styleTag.innerHTML.replace(/oklch\([^)]+\)/g, '#2563eb');
-          }
-        });
-
-        // Convert computed oklch colors to standard fallbacks
-        const elements = [clonedTarget, ...Array.from(clonedTarget.querySelectorAll('*'))];
-        elements.forEach((el) => {
-          const htmlEl = el as HTMLElement;
-          if (!htmlEl.style) return;
-
-          try {
-            const style = window.getComputedStyle(htmlEl);
-            if (style.backgroundColor && style.backgroundColor.includes('oklch')) {
-              htmlEl.style.backgroundColor = '#ffffff';
-            }
-            if (style.color && style.color.includes('oklch')) {
-              htmlEl.style.color = '#0f172a';
-            }
-            if (style.borderColor && style.borderColor.includes('oklch')) {
-              htmlEl.style.borderColor = '#cbd5e1';
-            }
-          } catch (e) {
-            // Ignore computed style errors
+            styleTag.innerHTML = replaceOklchInCss(styleTag.innerHTML);
           }
         });
       }
@@ -216,5 +240,9 @@ export async function generatePdfFromElement(
   } catch (err: any) {
     console.error('Failed to generate PDF via html2canvas:', err);
     return false;
+  } finally {
+    if (restoreStyles) {
+      restoreStyles();
+    }
   }
 }

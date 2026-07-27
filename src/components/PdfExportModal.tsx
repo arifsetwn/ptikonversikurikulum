@@ -213,7 +213,19 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
                         {idx + 1}
                       </td>
                       <td style={{ borderColor: '#cbd5e1', color: '#475569' }} className="border p-1 font-mono">{item.kodeLama}</td>
-                      <td style={{ borderColor: '#cbd5e1', color: '#0f172a' }} className="border p-1 font-bold">{item.namaLama}</td>
+                      <td style={{ borderColor: '#cbd5e1', color: '#0f172a' }} className="border p-1 font-bold">
+                        <div className="flex flex-wrap items-center gap-1">
+                          <span>{item.namaLama}</span>
+                          {(item.semLama?.toLowerCase().includes('pilihan') || item.semLama === 'P') && (
+                            <span
+                              style={{ color: '#6b21a8', backgroundColor: '#f3e8ff', border: '1px solid #d8b4fe' }}
+                              className="inline-block whitespace-nowrap px-1.5 py-0.5 rounded text-[8px] font-black leading-none"
+                            >
+                              (Pilihan 2022)
+                            </span>
+                          )}
+                        </div>
+                      </td>
                       <td style={{ borderColor: '#cbd5e1', color: '#334155' }} className="border p-1 text-center font-bold">
                         {item.sksLama}
                       </td>
@@ -225,14 +237,19 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
                       </td>
                       <td style={{ borderColor: '#cbd5e1' }} className="border p-1">
                         {item.namaBaru ? (
-                          <span style={{ color: '#0f172a' }} className="font-bold">
-                            {item.namaBaru}
+                          <div className="flex flex-wrap items-center gap-1">
+                            <span style={{ color: '#0f172a' }} className="font-bold">
+                              {item.namaBaru}
+                            </span>
                             {item.semBaru?.toLowerCase().includes('pilihan') && (
-                              <span style={{ color: '#6b21a8', backgroundColor: '#f3e8ff', border: '1px solid #d8b4fe' }} className="ml-1 px-1 py-0.2 rounded text-[8px] font-black">
+                              <span
+                                style={{ color: '#6b21a8', backgroundColor: '#f3e8ff', border: '1px solid #d8b4fe' }}
+                                className="inline-block whitespace-nowrap px-1.5 py-0.5 rounded text-[8px] font-black leading-none"
+                              >
                                 (MK Pilihan)
                               </span>
                             )}
-                          </span>
+                          </div>
                         ) : (
                           <span style={{ color: '#94a3b8' }} className="italic">Tidak ada padanan</span>
                         )}
@@ -243,7 +260,7 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
                       <td style={{ borderColor: '#cbd5e1', color: '#312e81' }} className="border p-1 text-center font-extrabold">
                         {item.nilaiBaru ? `${item.nilaiBaru} (${item.bobotBaru?.toFixed(2)})` : '-'}
                       </td>
-                      <td style={{ borderColor: '#cbd5e1' }} className="border p-1 text-center font-bold text-[9px]">
+                      <td style={{ borderColor: '#cbd5e1' }} className="border p-1 text-center font-bold text-[9px] whitespace-nowrap">
                         {item.status === 'converted_1to1' && <span style={{ color: '#047857' }}>Terkonversi (1:1)</span>}
                         {item.status === 'converted_1toMany' && <span style={{ color: '#4338ca' }}>Opsi Konversi</span>}
                         {item.status === 'unconverted' && <span style={{ color: '#be123c' }} className="font-black">SKS Hilang</span>}
@@ -286,7 +303,19 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
                           {idx + 1}
                         </td>
                         <td style={{ borderColor: '#cbd5e1', color: '#78350f' }} className="border p-1 font-mono font-bold">{item.kode_baru}</td>
-                        <td style={{ borderColor: '#cbd5e1', color: '#0f172a' }} className="border p-1 font-bold">{item.nama_baru}</td>
+                        <td style={{ borderColor: '#cbd5e1', color: '#0f172a' }} className="border p-1 font-bold">
+                          <div className="flex flex-wrap items-center gap-1">
+                            <span>{item.nama_baru}</span>
+                            {item.sem_baru?.toLowerCase().includes('pilihan') && (
+                              <span
+                                style={{ color: '#6b21a8', backgroundColor: '#f3e8ff', border: '1px solid #d8b4fe' }}
+                                className="inline-block whitespace-nowrap px-1.5 py-0.5 rounded text-[8px] font-black leading-none"
+                              >
+                                (MK Pilihan)
+                              </span>
+                            )}
+                          </div>
+                        </td>
                         <td style={{ borderColor: '#cbd5e1', color: '#334155' }} className="border p-1 text-center font-bold">
                           {item.sks_baru}
                         </td>

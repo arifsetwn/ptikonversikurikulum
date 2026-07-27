@@ -94,13 +94,6 @@ export const ImageZoom: React.FC<ImageZoomProps> = ({
             className={`w-full h-auto object-contain block transition-shadow ${imageClassName}`}
           />
         )}
-
-        {/* Hover Hint Overlay */}
-        <div className="absolute inset-0 bg-[#1E205C]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center justify-center">
-          <span className="px-4 py-2 bg-[#1E205C]/90 text-white text-xs font-black rounded-xl border border-[#1CBDB3]/40 shadow-2xl flex items-center gap-2 backdrop-blur-md">
-            <ZoomIn className="w-4 h-4 text-[#FFB800]" /> Hover untuk Zoom / Klik untuk Fullscreen
-          </span>
-        </div>
       </div>
 
       {/* Fullscreen Modal Lightbox */}

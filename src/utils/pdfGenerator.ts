@@ -30,22 +30,62 @@ function replaceOklchInCss(css: string): string {
 }
 
 /**
- * Pre-sanitizes document stylesheet tags before html2canvas parses CSS rules.
+ * Pre-sanitizes document stylesheet tags and linked external stylesheets before html2canvas parses CSS rules.
  * Returns a restoration function to restore original style tags post-rendering.
  */
-function sanitizeDocumentOklch(): () => void {
-  const originalStyles: { element: HTMLStyleElement; content: string }[] = [];
+async function sanitizeDocumentOklch(): Promise<() => void> {
+  const originalStyles: { element: Element; parent: Node; nextSibling: Node | null }[] = [];
+  const tempCreatedStyles: HTMLStyleElement[] = [];
 
-  // Sanitize all <style> elements in the active document
+  // 1. Sanitize all <style> elements in active document (dev mode & dynamic styles)
   const styleTags = Array.from(document.querySelectorAll('style'));
   styleTags.forEach((styleEl) => {
     if (styleEl.innerHTML && styleEl.innerHTML.includes('oklch')) {
-      originalStyles.push({ element: styleEl, content: styleEl.innerHTML });
-      styleEl.innerHTML = replaceOklchInCss(styleEl.innerHTML);
+      const originalCss = styleEl.innerHTML;
+      (styleEl as any)._originalCss = originalCss;
+      styleEl.innerHTML = replaceOklchInCss(originalCss);
+      tempCreatedStyles.push(styleEl);
     }
   });
 
-  // Sanitize any elements with inline oklch style attributes
+  // 2. Sanitize external <link rel="stylesheet"> elements (such as Vite production build index-XXX.css)
+  const linkTags = Array.from(document.querySelectorAll('link[rel="stylesheet"]')) as HTMLLinkElement[];
+  await Promise.all(
+    linkTags.map(async (linkEl) => {
+      try {
+        const href = linkEl.href;
+        if (!href) return;
+        const res = await fetch(href);
+        if (!res.ok) return;
+        const cssText = await res.text();
+
+        if (cssText.includes('oklch')) {
+          const sanitizedCss = replaceOklchInCss(cssText);
+          const tempStyle = document.createElement('style');
+          tempStyle.setAttribute('data-temp-pdf-style', 'true');
+          tempStyle.innerHTML = sanitizedCss;
+
+          const parent = linkEl.parentNode;
+          if (parent) {
+            const nextSibling = linkEl.nextSibling;
+            parent.insertBefore(tempStyle, linkEl);
+            parent.removeChild(linkEl);
+
+            originalStyles.push({
+              element: linkEl,
+              parent,
+              nextSibling,
+            });
+            tempCreatedStyles.push(tempStyle);
+          }
+        }
+      } catch (err) {
+        console.warn('Could not fetch or sanitize link stylesheet:', linkEl.href, err);
+      }
+    })
+  );
+
+  // 3. Sanitize any inline style attributes
   const elementsWithInlineStyle = Array.from(document.querySelectorAll('[style*="oklch"]')) as HTMLElement[];
   const originalInlineStyles: { element: HTMLElement; content: string }[] = [];
   elementsWithInlineStyle.forEach((el) => {
@@ -55,9 +95,28 @@ function sanitizeDocumentOklch(): () => void {
   });
 
   return () => {
-    originalStyles.forEach(({ element, content }) => {
-      element.innerHTML = content;
+    // Restore inline style tags & remove temp style tags
+    tempCreatedStyles.forEach((el) => {
+      if ((el as any)._originalCss) {
+        el.innerHTML = (el as any)._originalCss;
+        delete (el as any)._originalCss;
+      } else if (el.hasAttribute('data-temp-pdf-style') && el.parentNode) {
+        el.parentNode.removeChild(el);
+      }
     });
+
+    // Re-insert original <link> elements
+    originalStyles.forEach(({ element, parent, nextSibling }) => {
+      if (element.tagName === 'LINK' && !element.parentNode) {
+        if (nextSibling) {
+          parent.insertBefore(element, nextSibling);
+        } else {
+          parent.appendChild(element);
+        }
+      }
+    });
+
+    // Restore inline style attributes
     originalInlineStyles.forEach(({ element, content }) => {
       element.setAttribute('style', content);
     });
@@ -98,8 +157,8 @@ export async function generatePdfFromElement(
 
     elementPositions.sort((a, b) => a.topPx - b.topPx);
 
-    // 2. Pre-sanitize document style tags BEFORE html2canvas parses CSS rules
-    restoreStyles = sanitizeDocumentOklch();
+    // 2. Pre-sanitize document style tags AND external linked CSS files BEFORE html2canvas parses CSS rules
+    restoreStyles = await sanitizeDocumentOklch();
 
     // 3. Render targetElement using html2canvas
     const canvas = await html2canvas(targetElement, {

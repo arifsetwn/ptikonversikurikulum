@@ -32,14 +32,15 @@ export const LearningPathSection: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isZoomOpen]);
 
-  const getPathIcon = (name: string) => {
+  const getPathIcon = (name: string, isDark: boolean = false) => {
+    const iconClass = `w-5 h-5 ${isDark ? 'text-[#FFB800]' : 'text-[#159B93]'}`;
     switch (name) {
-      case 'Cpu': return <Cpu className="w-5 h-5 text-[#2F3185]" />;
-      case 'Code': return <Code className="w-5 h-5 text-[#1CBDB3]" />;
-      case 'ShieldCheck': return <ShieldCheck className="w-5 h-5 text-[#2F3185]" />;
-      case 'BookOpen': return <BookOpen className="w-5 h-5 text-[#1CBDB3]" />;
-      case 'Gamepad2': return <Gamepad2 className="w-5 h-5 text-[#2F3185]" />;
-      default: return <Rocket className="w-5 h-5 text-[#E5A500]" />;
+      case 'Cpu': return <Cpu className={iconClass} />;
+      case 'Code': return <Code className={iconClass} />;
+      case 'ShieldCheck': return <ShieldCheck className={iconClass} />;
+      case 'BookOpen': return <BookOpen className={iconClass} />;
+      case 'Gamepad2': return <Gamepad2 className={iconClass} />;
+      default: return <Rocket className={iconClass} />;
     }
   };
 
@@ -125,7 +126,7 @@ export const LearningPathSection: React.FC = () => {
                   }`}
                 >
                   <div className={`p-2.5 rounded-xl shrink-0 ${isSelected ? 'bg-white/10' : 'bg-white shadow-sm border border-slate-200'}`}>
-                    {getPathIcon(lp.iconName)}
+                    {getPathIcon(lp.iconName, isSelected)}
                   </div>
                   <div>
                     <h4 className="font-extrabold text-xs sm:text-sm">{lp.name}</h4>
@@ -151,7 +152,7 @@ export const LearningPathSection: React.FC = () => {
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-white/10">
                 <div className="flex items-center gap-3">
                   <div className="p-3 bg-[#1CBDB3]/20 border border-[#1CBDB3]/40 rounded-2xl">
-                    {getPathIcon(activePath.iconName)}
+                    {getPathIcon(activePath.iconName, true)}
                   </div>
                   <div>
                     <span className="text-[10px] font-black text-[#FFB800] tracking-wider uppercase block">

@@ -163,8 +163,8 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
                 <span style={{ color: '#047857' }} className="text-sm font-extrabold">{stats.totalConvertedSks} SKS</span>
               </div>
               <div style={{ backgroundColor: '#fff1f2', borderColor: '#fecdd3' }} className="p-2 rounded border text-center">
-                <span style={{ color: '#9f1239' }} className="text-[9px] uppercase font-bold block">SKS Berkurang</span>
-                <span style={{ color: '#be123c' }} className="text-sm font-extrabold">{stats.totalReducedSks} SKS</span>
+                <span style={{ color: '#9f1239' }} className="text-[9px] uppercase font-bold block">Perubahan SKS</span>
+                <span style={{ color: '#be123c' }} className="text-sm font-extrabold">{stats.totalChangedSks} SKS</span>
               </div>
               <div style={{ backgroundColor: '#fffbeb', borderColor: '#fde68a' }} className="p-2 rounded border text-center">
                 <span style={{ color: '#92400e' }} className="text-[9px] uppercase font-bold block">Sisa 2026</span>
@@ -256,15 +256,19 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
                       <td style={{ borderColor: '#cbd5e1' }} className="border p-1 text-center font-bold text-[9px] whitespace-nowrap">
                         {item.status === 'converted_1to1' && (
                           <span style={{ color: '#047857' }}>
-                            Terkonversi (1:1){item.sksLama > item.sksBaru && item.sksBaru > 0 ? ` (SKS -${item.sksLama - item.sksBaru})` : ''}
+                            Terkonversi (1:1)
+                            {item.sksLama > item.sksBaru && item.sksBaru > 0 ? ` (SKS -${item.sksLama - item.sksBaru})` : ''}
+                            {item.sksBaru > item.sksLama ? ` (SKS +${item.sksBaru - item.sksLama})` : ''}
                           </span>
                         )}
                         {item.status === 'converted_1toMany' && (
                           <span style={{ color: '#4338ca' }}>
-                            Opsi Konversi{item.sksLama > item.sksBaru && item.sksBaru > 0 ? ` (SKS -${item.sksLama - item.sksBaru})` : ''}
+                            Opsi Konversi
+                            {item.sksLama > item.sksBaru && item.sksBaru > 0 ? ` (SKS -${item.sksLama - item.sksBaru})` : ''}
+                            {item.sksBaru > item.sksLama ? ` (SKS +${item.sksBaru - item.sksLama})` : ''}
                           </span>
                         )}
-                        {item.status === 'unconverted' && <span style={{ color: '#be123c' }} className="font-black">SKS Berkurang</span>}
+                        {item.status === 'unconverted' && <span style={{ color: '#be123c' }} className="font-black">Perubahan SKS</span>}
                         {item.status === 'not_in_catalog' && <span style={{ color: '#b45309' }}>Konsultasi</span>}
                       </td>
                     </tr>

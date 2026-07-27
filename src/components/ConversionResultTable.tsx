@@ -43,8 +43,8 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
     if (filterStatus === 'converted') {
       return item.status === 'converted_1to1' || item.status === 'converted_1toMany';
     }
-    if (filterStatus === 'unconverted' || filterStatus === 'berkurang') {
-      return item.sksLama > (item.sksBaru || 0);
+    if (filterStatus === 'unconverted' || filterStatus === 'berkurang' || filterStatus === 'perubahan') {
+      return item.sksLama !== (item.sksBaru || 0);
     }
     if (filterStatus === 'multimatch') {
       return item.status === 'converted_1toMany';
@@ -179,17 +179,17 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
           </span>
         </div>
 
-        {/* Card 5: SKS Berkurang */}
+        {/* Card 5: Perubahan SKS */}
         <div className="p-4 rounded-2xl bg-rose-50/90 border border-rose-200 shadow-sm flex flex-col justify-between">
           <div className="text-[11px] font-bold text-rose-900 uppercase tracking-wider mb-1">
-            SKS Berkurang
+            Perubahan SKS
           </div>
           <div className="flex items-baseline gap-1.5 my-1">
-            <span className="text-2xl font-black text-rose-900">{stats.totalReducedSks}</span>
+            <span className="text-2xl font-black text-rose-900">{stats.totalChangedSks}</span>
             <span className="text-xs text-rose-800 font-bold">SKS</span>
           </div>
           <span className="text-[10px] text-rose-800 font-semibold block">
-            {stats.totalReducedCourses} MK Penurunan SKS
+            {stats.totalChangedCourses} MK Perubahan SKS
           </span>
         </div>
 
@@ -273,12 +273,12 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
               </button>
 
               <button
-                onClick={() => setFilterStatus('unconverted')}
+                onClick={() => setFilterStatus('perubahan')}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  filterStatus === 'unconverted' ? 'bg-rose-600 text-white shadow-sm' : 'text-slate-700 hover:text-slate-900'
+                  filterStatus === 'perubahan' || filterStatus === 'berkurang' || filterStatus === 'unconverted' ? 'bg-rose-600 text-white shadow-sm' : 'text-rose-900 bg-rose-100/70 hover:bg-rose-100'
                 }`}
               >
-                SKS Hilang ({results.filter(r => r.status === 'unconverted').length})
+                Perubahan SKS ({results.filter(r => r.sksLama !== (r.sksBaru || 0)).length})
               </button>
               <button
                 onClick={() => setFilterStatus('multimatch')}
@@ -414,6 +414,11 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
                                   <AlertTriangle className="w-2.5 h-2.5 text-rose-700" /> Berkurang -{item.sksLama - item.sksBaru} SKS
                                 </span>
                               )}
+                              {item.sksBaru > item.sksLama && (
+                                <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[9px] font-black bg-indigo-100 text-indigo-950 border border-indigo-300">
+                                  <TrendingUp className="w-2.5 h-2.5 text-indigo-700" /> Bertambah +{item.sksBaru - item.sksLama} SKS
+                                </span>
+                              )}
                             </div>
                           )}
                           {item.status === 'converted_1toMany' && (
@@ -426,11 +431,16 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
                                   <AlertTriangle className="w-2.5 h-2.5 text-rose-700" /> Berkurang -{item.sksLama - item.sksBaru} SKS
                                 </span>
                               )}
+                              {item.sksBaru > item.sksLama && (
+                                <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[9px] font-black bg-indigo-100 text-indigo-950 border border-indigo-300">
+                                  <TrendingUp className="w-2.5 h-2.5 text-indigo-700" /> Bertambah +{item.sksBaru - item.sksLama} SKS
+                                </span>
+                              )}
                             </div>
                           )}
                           {item.status === 'unconverted' && (
                             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-black bg-rose-100 text-rose-950 border border-rose-300">
-                              <AlertTriangle className="w-3 h-3 text-rose-700" /> SKS Berkurang
+                              <AlertTriangle className="w-3 h-3 text-rose-700" /> Perubahan SKS
                             </span>
                           )}
                           {item.status === 'not_in_catalog' && (

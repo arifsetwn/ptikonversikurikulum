@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRightLeft, Menu, X, Sparkles } from 'lucide-react';
+import { ArrowRightLeft, Menu, X, BookOpen, Sparkles } from 'lucide-react';
 import logoPti from '../img/logo_pti.png';
 
 interface NavbarProps {
@@ -25,10 +25,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
   };
 
   return (
-    <nav className="sticky top-0 z-40 bg-[#1E205C]/90 backdrop-blur-xl border-b border-[#1CBDB3]/30 text-white transition-all shadow-lg">
+    <nav className="sticky top-0 z-40 bg-[#1E205C]/95 backdrop-blur-xl border-b border-[#1CBDB3]/30 text-white transition-all shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo & Brand Identity */}
+        <div className="flex items-center justify-between h-16 gap-4">
+          {/* Left: Logo & Brand Identity */}
           <div
             onClick={() => setActivePage('landing')}
             className="flex items-center gap-3 cursor-pointer group shrink-0"
@@ -36,7 +36,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
             <div className="p-1.5 bg-white rounded-xl shadow-sm border border-slate-200 group-hover:scale-105 transition-transform">
               <img src={logoPti} alt="Logo PTI UMS" className="h-7 w-auto object-contain" />
             </div>
-            <div>
+            <div className="hidden sm:block">
               <span className="font-extrabold text-sm sm:text-base tracking-tight text-white block leading-tight">
                 Pendidikan Teknik Informatika
               </span>
@@ -46,8 +46,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
             </div>
           </div>
 
-          {/* Desktop Single-Line Navigation */}
-          <div className="hidden xl:flex items-center gap-6 text-xs font-bold text-slate-200">
+          {/* Center: Desktop Navigation Links (Single Line, Clean Spacing) */}
+          <div className="hidden lg:flex items-center gap-5 xl:gap-7 text-xs font-extrabold text-slate-200 whitespace-nowrap">
             <button
               onClick={() => scrollToSection('visi')}
               className="hover:text-[#FFB800] transition-colors cursor-pointer"
@@ -86,48 +86,42 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
             </button>
           </div>
 
-          {/* Actionable Switcher & Primary CTA */}
+          {/* Right: Clean Single CTA Action Button */}
           <div className="hidden sm:flex items-center gap-3 shrink-0">
-            <div className="bg-[#2F3185] p-1 rounded-xl border border-[#1CBDB3]/40 flex items-center gap-1">
+            {activePage === 'landing' ? (
+              <button
+                onClick={() => setActivePage('simulasi')}
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#FFB800] to-[#e5a500] hover:from-[#e5a500] hover:to-[#cc9300] text-[#1E205C] font-black rounded-xl text-xs shadow-md shadow-[#FFB800]/20 active:scale-[0.98] transition-all cursor-pointer whitespace-nowrap"
+              >
+                <ArrowRightLeft className="w-4 h-4 text-[#1E205C]" />
+                <span>Tool Simulasi Konversi</span>
+              </button>
+            ) : (
               <button
                 onClick={() => setActivePage('landing')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                  activePage === 'landing'
-                    ? 'bg-[#1CBDB3] text-slate-950 font-extrabold shadow-sm'
-                    : 'text-slate-200 hover:text-white'
-                }`}
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1CBDB3] hover:bg-[#159B93] text-slate-950 font-black rounded-xl text-xs shadow-md active:scale-[0.98] transition-all cursor-pointer whitespace-nowrap"
               >
-                Informasi Kurikulum
-              </button>
-              <button
-                onClick={() => setActivePage('simulasi')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-                  activePage === 'simulasi'
-                    ? 'bg-[#1CBDB3] text-slate-950 font-extrabold shadow-sm'
-                    : 'text-slate-200 hover:text-white'
-                }`}
-              >
-                <ArrowRightLeft className="w-3.5 h-3.5" /> Tool Simulasi
-              </button>
-            </div>
-
-            {activePage === 'landing' && (
-              <button
-                onClick={() => setActivePage('simulasi')}
-                className="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-[#FFB800] to-[#e5a500] hover:from-[#e5a500] hover:to-[#cc9300] text-slate-950 font-black rounded-xl text-xs shadow-md active:scale-[0.98] transition-all cursor-pointer"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-slate-950" /> Simulasikan Konversi Nilai
+                <BookOpen className="w-4 h-4 text-slate-950" />
+                <span>Informasi Kurikulum</span>
               </button>
             )}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Navigation Controls */}
           <div className="flex sm:hidden items-center gap-2">
             <button
               onClick={() => setActivePage(activePage === 'landing' ? 'simulasi' : 'landing')}
-              className="px-2.5 py-1.5 bg-[#FFB800] text-slate-950 text-xs font-black rounded-lg flex items-center gap-1"
+              className="px-3 py-1.5 bg-[#FFB800] text-[#1E205C] text-xs font-black rounded-xl flex items-center gap-1.5 shadow-sm"
             >
-              {activePage === 'landing' ? 'Simulasi' : 'Informasi'}
+              {activePage === 'landing' ? (
+                <>
+                  <ArrowRightLeft className="w-3.5 h-3.5" /> Simulasi
+                </>
+              ) : (
+                <>
+                  <BookOpen className="w-3.5 h-3.5" /> Informasi
+                </>
+              )}
             </button>
 
             <button
@@ -142,7 +136,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
 
       {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="sm:hidden bg-[#1E205C] border-b border-[#1CBDB3]/30 px-4 pt-2 pb-4 space-y-2 text-xs font-semibold">
+        <div className="sm:hidden bg-[#1E205C] border-b border-[#1CBDB3]/30 px-4 pt-2 pb-4 space-y-2 text-xs font-bold">
           <button
             onClick={() => scrollToSection('visi')}
             className="block w-full text-left py-2 text-slate-200 hover:text-[#FFB800]"

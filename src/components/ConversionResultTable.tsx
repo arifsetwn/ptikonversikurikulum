@@ -103,7 +103,7 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
       </div>
 
       {/* KPI Stats Summary Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 py-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 py-6">
         {/* Card 1: IPK Sebelum Konversi (2022) */}
         <div className="p-4 rounded-2xl bg-blue-50/90 border border-blue-200 shadow-sm flex flex-col justify-between">
           <div className="text-[11px] font-extrabold text-blue-950 uppercase tracking-wider mb-1 flex items-center justify-between">
@@ -179,21 +179,7 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
           </span>
         </div>
 
-        {/* Card 5: Perubahan SKS */}
-        <div className="p-4 rounded-2xl bg-rose-50/90 border border-rose-200 shadow-sm flex flex-col justify-between">
-          <div className="text-[11px] font-bold text-rose-900 uppercase tracking-wider mb-1">
-            Perubahan SKS
-          </div>
-          <div className="flex items-baseline gap-1.5 my-1">
-            <span className="text-2xl font-black text-rose-900">{stats.totalChangedSks}</span>
-            <span className="text-xs text-rose-800 font-bold">SKS</span>
-          </div>
-          <span className="text-[10px] text-rose-800 font-semibold block">
-            {stats.totalChangedCourses} MK Perubahan SKS
-          </span>
-        </div>
-
-        {/* Card 6: SKS 2026 Belum Diambil */}
+        {/* Card 5: SKS 2026 Belum Diambil */}
         <div className="p-4 rounded-2xl bg-amber-50/80 border border-amber-200 flex flex-col justify-between">
           <div className="text-[11px] font-bold text-amber-950 uppercase tracking-wider mb-1">
             SKS Belum Diambil

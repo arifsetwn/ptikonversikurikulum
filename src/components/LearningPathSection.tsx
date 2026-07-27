@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Route,
   Cpu,
@@ -10,27 +10,14 @@ import {
   Info,
   Image as ImageIcon,
   Maximize2,
-  X,
-  ZoomIn
 } from 'lucide-react';
 import { LEARNING_PATHS } from '../data/landingData';
 import alurKurikulumImg from '../img/alur_kurikulum.png';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ImageZoom } from './ui/image-zoom';
 
 export const LearningPathSection: React.FC = () => {
   const [selectedPathId, setSelectedPathId] = useState<string>('lp-ai');
-  const [isZoomOpen, setIsZoomOpen] = useState<boolean>(false);
-
-  // Keyboard shortcut ESC to close zoom modal
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsZoomOpen(false);
-    };
-    if (isZoomOpen) {
-      window.addEventListener('keydown', handleKeyDown);
-    }
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isZoomOpen]);
 
   const getPathIcon = (name: string, isDark: boolean = false) => {
     const iconClass = `w-5 h-5 ${isDark ? 'text-[#FFB800]' : 'text-[#159B93]'}`;
@@ -59,7 +46,7 @@ export const LearningPathSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Alur Kurikulum Image Banner Box */}
+        {/* Alur Kurikulum Image Banner Box with Animate UI ImageZoom */}
         <div className="mb-16 bg-[#1E205C] text-white rounded-3xl p-6 sm:p-8 shadow-xl overflow-hidden relative border border-[#1CBDB3]/30">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
             <div className="flex items-center gap-2">
@@ -69,34 +56,25 @@ export const LearningPathSection: React.FC = () => {
               </h3>
             </div>
 
-            <button
-              onClick={() => setIsZoomOpen(true)}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#FFB800] text-[#1E205C] rounded-xl text-xs font-black transition-all cursor-pointer hover:bg-[#e5a500] self-start sm:self-auto shadow-md"
-            >
-              <Maximize2 className="w-3.5 h-3.5" /> Perbesar Gambar (Fullscreen)
-            </button>
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#FFB800]/20 text-[#FFB800] border border-[#FFB800]/40 rounded-xl text-xs font-black self-start sm:self-auto backdrop-blur-md">
+              <Maximize2 className="w-3.5 h-3.5" /> Animate UI Spring Zoom Enabled
+            </span>
           </div>
 
-          {/* Interactive Image Container */}
-          <div
-            onClick={() => setIsZoomOpen(true)}
-            className="bg-white rounded-2xl p-2 sm:p-4 overflow-x-auto shadow-inner flex justify-center cursor-zoom-in group relative border border-slate-200/50"
-          >
-            <img
+          {/* Animate UI Interactive ImageZoom Container */}
+          <div className="bg-white rounded-2xl p-2 sm:p-4 shadow-inner flex justify-center border border-slate-200/50">
+            <ImageZoom
               src={alurKurikulumImg}
               alt="Peta Alur Kurikulum 2026 PTI UMS"
-              className="max-w-full h-auto rounded-xl object-contain transition-transform duration-300 group-hover:scale-[1.008]"
+              zoomScale={2.4}
+              zoomOnHover={true}
+              zoomOnClick={true}
+              className="w-full max-w-full"
             />
-            {/* Hover Badge Indicator */}
-            <div className="absolute inset-0 bg-[#1E205C]/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl flex items-center justify-center pointer-events-none">
-              <span className="px-4 py-2 bg-[#1E205C]/95 text-white text-xs font-extrabold rounded-xl border border-[#1CBDB3]/40 shadow-2xl flex items-center gap-2 backdrop-blur-md">
-                <ZoomIn className="w-4 h-4 text-[#FFB800]" /> Klik untuk Memperbesar Gambar
-              </span>
-            </div>
           </div>
 
           <p className="text-[11px] text-slate-300 mt-3 text-center">
-            * Klik gambar untuk membuka tampilan layar penuh (Fullscreen Lightbox).
+            * Arahkan kursor untuk zoom interaktif (Spring Hover) atau klik gambar untuk mode Fullscreen Lightbox.
           </p>
         </div>
 
@@ -203,46 +181,6 @@ export const LearningPathSection: React.FC = () => {
           </AnimatePresence>
         </div>
       </div>
-
-      {/* FULLSCREEN LIGHTBOX MODAL */}
-      {isZoomOpen && (
-        <div
-          onClick={() => setIsZoomOpen(false)}
-          className="fixed inset-0 z-50 bg-[#1E205C]/95 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-6 overflow-y-auto"
-        >
-          <div
-            onClick={e => e.stopPropagation()}
-            className="w-full max-w-6xl flex items-center justify-between text-white mb-3 px-2"
-          >
-            <div className="flex items-center gap-2">
-              <ImageIcon className="w-5 h-5 text-[#FFB800]" />
-              <h3 className="text-sm font-bold">Peta Alur Kurikulum 2026 UMS</h3>
-            </div>
-
-            <button
-              onClick={() => setIsZoomOpen(false)}
-              className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer flex items-center gap-1.5 text-xs font-bold"
-            >
-              <X className="w-5 h-5" /> Tutup (ESC)
-            </button>
-          </div>
-
-          <div
-            onClick={e => e.stopPropagation()}
-            className="w-full max-w-6xl max-h-[85vh] bg-white rounded-2xl p-2 sm:p-4 overflow-auto shadow-2xl border border-white/20 flex items-center justify-center"
-          >
-            <img
-              src={alurKurikulumImg}
-              alt="Peta Alur Kurikulum 2026 Fullscreen View"
-              className="w-full h-auto min-w-[700px] object-contain rounded-xl"
-            />
-          </div>
-
-          <p className="text-xs text-slate-300 mt-3 font-medium">
-            * Klik di luar gambar atau tekan <kbd className="px-2 py-0.5 bg-slate-800 rounded text-slate-200 border border-slate-700">Esc</kbd> untuk menutup
-          </p>
-        </div>
-      )}
     </section>
   );
 };

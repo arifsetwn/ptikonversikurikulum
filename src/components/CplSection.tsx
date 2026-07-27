@@ -13,9 +13,9 @@ export const CplSection: React.FC = () => {
   return (
     <section id="cpl" className="py-16 bg-slate-50 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header (Eyebrow #2 of max 3 allowed) */}
+        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <span className="px-3.5 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-bold uppercase tracking-wider">
+          <span className="px-3.5 py-1 bg-[#1CBDB3]/15 text-[#159B93] rounded-full text-xs font-black uppercase tracking-wider border border-[#1CBDB3]/30">
             Standar Kompetensi Lulusan
           </span>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2 tracking-tight">
@@ -32,7 +32,7 @@ export const CplSection: React.FC = () => {
             onClick={() => setSelectedCategory('all')}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               selectedCategory === 'all'
-                ? 'bg-slate-900 text-white shadow-md'
+                ? 'bg-[#2F3185] text-white shadow-md'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200/80'
             }`}
           >
@@ -42,7 +42,7 @@ export const CplSection: React.FC = () => {
             onClick={() => setSelectedCategory('Sikap')}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               selectedCategory === 'Sikap'
-                ? 'bg-blue-600 text-white shadow-md'
+                ? 'bg-[#2F3185] text-white shadow-md'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200/80'
             }`}
           >
@@ -52,7 +52,7 @@ export const CplSection: React.FC = () => {
             onClick={() => setSelectedCategory('Pengetahuan')}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               selectedCategory === 'Pengetahuan'
-                ? 'bg-indigo-600 text-white shadow-md'
+                ? 'bg-[#159B93] text-white shadow-md'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200/80'
             }`}
           >
@@ -62,7 +62,7 @@ export const CplSection: React.FC = () => {
             onClick={() => setSelectedCategory('Keterampilan Khusus')}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               selectedCategory === 'Keterampilan Khusus'
-                ? 'bg-purple-600 text-white shadow-md'
+                ? 'bg-[#2F3185] text-white shadow-md'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200/80'
             }`}
           >
@@ -72,7 +72,7 @@ export const CplSection: React.FC = () => {
             onClick={() => setSelectedCategory('Keterampilan Umum')}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               selectedCategory === 'Keterampilan Umum'
-                ? 'bg-emerald-600 text-white shadow-md'
+                ? 'bg-[#159B93] text-white shadow-md'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200/80'
             }`}
           >
@@ -95,18 +95,18 @@ export const CplSection: React.FC = () => {
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="px-3 py-1 bg-slate-900 text-white font-extrabold rounded-lg text-xs">
+                    <span className="px-3 py-1 bg-[#2F3185] text-white font-black rounded-lg text-xs">
                       {cpl.kode}
                     </span>
                     <span
-                      className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                      className={`px-2.5 py-0.5 rounded-full text-[10px] font-black ${
                         cpl.category === 'Sikap'
-                          ? 'bg-blue-100 text-blue-800'
+                          ? 'bg-[#2F3185]/10 text-[#2F3185]'
                           : cpl.category === 'Pengetahuan'
-                          ? 'bg-indigo-100 text-indigo-800'
+                          ? 'bg-[#1CBDB3]/15 text-[#159B93]'
                           : cpl.category === 'Keterampilan Khusus'
-                          ? 'bg-purple-100 text-purple-800'
-                          : 'bg-emerald-100 text-emerald-800'
+                          ? 'bg-[#FFB800]/20 text-[#8c6500]'
+                          : 'bg-[#1CBDB3]/15 text-[#159B93]'
                       }`}
                     >
                       {cpl.category}

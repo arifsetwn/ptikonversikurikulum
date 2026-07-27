@@ -72,19 +72,19 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
       {/* Main Header & PDF Export */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 pb-6 border-b border-slate-100">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-emerald-600 text-white font-extrabold text-sm flex items-center justify-center shadow-md shadow-emerald-500/20 shrink-0">
+          <div className="w-10 h-10 rounded-2xl bg-[#2F3185] text-white font-black text-sm flex items-center justify-center shadow-md shadow-[#2F3185]/20 shrink-0">
             3
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-black uppercase tracking-wider bg-emerald-100 text-emerald-900 border border-emerald-200">
+              <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-black uppercase tracking-wider bg-[#1CBDB3]/15 text-[#159B93] border border-[#1CBDB3]/30">
                 Langkah Final
               </span>
-              <h2 className="text-xl font-extrabold text-slate-900">
+              <h2 className="text-xl font-extrabold text-[#2F3185]">
                 Hasil Evaluasi, Pemetaan & Perhitungan IPK (2022 → 2026)
               </h2>
             </div>
-            <p className="text-xs text-slate-600 mt-1">
+            <p className="text-xs text-slate-600 mt-1 font-medium">
               Rincian IPK sebelum/setelah konversi, pemetaan mata kuliah diakui, SKS hilang, dan sisa MK 2026.
             </p>
           </div>
@@ -95,9 +95,9 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
           onClick={onOpenPdfModal}
           disabled={results.length === 0}
           aria-label="Unduh dokumen hasil konversi dalam format PDF"
-          className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 active:scale-95 disabled:opacity-50 text-white font-extrabold rounded-2xl text-xs sm:text-sm shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all cursor-pointer shrink-0 focus-visible:ring-2 focus-visible:ring-blue-600"
+          className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-[#FFB800] to-[#e5a500] hover:from-[#e5a500] hover:to-[#cc9300] active:scale-95 disabled:opacity-50 text-[#1E205C] font-black rounded-2xl text-xs sm:text-sm shadow-lg shadow-[#FFB800]/20 hover:shadow-[#FFB800]/30 transition-all cursor-pointer shrink-0 focus-visible:ring-2 focus-visible:ring-[#FFB800]"
         >
-          <Download className="w-4 h-4" /> Unduh Dokumen PDF
+          <Download className="w-4 h-4 text-[#1E205C]" /> Unduh Dokumen PDF
         </button>
       </div>
 

@@ -94,11 +94,11 @@ export const StudentForm: React.FC<StudentFormProps> = ({
       {/* Step Header */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-6 border-b border-slate-100">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-blue-600 text-white font-extrabold text-sm flex items-center justify-center shadow-md shadow-blue-500/20 shrink-0">
+          <div className="w-10 h-10 rounded-2xl bg-[#2F3185] text-white font-black text-sm flex items-center justify-center shadow-md shadow-[#2F3185]/20 shrink-0">
             1
           </div>
           <div>
-            <h2 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+            <h2 className="text-lg font-extrabold text-[#2F3185] flex items-center gap-2">
               Unggah Transkrip & Identitas Mahasiswa
             </h2>
             <p className="text-xs text-slate-600 mt-0.5">
@@ -112,9 +112,9 @@ export const StudentForm: React.FC<StudentFormProps> = ({
             type="button"
             onClick={onLoadSample}
             aria-label="Muat contoh transkrip mahasiswa untuk uji coba simulasi"
-            className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-extrabold rounded-xl bg-indigo-50 text-indigo-900 hover:bg-indigo-100 active:scale-95 transition-all border border-indigo-200/80 cursor-pointer focus-visible:ring-2 focus-visible:ring-indigo-600"
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-black rounded-xl bg-[#1CBDB3]/15 text-[#159B93] hover:bg-[#1CBDB3]/25 active:scale-95 transition-all border border-[#1CBDB3]/30 cursor-pointer focus-visible:ring-2 focus-visible:ring-[#1CBDB3]"
           >
-            <Sparkles className="w-4 h-4 text-indigo-600" /> Muat Contoh Transkrip
+            <Sparkles className="w-4 h-4 text-[#159B93]" /> Muat Contoh Transkrip
           </button>
 
           {courses.length > 0 && (
@@ -122,7 +122,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
               type="button"
               onClick={onClearAll}
               aria-label="Reset seluruh data transkrip yang diinput"
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-extrabold rounded-xl bg-slate-100 text-slate-800 hover:bg-rose-50 hover:text-rose-700 active:scale-95 transition-all border border-slate-200 hover:border-rose-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-rose-600"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-bold rounded-xl bg-slate-100 text-slate-800 hover:bg-rose-50 hover:text-rose-700 active:scale-95 transition-all border border-slate-200 hover:border-rose-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-rose-600"
             >
               <Trash2 className="w-4 h-4" /> Reset Transkrip
             </button>
@@ -135,7 +135,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
         <div>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2.5">
             <label className="block text-xs font-extrabold text-slate-800 uppercase tracking-wider flex items-center gap-2">
-              <span className="px-2.5 py-0.5 bg-blue-600 text-white rounded-lg text-[10px] font-black uppercase tracking-wider shadow-sm">
+              <span className="px-2.5 py-0.5 bg-[#2F3185] text-white rounded-lg text-[10px] font-black uppercase tracking-wider shadow-sm">
                 UTAMA
               </span>
               <span>1. Upload File Transkrip Nilai (PDF dari myakademik UMS)</span>

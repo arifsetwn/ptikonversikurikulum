@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+@theme {
+  --color-ums-navy: #2F3185;
+  --color-ums-navy-dark: #1E205C;
+  --color-ums-navy-light: #4447A8;
+  --color-ums-yellow: #FFB800;
+  --color-ums-yellow-hover: #E5A500;
+  --color-ums-tosca: #1CBDB3;
+  --color-ums-tosca-dark: #159B93;
+  --color-ums-tosca-light: #52E2DA;
+}
+
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -9,30 +20,30 @@
   }
 }
 
-/* Glassmorphism & Refraction Styles */
+/* Glassmorphism & Refraction Styles with UMS Brand Identity */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  border: 1px solid rgba(47, 49, 133, 0.15);
 }
 
 .glass-dark {
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(47, 49, 133, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(51, 65, 85, 0.5);
+  border: 1px solid rgba(28, 189, 179, 0.25);
 }
 
-/* Clean Accent Gradient Text (No AI-purple slop) */
-.gradient-text-blue {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
+/* UMS Brand Gradient Text */
+.gradient-text-ums {
+  background: linear-gradient(135deg, #FFB800 0%, #1CBDB3 50%, #60A5FA 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.gradient-text-teal {
-  background: linear-gradient(135deg, #0284c7 0%, #0d9488 50%, #059669 100%);
+.gradient-text-navy {
+  background: linear-gradient(135deg, #2F3185 0%, #1CBDB3 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -44,7 +55,7 @@
 
 .card-taste-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08), 0 4px 12px -4px rgba(37, 99, 235, 0.06);
+  box-shadow: 0 14px 30px -6px rgba(47, 49, 133, 0.12), 0 4px 12px -4px rgba(28, 189, 179, 0.1);
 }
 
 /* Custom Scrollbar */

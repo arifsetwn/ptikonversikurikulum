@@ -127,11 +127,11 @@ export const CourseInputTable: React.FC<CourseInputTableProps> = ({
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100 mb-6">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white font-extrabold text-sm flex items-center justify-center shadow-md shadow-indigo-500/20 shrink-0">
+          <div className="w-10 h-10 rounded-2xl bg-[#2F3185] text-white font-black text-sm flex items-center justify-center shadow-md shadow-[#2F3185]/20 shrink-0">
             2
           </div>
           <div>
-            <h2 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+            <h2 className="text-lg font-extrabold text-[#2F3185] flex items-center gap-2">
               Daftar Mata Kuliah Diinput (Kurikulum 2022)
             </h2>
             <p className="text-xs text-slate-600 mt-0.5">
@@ -141,7 +141,7 @@ export const CourseInputTable: React.FC<CourseInputTableProps> = ({
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="px-3.5 py-1.5 bg-indigo-50 text-indigo-900 rounded-xl text-xs font-extrabold border border-indigo-200">
+          <span className="px-3.5 py-1.5 bg-[#2F3185]/10 text-[#2F3185] rounded-xl text-xs font-black border border-[#2F3185]/20">
             {courses.length} MK ({courses.reduce((sum, c) => sum + c.sks, 0)} SKS)
           </span>
         </div>

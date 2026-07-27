@@ -145,7 +145,7 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
             </div>
 
             {/* Ringkasan Statistik & IPK Box */}
-            <div className="grid grid-cols-5 gap-2 mb-6">
+            <div className="grid grid-cols-6 gap-2 mb-6">
               <div style={{ backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }} className="p-2 rounded border text-center col-span-2 sm:col-span-1">
                 <span style={{ color: '#1e40af' }} className="text-[9px] uppercase font-bold block">IPK 2022</span>
                 <span style={{ color: '#1e3a8a' }} className="text-base font-black">{stats.ipkSebelumKonversi.toFixed(2)}</span>
@@ -161,6 +161,10 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
               <div style={{ backgroundColor: '#ecfdf5', borderColor: '#a7f3d0' }} className="p-2 rounded border text-center">
                 <span style={{ color: '#065f46' }} className="text-[9px] uppercase font-bold block">SKS Diakui</span>
                 <span style={{ color: '#047857' }} className="text-sm font-extrabold">{stats.totalConvertedSks} SKS</span>
+              </div>
+              <div style={{ backgroundColor: '#fff1f2', borderColor: '#fecdd3' }} className="p-2 rounded border text-center">
+                <span style={{ color: '#9f1239' }} className="text-[9px] uppercase font-bold block">SKS Berkurang</span>
+                <span style={{ color: '#be123c' }} className="text-sm font-extrabold">{stats.totalReducedSks} SKS</span>
               </div>
               <div style={{ backgroundColor: '#fffbeb', borderColor: '#fde68a' }} className="p-2 rounded border text-center">
                 <span style={{ color: '#92400e' }} className="text-[9px] uppercase font-bold block">Sisa 2026</span>
@@ -250,9 +254,17 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
                         {item.nilaiBaru ? `${item.nilaiBaru} (${item.bobotBaru?.toFixed(2)})` : '-'}
                       </td>
                       <td style={{ borderColor: '#cbd5e1' }} className="border p-1 text-center font-bold text-[9px] whitespace-nowrap">
-                        {item.status === 'converted_1to1' && <span style={{ color: '#047857' }}>Terkonversi (1:1)</span>}
-                        {item.status === 'converted_1toMany' && <span style={{ color: '#4338ca' }}>Opsi Konversi</span>}
-                        {item.status === 'unconverted' && <span style={{ color: '#be123c' }} className="font-black">SKS Hilang</span>}
+                        {item.status === 'converted_1to1' && (
+                          <span style={{ color: '#047857' }}>
+                            Terkonversi (1:1){item.sksLama > item.sksBaru && item.sksBaru > 0 ? ` (SKS -${item.sksLama - item.sksBaru})` : ''}
+                          </span>
+                        )}
+                        {item.status === 'converted_1toMany' && (
+                          <span style={{ color: '#4338ca' }}>
+                            Opsi Konversi{item.sksLama > item.sksBaru && item.sksBaru > 0 ? ` (SKS -${item.sksLama - item.sksBaru})` : ''}
+                          </span>
+                        )}
+                        {item.status === 'unconverted' && <span style={{ color: '#be123c' }} className="font-black">SKS Berkurang</span>}
                         {item.status === 'not_in_catalog' && <span style={{ color: '#b45309' }}>Konsultasi</span>}
                       </td>
                     </tr>

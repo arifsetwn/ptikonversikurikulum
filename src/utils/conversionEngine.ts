@@ -161,7 +161,7 @@ export function processCurriculumConversion(inputs: StudentInputCourse[]): Conve
         nilaiBaru: null,
         bobotBaru: null,
         status: 'unconverted',
-        statusLabel: 'MK tidak dikonversi — SKS hilang',
+        statusLabel: 'MK tidak dikonversi — SKS berkurang',
         isMultiMatch: false
       });
       return;
@@ -335,6 +335,22 @@ export function calculateSummaryStats(
   const totalRemainingSks2026 = remainingMandatorySks + remainingElectiveSks;
   const totalRemainingCourses2026 = remainingMandatoryCount + neededElectiveCount;
 
+  // Calculate Total Reduced SKS (Penurunan SKS)
+  let totalReducedCourses = 0;
+  let totalReducedSks = 0;
+  const countedReducedInputIds = new Set<string>();
+
+  results.forEach(res => {
+    const sksBaruEff = res.sksBaru || 0;
+    if (res.sksLama > sksBaruEff) {
+      totalReducedSks += (res.sksLama - sksBaruEff);
+      if (!countedReducedInputIds.has(res.inputId)) {
+        totalReducedCourses++;
+        countedReducedInputIds.add(res.inputId);
+      }
+    }
+  });
+
   return {
     totalInputCourses,
     totalInputSks,
@@ -342,6 +358,8 @@ export function calculateSummaryStats(
     totalConvertedSks,
     totalUnconvertedCourses,
     totalUnconvertedSks,
+    totalReducedCourses,
+    totalReducedSks,
     totalNotInCatalogCourses,
     totalRemainingCourses2026,
     totalRemainingSks2026,

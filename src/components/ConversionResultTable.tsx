@@ -8,6 +8,7 @@ import {
   FileSpreadsheet,
   Info,
   BookMarked,
+  BookOpen,
   Search,
   Check,
   TrendingUp,
@@ -42,8 +43,8 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
     if (filterStatus === 'converted') {
       return item.status === 'converted_1to1' || item.status === 'converted_1toMany';
     }
-    if (filterStatus === 'unconverted') {
-      return item.status === 'unconverted';
+    if (filterStatus === 'unconverted' || filterStatus === 'berkurang') {
+      return item.sksLama > (item.sksBaru || 0);
     }
     if (filterStatus === 'multimatch') {
       return item.status === 'converted_1toMany';
@@ -102,7 +103,7 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
       </div>
 
       {/* KPI Stats Summary Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 py-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 py-6">
         {/* Card 1: IPK Sebelum Konversi (2022) */}
         <div className="p-4 rounded-2xl bg-blue-50/90 border border-blue-200 shadow-sm flex flex-col justify-between">
           <div className="text-[11px] font-extrabold text-blue-950 uppercase tracking-wider mb-1 flex items-center justify-between">
@@ -178,7 +179,21 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
           </span>
         </div>
 
-        {/* Card 5: SKS 2026 Belum Diambil */}
+        {/* Card 5: SKS Berkurang */}
+        <div className="p-4 rounded-2xl bg-rose-50/90 border border-rose-200 shadow-sm flex flex-col justify-between">
+          <div className="text-[11px] font-bold text-rose-900 uppercase tracking-wider mb-1">
+            SKS Berkurang
+          </div>
+          <div className="flex items-baseline gap-1.5 my-1">
+            <span className="text-2xl font-black text-rose-900">{stats.totalReducedSks}</span>
+            <span className="text-xs text-rose-800 font-bold">SKS</span>
+          </div>
+          <span className="text-[10px] text-rose-800 font-semibold block">
+            {stats.totalReducedCourses} MK Penurunan SKS
+          </span>
+        </div>
+
+        {/* Card 6: SKS 2026 Belum Diambil */}
         <div className="p-4 rounded-2xl bg-amber-50/80 border border-amber-200 flex flex-col justify-between">
           <div className="text-[11px] font-bold text-amber-950 uppercase tracking-wider mb-1">
             SKS Belum Diambil
@@ -199,12 +214,12 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
           onClick={() => setActiveTab('conversion')}
           className={`pb-3 px-4 text-xs font-extrabold flex items-center gap-2 border-b-2 transition-all cursor-pointer ${
             activeTab === 'conversion'
-              ? 'border-blue-600 text-blue-700'
-              : 'border-transparent text-slate-600 hover:text-slate-900'
+              ? 'border-blue-600 text-blue-600'
+              : 'border-transparent text-slate-500 hover:text-slate-700'
           }`}
         >
           <FileSpreadsheet className="w-4 h-4" /> Tabel Hasil Pemetaan & Nilai Konversi
-          <span className="px-2.5 py-0.5 rounded-full text-[10px] bg-blue-100 text-blue-900 font-black">
+          <span className="ml-1 px-2 py-0.5 rounded-full text-[10px] bg-blue-100 text-blue-800 font-black">
             {results.length}
           </span>
         </button>
@@ -213,12 +228,12 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
           onClick={() => setActiveTab('remaining')}
           className={`pb-3 px-4 text-xs font-extrabold flex items-center gap-2 border-b-2 transition-all cursor-pointer ${
             activeTab === 'remaining'
-              ? 'border-amber-600 text-amber-700'
-              : 'border-transparent text-slate-600 hover:text-slate-900'
+              ? 'border-amber-600 text-amber-600'
+              : 'border-transparent text-slate-500 hover:text-slate-700'
           }`}
         >
-          <BookMarked className="w-4 h-4" /> Rekapitulasi MK 2026 Belum Diambil
-          <span className="px-2.5 py-0.5 rounded-full text-[10px] bg-amber-100 text-amber-950 font-black">
+          <BookOpen className="w-4 h-4" /> Rekapitulasi MK 2026 Belum Diambil
+          <span className="ml-1 px-2 py-0.5 rounded-full text-[10px] bg-amber-100 text-amber-800 font-black">
             {remainingCourses.length} MK
           </span>
         </button>
@@ -390,18 +405,32 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
                         {/* Status Badge */}
                         <td className="py-3 px-4 text-center">
                           {item.status === 'converted_1to1' && (
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-900 border border-emerald-300">
-                              <CheckCircle2 className="w-3 h-3 text-emerald-700" /> Diakui 1:1
-                            </span>
+                            <div className="flex flex-col items-center gap-1">
+                              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-900 border border-emerald-300">
+                                <CheckCircle2 className="w-3 h-3 text-emerald-700" /> Diakui 1:1
+                              </span>
+                              {item.sksLama > item.sksBaru && item.sksBaru > 0 && (
+                                <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[9px] font-black bg-rose-100 text-rose-950 border border-rose-300">
+                                  <AlertTriangle className="w-2.5 h-2.5 text-rose-700" /> Berkurang -{item.sksLama - item.sksBaru} SKS
+                                </span>
+                              )}
+                            </div>
                           )}
                           {item.status === 'converted_1toMany' && (
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-black bg-indigo-100 text-indigo-950 border border-indigo-300">
-                              <Layers className="w-3 h-3 text-indigo-700" /> Opsi Konversi
-                            </span>
+                            <div className="flex flex-col items-center gap-1">
+                              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-black bg-indigo-100 text-indigo-950 border border-indigo-300">
+                                <Layers className="w-3 h-3 text-indigo-700" /> Opsi Konversi
+                              </span>
+                              {item.sksLama > item.sksBaru && item.sksBaru > 0 && (
+                                <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[9px] font-black bg-rose-100 text-rose-950 border border-rose-300">
+                                  <AlertTriangle className="w-2.5 h-2.5 text-rose-700" /> Berkurang -{item.sksLama - item.sksBaru} SKS
+                                </span>
+                              )}
+                            </div>
                           )}
                           {item.status === 'unconverted' && (
                             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-black bg-rose-100 text-rose-950 border border-rose-300">
-                              <AlertTriangle className="w-3 h-3 text-rose-700" /> SKS Hilang
+                              <AlertTriangle className="w-3 h-3 text-rose-700" /> SKS Berkurang
                             </span>
                           )}
                           {item.status === 'not_in_catalog' && (

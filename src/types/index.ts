@@ -90,6 +90,8 @@ export interface ConversionSummaryStats {
   totalConvertedSks: number;
   totalUnconvertedCourses: number;
   totalUnconvertedSks: number;
+  totalReducedCourses: number;
+  totalReducedSks: number;
   totalNotInCatalogCourses: number;
   totalRemainingCourses2026: number;
   totalRemainingSks2026: number;

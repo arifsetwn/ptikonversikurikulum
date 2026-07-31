@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Trash2, Edit3, BookOpen, Check, Search, AlertCircle } from 'lucide-react';
 import { StudentInputCourse, GradeType, AVAILABLE_GRADES, GRADE_WEIGHTS } from '../types';
 import { masterCourses2022 } from '../utils/conversionEngine';
@@ -237,13 +238,15 @@ export const CourseInputTable: React.FC<CourseInputTableProps> = ({
 
           {/* Submit Button */}
           <div className="md:col-span-2">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
               type="submit"
               aria-label="Tambah Mata Kuliah Manual"
-              className="w-full min-h-[44px] py-2.5 bg-slate-900 hover:bg-slate-800 active:scale-95 text-white rounded-xl text-xs font-bold transition-all shadow-md flex items-center justify-center gap-1.5 cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-600"
+              className="w-full min-h-[44px] py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition-all shadow-md flex items-center justify-center gap-1.5 cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-600"
             >
               <Plus className="w-4 h-4" /> Tambah MK
-            </button>
+            </motion.button>
           </div>
         </div>
       </form>
@@ -271,121 +274,136 @@ export const CourseInputTable: React.FC<CourseInputTableProps> = ({
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 font-medium">
-              {courses.map((item, idx) => {
-                const isEditing = editingId === item.id;
-                const weight = GRADE_WEIGHTS[item.nilai || 'A'] || 4.0;
+              <AnimatePresence initial={false}>
+                {courses.map((item, idx) => {
+                  const isEditing = editingId === item.id;
+                  const weight = GRADE_WEIGHTS[item.nilai || 'A'] || 4.0;
 
-                return (
-                  <tr key={item.id} className="hover:bg-slate-50/80 transition-colors">
-                    <td className="py-3 px-4 text-center font-bold text-slate-500">{idx + 1}</td>
+                  return (
+                    <motion.tr
+                      key={item.id}
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, x: -20, backgroundColor: '#fef2f2' }}
+                      transition={{ duration: 0.2 }}
+                      className="hover:bg-slate-50/80 transition-colors"
+                    >
+                      <td className="py-3 px-4 text-center font-bold text-slate-500">{idx + 1}</td>
 
-                    {/* Nama MK Column */}
-                    <td className="py-3 px-4">
-                      {isEditing ? (
-                        <input
-                          type="text"
-                          aria-label="Edit Nama Mata Kuliah"
-                          value={editNama}
-                          onChange={e => setEditNama(e.target.value)}
-                          className="w-full px-2.5 py-1.5 bg-white border border-blue-500 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        />
-                      ) : (
-                        <span className="font-extrabold text-slate-900">{item.nama}</span>
-                      )}
-                    </td>
-
-                    {/* SKS Column */}
-                    <td className="py-3 px-4 text-center">
-                      {isEditing ? (
-                        <select
-                          aria-label="Edit SKS Mata Kuliah"
-                          value={editSks}
-                          onChange={e => setEditSks(Number(e.target.value))}
-                          className="px-2 py-1.5 bg-white border border-blue-500 rounded-lg text-xs font-bold focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        >
-                          {[1, 2, 3, 4, 6].map(s => (
-                            <option key={s} value={s}>
-                              {s} SKS
-                            </option>
-                          ))}
-                        </select>
-                      ) : (
-                        <span className="px-2.5 py-0.5 bg-slate-100 text-slate-800 rounded-full font-bold">
-                          {item.sks} SKS
-                        </span>
-                      )}
-                    </td>
-
-                    {/* Nilai Column */}
-                    <td className="py-3 px-4 text-center">
-                      {isEditing ? (
-                        <select
-                          aria-label="Edit Nilai Huruf"
-                          value={editNilai}
-                          onChange={e => setEditNilai(e.target.value as GradeType)}
-                          className="px-2 py-1.5 bg-white border border-blue-500 rounded-lg text-xs font-bold focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        >
-                          {AVAILABLE_GRADES.map(g => (
-                            <option key={g} value={g}>
-                              {g}
-                            </option>
-                          ))}
-                        </select>
-                      ) : (
-                        <span
-                          className={`inline-block px-2.5 py-0.5 rounded-full border text-xs ${getGradeBadgeStyle(
-                            item.nilai
-                          )}`}
-                        >
-                          {item.nilai}
-                        </span>
-                      )}
-                    </td>
-
-                    {/* Bobot Angka */}
-                    <td className="py-3 px-4 text-center font-extrabold text-slate-800">
-                      {weight.toFixed(2)}
-                    </td>
-
-                    {/* Actions Column (Minimum 44x44px Touch Targets) */}
-                    <td className="py-3 px-4 text-center">
-                      <div className="flex items-center justify-center gap-1">
+                      {/* Nama MK Column */}
+                      <td className="py-3 px-4">
                         {isEditing ? (
-                          <button
-                            type="button"
-                            onClick={() => handleSaveEdit(item.id)}
-                            aria-label={`Simpan perubahan ${item.nama}`}
-                            className="min-w-[44px] min-h-[44px] p-2 text-emerald-700 hover:bg-emerald-50 active:scale-95 rounded-xl transition-all flex items-center justify-center cursor-pointer focus-visible:ring-2 focus-visible:ring-emerald-600"
-                            title="Simpan"
-                          >
-                            <Check className="w-5 h-5" />
-                          </button>
+                          <input
+                            type="text"
+                            aria-label="Edit Nama Mata Kuliah"
+                            value={editNama}
+                            onChange={e => setEditNama(e.target.value)}
+                            className="w-full px-2.5 py-1.5 bg-white border border-blue-500 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-600"
+                          />
                         ) : (
-                          <button
-                            type="button"
-                            onClick={() => handleStartEdit(item)}
-                            aria-label={`Edit ${item.nama}`}
-                            className="min-w-[44px] min-h-[44px] p-2 text-slate-600 hover:text-blue-700 hover:bg-blue-50 active:scale-95 rounded-xl transition-all flex items-center justify-center cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-600"
-                            title="Edit"
-                          >
-                            <Edit3 className="w-4 h-4" />
-                          </button>
+                          <span className="font-extrabold text-slate-900">{item.nama}</span>
                         )}
+                      </td>
 
-                        <button
-                          type="button"
-                          onClick={() => onRemoveCourse(item.id)}
-                          aria-label={`Hapus ${item.nama}`}
-                          className="min-w-[44px] min-h-[44px] p-2 text-slate-500 hover:text-rose-700 hover:bg-rose-50 active:scale-95 rounded-xl transition-all flex items-center justify-center cursor-pointer focus-visible:ring-2 focus-visible:ring-rose-600"
-                          title="Hapus"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
+                      {/* SKS Column */}
+                      <td className="py-3 px-4 text-center">
+                        {isEditing ? (
+                          <select
+                            aria-label="Edit SKS Mata Kuliah"
+                            value={editSks}
+                            onChange={e => setEditSks(Number(e.target.value))}
+                            className="px-2 py-1.5 bg-white border border-blue-500 rounded-lg text-xs font-bold focus:outline-none focus:ring-2 focus:ring-blue-600"
+                          >
+                            {[1, 2, 3, 4, 6].map(s => (
+                              <option key={s} value={s}>
+                                {s} SKS
+                              </option>
+                            ))}
+                          </select>
+                        ) : (
+                          <span className="px-2.5 py-0.5 bg-slate-100 text-slate-800 rounded-full font-bold">
+                            {item.sks} SKS
+                          </span>
+                        )}
+                      </td>
+
+                      {/* Nilai Column */}
+                      <td className="py-3 px-4 text-center">
+                        {isEditing ? (
+                          <select
+                            aria-label="Edit Nilai Huruf"
+                            value={editNilai}
+                            onChange={e => setEditNilai(e.target.value as GradeType)}
+                            className="px-2 py-1.5 bg-white border border-blue-500 rounded-lg text-xs font-bold focus:outline-none focus:ring-2 focus:ring-blue-600"
+                          >
+                            {AVAILABLE_GRADES.map(g => (
+                              <option key={g} value={g}>
+                                {g}
+                              </option>
+                            ))}
+                          </select>
+                        ) : (
+                          <span
+                            className={`inline-block px-2.5 py-0.5 rounded-full border text-xs ${getGradeBadgeStyle(
+                              item.nilai
+                            )}`}
+                          >
+                            {item.nilai}
+                          </span>
+                        )}
+                      </td>
+
+                      {/* Bobot Angka */}
+                      <td className="py-3 px-4 text-center font-extrabold text-slate-800">
+                        {weight.toFixed(2)}
+                      </td>
+
+                      {/* Actions Column (Minimum 44x44px Touch Targets) */}
+                      <td className="py-3 px-4 text-center">
+                        <div className="flex items-center justify-center gap-1">
+                          {isEditing ? (
+                            <motion.button
+                              whileHover={{ scale: 1.1 }}
+                              whileTap={{ scale: 0.9 }}
+                              type="button"
+                              onClick={() => handleSaveEdit(item.id)}
+                              aria-label={`Simpan perubahan ${item.nama}`}
+                              className="min-w-[44px] min-h-[44px] p-2 text-emerald-700 hover:bg-emerald-50 rounded-xl transition-all flex items-center justify-center cursor-pointer focus-visible:ring-2 focus-visible:ring-emerald-600"
+                              title="Simpan"
+                            >
+                              <Check className="w-5 h-5" />
+                            </motion.button>
+                          ) : (
+                            <motion.button
+                              whileHover={{ scale: 1.1 }}
+                              whileTap={{ scale: 0.9 }}
+                              type="button"
+                              onClick={() => handleStartEdit(item)}
+                              aria-label={`Edit ${item.nama}`}
+                              className="min-w-[44px] min-h-[44px] p-2 text-slate-600 hover:text-blue-700 hover:bg-blue-50 rounded-xl transition-all flex items-center justify-center cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-600"
+                              title="Edit"
+                            >
+                              <Edit3 className="w-4 h-4" />
+                            </motion.button>
+                          )}
+
+                          <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            type="button"
+                            onClick={() => onRemoveCourse(item.id)}
+                            aria-label={`Hapus ${item.nama}`}
+                            className="min-w-[44px] min-h-[44px] p-2 text-slate-500 hover:text-rose-700 hover:bg-rose-50 rounded-xl transition-all flex items-center justify-center cursor-pointer focus-visible:ring-2 focus-visible:ring-rose-600"
+                            title="Hapus"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </motion.button>
+                        </div>
+                      </td>
+                    </motion.tr>
+                  );
+                })}
+              </AnimatePresence>
             </tbody>
           </table>
         </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CPL_DATA } from '../data/landingData';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export const CplSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -11,10 +11,16 @@ export const CplSection: React.FC = () => {
   });
 
   return (
-    <section id="cpl" className="py-16 bg-slate-50 border-b border-slate-200">
+    <section id="cpl" className="py-16 bg-slate-50 border-b border-slate-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-10"
+        >
           <span className="px-3.5 py-1 bg-[#1CBDB3]/15 text-[#159B93] rounded-full text-xs font-black uppercase tracking-wider border border-[#1CBDB3]/30">
             Standar Kompetensi Lulusan
           </span>
@@ -24,7 +30,7 @@ export const CplSection: React.FC = () => {
           <p className="text-xs sm:text-sm text-slate-600 mt-2 font-normal">
             7 Capaian Pembelajaran Lulusan Kurikulum 2026 yang mengintegrasikan Sikap, Pengetahuan, dan Keterampilan.
           </p>
-        </div>
+        </motion.div>
 
         {/* Category Filter Tabs */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-8">

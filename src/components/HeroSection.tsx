@@ -106,21 +106,25 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStartSimulation }) =
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3.5"
         >
-          <button
+          <motion.button
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
             onClick={onStartSimulation}
-            className="w-full sm:w-auto px-7 py-3.5 bg-[#FFB800] hover:bg-[#e5a500] text-[#1E205C] font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-[#FFB800]/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer group"
+            className="w-full sm:w-auto px-7 py-3.5 bg-[#FFB800] hover:bg-[#e5a500] text-[#1E205C] font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-[#FFB800]/25 transition-all flex items-center justify-center gap-2 cursor-pointer group"
           >
             <span>Simulasikan Konversi Nilai</span>
             <ArrowRight className="w-4 h-4 text-[#1E205C] group-hover:translate-x-1 transition-transform" />
-          </button>
+          </motion.button>
 
-          <a
+          <motion.a
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
             href="#aturan"
             className="w-full sm:w-auto px-6 py-3.5 bg-[#2F3185]/90 hover:bg-[#2F3185] text-white font-bold text-xs sm:text-sm rounded-xl border border-[#1CBDB3]/40 transition-colors flex items-center justify-center gap-2"
           >
             <ShieldCheck className="w-4 h-4 text-[#1CBDB3]" />
             <span>Kebijakan & Aturan Konversi</span>
-          </a>
+          </motion.a>
         </motion.div>
 
         {/* Key Metrics Grid */}

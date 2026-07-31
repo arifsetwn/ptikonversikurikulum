@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Layers, ArrowRight } from 'lucide-react';
 import { GENERAL_CHANGES, COURSE_NAME_CHANGES, SKS_CHANGES } from '../data/landingData';
 
@@ -18,10 +19,16 @@ export const PerubahanKurikulumSection: React.FC = () => {
   });
 
   return (
-    <section id="perubahan" className="py-16 bg-slate-50 border-b border-slate-200">
+    <section id="perubahan" className="py-16 bg-slate-50 border-b border-slate-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-12"
+        >
           <span className="px-3.5 py-1 bg-[#2F3185]/10 text-[#2F3185] rounded-full text-xs font-black uppercase tracking-wider border border-[#2F3185]/20">
             Rincian Perubahan
           </span>
@@ -31,16 +38,36 @@ export const PerubahanKurikulumSection: React.FC = () => {
           <p className="text-xs sm:text-sm text-slate-600 mt-2 font-normal">
             Rangkuman perubahan umum dan pemetaan khusus struktur mata kuliah 2026.
           </p>
-        </div>
+        </motion.div>
 
         {/* 5 Perubahan Umum Grid */}
         <div className="mb-16">
           <h3 className="text-sm font-black text-[#2F3185] uppercase tracking-wider mb-6 text-center">
             5 Perubahan Struktur Umum
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.08 }
+              }
+            }}
+            className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4"
+          >
             {GENERAL_CHANGES.map((item, idx) => (
-              <div key={idx} className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-sm card-taste-hover">
+              <motion.div
+                key={idx}
+                variants={{
+                  hidden: { opacity: 0, y: 15 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
+                }}
+                whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-sm"
+              >
                 <span className="text-[10px] font-black text-[#159B93] uppercase tracking-wider block mb-1">
                   Point {idx + 1}
                 </span>
@@ -50,9 +77,9 @@ export const PerubahanKurikulumSection: React.FC = () => {
                   <div className="text-[#2F3185] font-black">2026: {item.newVal}</div>
                 </div>
                 <p className="text-[11px] text-slate-600 leading-relaxed font-medium">{item.desc}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* Perubahan Khusus Interactive Tabs */}

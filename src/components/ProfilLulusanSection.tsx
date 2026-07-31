@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Briefcase, ChevronDown, ChevronUp, CheckCircle2, GraduationCap, Cpu, Rocket } from 'lucide-react';
 import { PROFIL_LULUSAN } from '../data/landingData';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export const ProfilLulusanSection: React.FC = () => {
   const [expandedId, setExpandedId] = useState<string | null>('pl-2');
@@ -17,17 +17,23 @@ export const ProfilLulusanSection: React.FC = () => {
   };
 
   return (
-    <section id="profil" className="py-16 bg-white border-b border-slate-200">
+    <section id="profil" className="py-16 bg-white border-b border-slate-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-12"
+        >
           <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             3 Profil Lulusan Utama (PL)
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-2 font-normal">
             Lulusan Kurikulum 2026 disiapkan untuk berkiprah di 3 domain karir utama industri EdTech & IT.
           </p>
-        </div>
+        </motion.div>
 
         {/* 3 Profil Cards Bento */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">

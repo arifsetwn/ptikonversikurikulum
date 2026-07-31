@@ -36,14 +36,20 @@ export const LearningPathSection: React.FC = () => {
     <section id="learning-path" className="py-16 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-12"
+        >
           <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             Alur Kurikulum & Track Spesialisasi
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-2 font-normal">
             Persebaran mata kuliah dan 6 pilihan spesialisasi Karir Learning Path.
           </p>
-        </div>
+        </motion.div>
 
         {/* Alur Kurikulum Image Banner Box with Animate UI ImageZoom */}
         <div className="mb-16 bg-[#1E205C] text-white rounded-3xl p-6 sm:p-8 shadow-xl overflow-hidden relative border border-[#1CBDB3]/30">

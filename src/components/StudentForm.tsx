@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { User, CreditCard, Upload, Sparkles, FileText, Trash2, AlertCircle, Loader2, CheckCircle2, FileCheck, ArrowRight } from 'lucide-react';
 import { StudentInfo, StudentInputCourse } from '../types';
 import { parseTranscriptPdf } from '../utils/pdfParser';
@@ -108,24 +109,28 @@ export const StudentForm: React.FC<StudentFormProps> = ({
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             type="button"
             onClick={onLoadSample}
             aria-label="Muat contoh transkrip mahasiswa untuk uji coba simulasi"
-            className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-black rounded-xl bg-[#1CBDB3]/15 text-[#159B93] hover:bg-[#1CBDB3]/25 active:scale-95 transition-all border border-[#1CBDB3]/30 cursor-pointer focus-visible:ring-2 focus-visible:ring-[#1CBDB3]"
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-black rounded-xl bg-[#1CBDB3]/15 text-[#159B93] hover:bg-[#1CBDB3]/25 transition-all border border-[#1CBDB3]/30 cursor-pointer focus-visible:ring-2 focus-visible:ring-[#1CBDB3]"
           >
             <Sparkles className="w-4 h-4 text-[#159B93]" /> Muat Contoh Transkrip
-          </button>
+          </motion.button>
 
           {courses.length > 0 && (
-            <button
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               type="button"
               onClick={onClearAll}
               aria-label="Reset seluruh data transkrip yang diinput"
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-bold rounded-xl bg-slate-100 text-slate-800 hover:bg-rose-50 hover:text-rose-700 active:scale-95 transition-all border border-slate-200 hover:border-rose-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-rose-600"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-bold rounded-xl bg-slate-100 text-slate-800 hover:bg-rose-50 hover:text-rose-700 transition-all border border-slate-200 hover:border-rose-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-rose-600"
             >
               <Trash2 className="w-4 h-4" /> Reset Transkrip
-            </button>
+            </motion.button>
           )}
         </div>
       </div>
@@ -138,7 +143,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
               <span className="px-2.5 py-0.5 bg-[#2F3185] text-white rounded-lg text-[10px] font-black uppercase tracking-wider shadow-sm">
                 UTAMA
               </span>
-              <span>1. Upload File Transkrip Nilai (PDF dari myakademik UMS)</span>
+              <span>1. Upload File Transkrip Nilai Kurikulum 2022 (PDF dari myakademik UMS Sebelum tanggal 10 Agustus 2026)</span>
             </label>
             <span className="text-[11px] text-slate-600 italic">
               * Mengisi otomatis Nama, NIM, dan seluruh daftar Mata Kuliah 2022
@@ -161,13 +166,12 @@ export const StudentForm: React.FC<StudentFormProps> = ({
             tabIndex={0}
             onKeyDown={e => e.key === 'Enter' && fileInputRef.current?.click()}
             aria-label="Pilih atau drag and drop file PDF transkrip nilai"
-            className={`w-full flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl border-2 border-dashed text-xs font-semibold cursor-pointer transition-all focus-visible:ring-4 focus-visible:ring-blue-500/30 focus-visible:outline-none ${
-              isDragOver
-                ? 'bg-blue-100/80 border-blue-600 text-blue-900 ring-4 ring-blue-500/20 scale-[1.005]'
-                : isUploading
+            className={`w-full flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl border-2 border-dashed text-xs font-semibold cursor-pointer transition-all focus-visible:ring-4 focus-visible:ring-blue-500/30 focus-visible:outline-none ${isDragOver
+              ? 'bg-blue-100/80 border-blue-600 text-blue-900 ring-4 ring-blue-500/20 scale-[1.005]'
+              : isUploading
                 ? 'bg-blue-50 border-blue-400 text-blue-800 animate-pulse'
                 : 'bg-gradient-to-r from-blue-50/90 via-indigo-50/40 to-slate-50/80 border-blue-400/80 text-blue-950 hover:bg-blue-100/60 hover:border-blue-600 shadow-sm'
-            }`}
+              }`}
           >
             <div className="flex items-center gap-4">
               <div className="p-3.5 bg-white rounded-2xl shadow-sm border border-blue-200/80 shrink-0">

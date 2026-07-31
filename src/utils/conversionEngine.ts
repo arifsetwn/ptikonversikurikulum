@@ -221,8 +221,12 @@ export function processCurriculumConversion(inputs: StudentInputCourse[]): Conve
 }
 
 /**
- * Returns all unfulfilled 2026 courses (both mandatory & elective) for table display
- * so students can view all available courses in the catalog.
+ * Returns unfulfilled 2026 courses for table display.
+ *
+ * Rules:
+ * 1. All mandatory courses (semester 1 to 8) that are not yet fulfilled are included.
+ * 2. If student has taken >= 3 elective courses (MK Pilihan), no elective courses are included.
+ * 3. If student has taken < 3 elective courses, all unfulfilled elective courses are included so student can choose.
  */
 export function getRemaining2026Courses(results: ConversionResultItem[]): Course2026[] {
   const fulfilledSet = new Set<string>();
@@ -234,11 +238,35 @@ export function getRemaining2026Courses(results: ConversionResultItem[]): Course
     }
   });
 
-  return masterCourses2026.filter(c => {
-    const isByCode = fulfilledSet.has(c.kode_baru);
-    const isByName = fulfilledSet.has(normalizeText(c.nama_baru));
-    return !isByCode && !isByName;
+  const unfulfilledMandatory: Course2026[] = [];
+  const unfulfilledElective: Course2026[] = [];
+  let fulfilledElectiveCount = 0;
+
+  masterCourses2026.forEach(c => {
+    const isFulfilled =
+      (c.kode_baru && fulfilledSet.has(c.kode_baru)) ||
+      (c.nama_baru && fulfilledSet.has(normalizeText(c.nama_baru)));
+
+    const isElective = c.sem_baru?.toLowerCase().includes('pilihan');
+
+    if (isElective) {
+      if (isFulfilled) {
+        fulfilledElectiveCount++;
+      } else {
+        unfulfilledElective.push(c);
+      }
+    } else {
+      if (!isFulfilled) {
+        unfulfilledMandatory.push(c);
+      }
+    }
   });
+
+  // If student has taken >= 3 electives, no electives are needed/shown.
+  // If student has taken < 3 electives, show ALL available unfulfilled electives for selection.
+  const remainingElectives = fulfilledElectiveCount >= 3 ? [] : unfulfilledElective;
+
+  return [...unfulfilledMandatory, ...remainingElectives];
 }
 
 /**
@@ -299,7 +327,7 @@ export function calculateSummaryStats(
   // IPK 2026 (Setelah Konversi): Sum(sksBaru * bobotBaru) / Sum(sksBaru)
   const ipkSetelahKonversi = totalConvertedSks > 0 ? totalConvertedMutu / totalConvertedSks : 0;
 
-  // Calculate graduation requirement SKS:
+  // Calculate graduation requirement SKS & Courses (Mandatory Sem 1-8 + Needed Electives up to 3):
   const fulfilledSet = new Set<string>();
   results.forEach(res => {
     if (res.status === 'converted_1to1' || res.status === 'converted_1toMany') {
@@ -317,14 +345,16 @@ export function calculateSummaryStats(
       (c.kode_baru && fulfilledSet.has(c.kode_baru)) ||
       (c.nama_baru && fulfilledSet.has(normalizeText(c.nama_baru)));
 
-    if (c.sem_baru !== 'Pilihan') {
-      if (!isFulfilled) {
-        remainingMandatorySks += c.sks_baru || 0;
-        remainingMandatoryCount += 1;
+    const isElective = c.sem_baru?.toLowerCase().includes('pilihan');
+
+    if (isElective) {
+      if (isFulfilled) {
+        fulfilledElectiveCount++;
       }
     } else {
-      if (isFulfilled) {
-        fulfilledElectiveCount += 1;
+      if (!isFulfilled) {
+        remainingMandatorySks += c.sks_baru || 0;
+        remainingMandatoryCount++;
       }
     }
   });

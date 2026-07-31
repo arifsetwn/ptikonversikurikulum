@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ATURAN_KONVERSI } from '../data/landingData';
 import { ArrowRight, ShieldCheck, AlertCircle, Sparkles } from 'lucide-react';
 
@@ -8,10 +9,16 @@ interface AturanKonversiSectionProps {
 
 export const AturanKonversiSection: React.FC<AturanKonversiSectionProps> = ({ onStartSimulation }) => {
   return (
-    <section id="aturan" className="py-16 bg-white border-b border-slate-200">
+    <section id="aturan" className="py-16 bg-white border-b border-slate-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-12"
+        >
           <span className="px-3.5 py-1 bg-[#2F3185]/10 text-[#2F3185] rounded-full text-xs font-black uppercase tracking-wider border border-[#2F3185]/20">
             Kebijakan Transisi Kurikulum
           </span>
@@ -21,13 +28,30 @@ export const AturanKonversiSection: React.FC<AturanKonversiSectionProps> = ({ on
           <p className="text-xs sm:text-sm text-slate-600 mt-2 font-normal">
             Ketentuan pemberlakuan Kurikulum 2026 bagi mahasiswa aktif PTI UMS.
           </p>
-        </div>
+        </motion.div>
 
         {/* 3 Actionable Aturan Points */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.12 }
+            }
+          }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+        >
           {ATURAN_KONVERSI.map(item => (
-            <div
+            <motion.div
               key={item.id}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+              }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
               className={`p-6 rounded-3xl border flex flex-col justify-between transition-all ${
                 item.isHighlight
                   ? 'bg-[#1E205C] text-white border-[#1E205C] shadow-xl ring-2 ring-[#1CBDB3]/30'
@@ -77,12 +101,18 @@ export const AturanKonversiSection: React.FC<AturanKonversiSectionProps> = ({ on
                   {item.desc}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* CTA Box */}
-        <div className="bg-gradient-to-r from-[#1E205C] via-[#2F3185] to-[#159B93] text-white rounded-3xl p-8 shadow-xl text-center flex flex-col sm:flex-row items-center justify-between gap-6 border border-[#1CBDB3]/30">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.5 }}
+          className="bg-gradient-to-r from-[#1E205C] via-[#2F3185] to-[#159B93] text-white rounded-3xl p-8 shadow-xl text-center flex flex-col sm:flex-row items-center justify-between gap-6 border border-[#1CBDB3]/30"
+        >
           <div className="text-left">
             <h3 className="text-lg sm:text-xl font-black text-white flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-[#FFB800]" /> Ingin Tahu Dampak Konversi pada Nilai Anda?
@@ -92,14 +122,16 @@ export const AturanKonversiSection: React.FC<AturanKonversiSectionProps> = ({ on
             </p>
           </div>
 
-          <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={onStartSimulation}
-            className="px-6 py-3.5 bg-[#FFB800] hover:bg-[#e5a500] text-[#1E205C] font-black text-xs sm:text-sm rounded-2xl shadow-lg active:scale-[0.98] transition-all inline-flex items-center gap-2 cursor-pointer shrink-0"
+            className="px-6 py-3.5 bg-[#FFB800] hover:bg-[#e5a500] text-[#1E205C] font-black text-xs sm:text-sm rounded-2xl shadow-lg transition-all inline-flex items-center gap-2 cursor-pointer shrink-0"
           >
             <span>Simulasikan Sekarang</span>
             <ArrowRight className="w-4 h-4 text-[#1E205C]" />
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   );

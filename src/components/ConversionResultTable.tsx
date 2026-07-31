@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   CheckCircle2,
   AlertTriangle,
@@ -91,7 +92,9 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
           </div>
         </div>
 
-        <button
+        <motion.button
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
           type="button"
           onClick={onOpenPdfModal}
           disabled={results.length === 0}
@@ -99,13 +102,24 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
           className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-[#FFB800] to-[#e5a500] hover:from-[#e5a500] hover:to-[#cc9300] active:scale-95 disabled:opacity-50 text-[#1E205C] font-black rounded-2xl text-xs sm:text-sm shadow-lg shadow-[#FFB800]/20 hover:shadow-[#FFB800]/30 transition-all cursor-pointer shrink-0 focus-visible:ring-2 focus-visible:ring-[#FFB800]"
         >
           <Download className="w-4 h-4 text-[#1E205C]" /> Unduh Dokumen PDF
-        </button>
+        </motion.button>
       </div>
 
       {/* KPI Stats Summary Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 py-6">
+      <motion.div 
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: { staggerChildren: 0.08 }
+          }
+        }}
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 py-6"
+      >
         {/* Card 1: IPK Sebelum Konversi (2022) */}
-        <div className="p-4 rounded-2xl bg-blue-50/90 border border-blue-200 shadow-sm flex flex-col justify-between">
+        <motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} whileHover={{ y: -3 }} className="p-4 rounded-2xl bg-blue-50/90 border border-blue-200 shadow-sm flex flex-col justify-between">
           <div className="text-[11px] font-extrabold text-blue-950 uppercase tracking-wider mb-1 flex items-center justify-between">
             IPK 2022
             <span className="text-[9px] bg-blue-200/80 text-blue-950 px-1.5 py-0.5 rounded font-black">2022</span>
@@ -119,10 +133,10 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
           <span className="text-[10px] text-blue-800 font-semibold block">
             {stats.totalInputSks} SKS ({stats.totalInputCourses} MK)
           </span>
-        </div>
+        </motion.div>
 
         {/* Card 2: IPK Setelah Konversi (2026) */}
-        <div className="p-4 rounded-2xl bg-indigo-50/90 border border-indigo-200 shadow-sm flex flex-col justify-between">
+        <motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} whileHover={{ y: -3 }} className="p-4 rounded-2xl bg-indigo-50/90 border border-indigo-200 shadow-sm flex flex-col justify-between">
           <div className="text-[11px] font-extrabold text-indigo-950 uppercase tracking-wider mb-1 flex items-center justify-between">
             IPK 2026
             <span className="text-[9px] bg-indigo-200/80 text-indigo-950 px-1.5 py-0.5 rounded font-black">2026</span>
@@ -149,10 +163,10 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
             )}
             <span className="text-slate-600 font-semibold">vs 2022</span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Card 3: Total Input SKS */}
-        <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+        <motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} whileHover={{ y: -3 }} className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
           <div className="text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-1">
             Total SKS 2022
           </div>
@@ -163,10 +177,10 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
           <span className="text-[10px] text-slate-600 font-semibold block">
             {stats.totalInputCourses} Mata Kuliah
           </span>
-        </div>
+        </motion.div>
 
         {/* Card 4: Total Converted SKS */}
-        <div className="p-4 rounded-2xl bg-emerald-50/80 border border-emerald-200 flex flex-col justify-between">
+        <motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} whileHover={{ y: -3 }} className="p-4 rounded-2xl bg-emerald-50/80 border border-emerald-200 flex flex-col justify-between">
           <div className="text-[11px] font-bold text-emerald-900 uppercase tracking-wider mb-1">
             SKS Diakui 2026
           </div>
@@ -177,10 +191,10 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
           <span className="text-[10px] text-emerald-800 font-semibold block">
             Terkonversi ke 2026
           </span>
-        </div>
+        </motion.div>
 
         {/* Card 5: SKS 2026 Belum Diambil */}
-        <div className="p-4 rounded-2xl bg-amber-50/80 border border-amber-200 flex flex-col justify-between">
+        <motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} whileHover={{ y: -3 }} className="p-4 rounded-2xl bg-amber-50/80 border border-amber-200 flex flex-col justify-between">
           <div className="text-[11px] font-bold text-amber-950 uppercase tracking-wider mb-1">
             SKS Belum Diambil
           </div>
@@ -191,8 +205,8 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
           <span className="text-[10px] text-amber-800 font-semibold block">
             Target Lulus 146 SKS
           </span>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Main View Mode Selector Tabs */}
       <div className="flex items-center gap-2 border-b border-slate-200 mb-6">
@@ -220,7 +234,7 @@ export const ConversionResultTable: React.FC<ConversionResultTableProps> = ({
         >
           <BookOpen className="w-4 h-4" /> Rekapitulasi MK 2026 Belum Diambil
           <span className="ml-1 px-2 py-0.5 rounded-full text-[10px] bg-amber-100 text-amber-800 font-black">
-            {remainingCourses.length} MK
+            {stats.totalRemainingCourses2026} MK
           </span>
         </button>
       </div>

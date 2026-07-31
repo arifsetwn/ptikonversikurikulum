@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { BookOpen, GraduationCap, Sparkles, Cpu, Laptop, Award, Compass, Target } from 'lucide-react';
 import { fontVisi, VISI_KEYWORDS, PEO_DATA } from '../data/landingData';
 
@@ -14,10 +15,16 @@ export const VisiPeoSection: React.FC = () => {
   };
 
   return (
-    <section id="visi" className="py-16 bg-slate-50 border-b border-slate-200">
+    <section id="visi" className="py-16 bg-slate-50 border-b border-slate-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto mb-12 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.5 }}
+          className="max-w-3xl mx-auto mb-12 text-center"
+        >
           <span className="px-3.5 py-1 bg-[#2F3185]/10 text-[#2F3185] rounded-full text-xs font-extrabold uppercase tracking-wider border border-[#2F3185]/20">
             Visi Keilmuan & Tujuan Pendidikan
           </span>
@@ -27,10 +34,16 @@ export const VisiPeoSection: React.FC = () => {
           <p className="text-xs sm:text-sm text-slate-600 mt-2 font-normal">
             Arah dan orientasi keilmuan Kurikulum 2026 Pendidikan Teknik Informatika UMS.
           </p>
-        </div>
+        </motion.div>
 
         {/* Asymmetric Visi Keilmuan Hero Box */}
-        <div className="bg-[#1E205C] text-white rounded-3xl p-8 sm:p-10 shadow-xl mb-12 relative overflow-hidden border border-[#1CBDB3]/30">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6 }}
+          className="bg-[#1E205C] text-white rounded-3xl p-8 sm:p-10 shadow-xl mb-12 relative overflow-hidden border border-[#1CBDB3]/30"
+        >
           <div className="absolute top-0 right-0 w-72 h-72 bg-[#1CBDB3]/15 rounded-full blur-3xl pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 w-60 h-60 bg-[#FFB800]/10 rounded-full blur-3xl pointer-events-none"></div>
           
@@ -46,18 +59,32 @@ export const VisiPeoSection: React.FC = () => {
           <blockquote className="text-base sm:text-xl font-extrabold text-slate-100 leading-relaxed">
             "{fontVisi}"
           </blockquote>
-        </div>
+        </motion.div>
 
         {/* 5 Visi Keywords Bento Grid */}
         <div className="mb-16">
           <h3 className="text-sm font-extrabold text-[#2F3185] mb-6 text-center uppercase tracking-wider">
             5 Pilar Utama Visi Keilmuan
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.08 } }
+            }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4"
+          >
             {VISI_KEYWORDS.map((item, idx) => (
-              <div
+              <motion.div
                 key={idx}
-                className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm card-taste-hover flex flex-col justify-between"
+                variants={{
+                  hidden: { opacity: 0, y: 15 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
+                }}
+                whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between"
               >
                 <div>
                   <div className="p-2.5 bg-slate-100/80 rounded-xl w-fit mb-3 border border-slate-200/60">
@@ -66,9 +93,9 @@ export const VisiPeoSection: React.FC = () => {
                   <h4 className="font-extrabold text-[#2F3185] text-sm mb-1.5">{item.title}</h4>
                   <p className="text-xs text-slate-600 leading-relaxed font-medium">{item.desc}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* PEO Grid */}

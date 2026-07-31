@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { LandingPage } from './components/LandingPage';
 import { Header } from './components/Header';
@@ -86,85 +87,132 @@ export function App() {
       <Navbar activePage={activePage} setActivePage={handlePageChange} />
 
       {/* Main Page View Switcher */}
-      {activePage === 'landing' ? (
-        <LandingPage onStartSimulation={() => handlePageChange('simulasi')} />
-      ) : (
-        <>
-          {/* Tool Simulasi Header */}
-          <Header />
+      <AnimatePresence mode="wait">
+        {activePage === 'landing' ? (
+          <motion.div
+            key="landing"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            className="flex-1 flex flex-col"
+          >
+            <LandingPage onStartSimulation={() => handlePageChange('simulasi')} />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="simulasi"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            className="flex-1 flex flex-col"
+          >
+            {/* Tool Simulasi Header */}
+            <Header />
 
-          {/* Main Content Body */}
-          <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            {/* Step Progress Visual */}
-            <div className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-blue-600 text-white font-extrabold text-xs flex items-center justify-center shrink-0">
-                  1
-                </div>
-                <div>
-                  <span className="text-xs font-bold text-slate-900 block">Identitas & Input Transkrip</span>
-                  <span className="text-[11px] text-slate-500">Isi Nama/NIM, Unggah Excel atau Ketik MK</span>
-                </div>
-              </div>
+            {/* Main Content Body */}
+            <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+              {/* Step Progress Visual with Framer Motion Stagger */}
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.1 }
+                  }
+                }}
+                className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-4"
+              >
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 15 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
+                  }}
+                  className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center gap-3 hover:border-blue-300 transition-colors"
+                >
+                  <div className="w-8 h-8 rounded-full bg-blue-600 text-white font-extrabold text-xs flex items-center justify-center shrink-0 shadow-sm">
+                    1
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold text-slate-900 block">Identitas & Input Transkrip</span>
+                    <span className="text-[11px] text-slate-500">Isi Nama/NIM, Unggah Excel atau Ketik MK</span>
+                  </div>
+                </motion.div>
 
-              <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-indigo-600 text-white font-extrabold text-xs flex items-center justify-center shrink-0">
-                  2
-                </div>
-                <div>
-                  <span className="text-xs font-bold text-slate-900 block">Evaluasi IPK & Pemetaan</span>
-                  <span className="text-[11px] text-slate-500">Hitung IPK 2022 vs 2026 otomatis</span>
-                </div>
-              </div>
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 15 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
+                  }}
+                  className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center gap-3 hover:border-indigo-300 transition-colors"
+                >
+                  <div className="w-8 h-8 rounded-full bg-indigo-600 text-white font-extrabold text-xs flex items-center justify-center shrink-0 shadow-sm">
+                    2
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold text-slate-900 block">Evaluasi IPK & Pemetaan</span>
+                    <span className="text-[11px] text-slate-500">Hitung IPK 2022 vs 2026 otomatis</span>
+                  </div>
+                </motion.div>
 
-              <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-emerald-600 text-white font-extrabold text-xs flex items-center justify-center shrink-0">
-                  3
-                </div>
-                <div>
-                  <span className="text-xs font-bold text-slate-900 block">Unduh Dokumen PDF</span>
-                  <span className="text-[11px] text-slate-500">Cetak hasil evaluasi & sisa SKS 2026</span>
-                </div>
-              </div>
-            </div>
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 15 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
+                  }}
+                  className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center gap-3 hover:border-emerald-300 transition-colors"
+                >
+                  <div className="w-8 h-8 rounded-full bg-emerald-600 text-white font-extrabold text-xs flex items-center justify-center shrink-0 shadow-sm">
+                    3
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold text-slate-900 block">Unduh Dokumen PDF</span>
+                    <span className="text-[11px] text-slate-500">Cetak hasil evaluasi & sisa SKS 2026</span>
+                  </div>
+                </motion.div>
+              </motion.div>
 
-            {/* Section 1: Student Identity & Excel Upload */}
-            <StudentForm
+              {/* Section 1: Student Identity & Excel Upload */}
+              <StudentForm
+                studentInfo={studentInfo}
+                setStudentInfo={setStudentInfo}
+                courses={courses}
+                setCourses={setCourses}
+                onLoadSample={handleLoadSample}
+                onClearAll={handleClearAll}
+              />
+
+              {/* Section 2: Interactive Course Input Form */}
+              <CourseInputTable
+                courses={courses}
+                onAddCourse={handleAddCourse}
+                onUpdateCourse={handleUpdateCourse}
+                onRemoveCourse={handleRemoveCourse}
+              />
+
+              {/* Section 3: Conversion Result Table & PDF Export Trigger */}
+              <ConversionResultTable
+                results={results}
+                stats={stats}
+                studentInfo={studentInfo}
+                onOpenPdfModal={() => setIsPdfModalOpen(true)}
+              />
+            </main>
+
+            {/* PDF Export Modal */}
+            <PdfExportModal
+              isOpen={isPdfModalOpen}
+              onClose={() => setIsPdfModalOpen(false)}
               studentInfo={studentInfo}
-              setStudentInfo={setStudentInfo}
-              courses={courses}
-              setCourses={setCourses}
-              onLoadSample={handleLoadSample}
-              onClearAll={handleClearAll}
-            />
-
-            {/* Section 2: Interactive Course Input Form */}
-            <CourseInputTable
-              courses={courses}
-              onAddCourse={handleAddCourse}
-              onUpdateCourse={handleUpdateCourse}
-              onRemoveCourse={handleRemoveCourse}
-            />
-
-            {/* Section 3: Conversion Result Table & PDF Export Trigger */}
-            <ConversionResultTable
               results={results}
               stats={stats}
-              studentInfo={studentInfo}
-              onOpenPdfModal={() => setIsPdfModalOpen(true)}
             />
-          </main>
-
-          {/* PDF Export Modal */}
-          <PdfExportModal
-            isOpen={isPdfModalOpen}
-            onClose={() => setIsPdfModalOpen(false)}
-            studentInfo={studentInfo}
-            results={results}
-            stats={stats}
-          />
-        </>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-auto">

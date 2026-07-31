@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { X, Download, GraduationCap, ShieldAlert, Loader2 } from 'lucide-react';
 import { ConversionResultItem, ConversionSummaryStats, StudentInfo } from '../types';
 import { generatePdfFromElement } from '../utils/pdfGenerator';
@@ -22,8 +23,6 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
 }) => {
   const [isGenerating, setIsGenerating] = useState(false);
 
-  if (!isOpen) return null;
-
   const formattedDate = new Date().toLocaleDateString('id-ID', {
     day: 'numeric',
     month: 'long',
@@ -46,22 +45,38 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto custom-scrollbar">
-      <div className="bg-white w-full max-w-4xl rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col my-8">
-        {/* Modal Header */}
-        <div className="bg-slate-900 text-white px-6 py-4 flex items-center justify-between no-print">
-          <div className="flex items-center gap-2">
-            <GraduationCap className="w-5 h-5 text-blue-400" />
-            <h3 className="text-sm font-bold">Pratinjau & Unduh Dokumen PDF</h3>
-          </div>
-          <button
-            onClick={onClose}
-            aria-label="Tutup pratinjau PDF"
-            className="min-w-[44px] min-h-[44px] p-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 active:scale-95 transition-all cursor-pointer flex items-center justify-center focus-visible:ring-2 focus-visible:ring-blue-500"
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto custom-scrollbar"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 15 }}
+            transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+            className="bg-white w-full max-w-4xl rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col my-8"
           >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
+            {/* Modal Header */}
+            <div className="bg-slate-900 text-white px-6 py-4 flex items-center justify-between no-print">
+              <div className="flex items-center gap-2">
+                <GraduationCap className="w-5 h-5 text-blue-400" />
+                <h3 className="text-sm font-bold">Pratinjau & Unduh Dokumen PDF</h3>
+              </div>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={onClose}
+                aria-label="Tutup pratinjau PDF"
+                className="min-w-[44px] min-h-[44px] p-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-all cursor-pointer flex items-center justify-center focus-visible:ring-2 focus-visible:ring-blue-500"
+              >
+                <X className="w-5 h-5" />
+              </motion.button>
+            </div>
 
         {/* Action Bar */}
         <div className="bg-slate-100 px-6 py-3 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3 no-print">
@@ -290,7 +305,7 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
             {/* SEKSI 2: TABEL MK 2026 BELUM DIAMBIL */}
             <div className="mt-8 pt-4 border-t border-slate-300">
               <h3 style={{ color: '#92400e' }} className="text-xs font-black uppercase tracking-wider mb-1">
-                II. Rekapitulasi Mata Kuliah Kurikulum 2026 yang Belum Diambil ({remainingCourses.length} MK • {stats.totalRemainingSks2026} SKS)
+                II. Rekapitulasi Mata Kuliah Kurikulum 2026 yang Belum Diambil ({stats.totalRemainingCourses2026} MK • {stats.totalRemainingSks2026} SKS)
               </h3>
               <p style={{ color: '#b45309' }} className="text-[9px] font-semibold mb-2">
                 * Catatan MK Pilihan: Mahasiswa hanya perlu mengambil 3 mata kuliah pilihan saja (total 9 SKS) dari daftar MK Pilihan untuk kelulusan.
@@ -351,14 +366,18 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
 
         {/* Footer */}
         <div className="bg-slate-50 px-6 py-4 border-t border-slate-200 flex justify-end no-print">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.97 }}
             onClick={onClose}
             className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-200 text-slate-700 hover:bg-slate-300 transition-colors cursor-pointer"
           >
             Tutup Pratinjau
-          </button>
+          </motion.button>
         </div>
-      </div>
-    </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
